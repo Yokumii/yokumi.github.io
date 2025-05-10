@@ -1,0 +1,1069 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP 13-linking">
+<meta property="og:url" content="http://example.com/2025/01/05/CSAPP%2013-linking/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="链接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/1.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/2.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/3.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/4.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/6.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/5.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/7.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/8.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/9.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/10.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/11.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/12.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/13.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/14.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/15.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/16.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/17.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/18.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/19.png">
+<meta property="og:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/20.png">
+<meta property="article:published_time" content="2025-01-05T03:23:00.000Z">
+<meta property="article:modified_time" content="2025-05-10T12:17:54.083Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CSAPP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2025/01/05/CSAPP%2013-linking/CSAPP%2013-linking/1.png">
+  
+  
+  
+  <title>CSAPP 13-linking - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt8tJP0JzOqDguIARcT5bZLJ-MdYXbMMI","app_key":"GW7Kl42zz9pFl5o9hU1pTzV9","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YokumiのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CSAPP 13-linking"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-05 11:23" pubdate>
+          2025年1月5日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CSAPP 13-linking</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>链接概述</h1>
+<ul>
+<li>源程序的编译<code>gcc -Og -o prog main.c swap.c</code>可以分为以下四个阶段：
+<ul>
+<li>Pre-Processor预处理(cpp)
+<ul>
+<li><code>cpp -o main.i main.c</code> or <code>gcc -E -o main.i main.c</code>，<code>-E</code>为限制gcc只做预处理工作</li>
+</ul>
+</li>
+<li>Compiler编译(ccl)
+<ul>
+<li><code>cc -S -o main.s main.i</code> or <code>gcc -S -o main.s main.i</code>，<code>-S</code>表示只做编译；</li>
+</ul>
+</li>
+<li>Assmebler汇编(as)
+<ul>
+<li><code>as -o main.o main.s</code>，这步得到的是<strong>可重定位文件</strong>；</li>
+</ul>
+</li>
+<li>Linker链接(ld)
+<ul>
+<li><code>ld -static -o prog main.o sum.o</code>以及其他库文件，<code>-static</code>表示静态编译<br>
+<img src="./CSAPP%2013-linking/1.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>链接动作在编译、加载和运行时都可以被执行</li>
+</ul>
+<h2 id="1-静态链接器Linker任务：">1. 静态链接器Linker任务：</h2>
+<ol>
+<li>Symbol resolution 符号解析（符号绑定）：
+<ol>
+<li>将<strong>引用符号和定义符号建立关联</strong>；</li>
+<li>定义的实质是被分配了存储空间，为函数名制定了其代码所在区，为变量名制定了其所占的静态数据去；</li>
+<li>掌握如何区分定义符号和应用符号；</li>
+</ol>
+</li>
+<li>Relocation 重定位：
+<ol>
+<li>合并相同的节；例如，所有.text节合并作为可执行文件中的.text节；</li>
+<li>对定义符号进行重定位，确定地址；例如，为函数确定首地址，进而确定每条指令的地址，为变量确定首地址；</li>
+<li>对引用符号进行红定位，确定地址；需要用到在.rel_data和.rel_text节中保存的重定位信息；</li>
+</ol>
+</li>
+</ol>
+<h2 id="2-符号解析：">2. 符号解析：</h2>
+<ul>
+<li>Global symbol：自定他用，全局可见，跨模块使用，在链接时进行符号解析：</li>
+<li>External symbol：他定自用，和Glbal Symbol相对，链接时在其他模块中查找；</li>
+<li>Local symbol：自定自用，局部符号通常由<code>static</code>修饰，限制其作用域。</li>
+<li>注意区分Local non-static varibles、Local static varibles：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">static</span> <span class="hljs-type">int</span> x = <span class="hljs-number">15</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">static</span> <span class="hljs-type">int</span> x = <span class="hljs-number">17</span>;<br>	<span class="hljs-keyword">return</span> x++;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">g</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">static</span> <span class="hljs-type">int</span> x = <span class="hljs-number">19</span>;<br>	<span class="hljs-keyword">return</span> x += <span class="hljs-number">14</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">h</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-keyword">return</span> x += <span class="hljs-number">27</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>注意区分上面每个$x$，函数$f$和$g$中的都是作用域在函数内的<strong>局部静态变量</strong></li>
+<li>最外面的$x$，即函数$h$引用的是<strong>文件范围内的静态变量</strong>；</li>
+<li>全局符号的符号解析：如果存在多个定义相同名字的全局变量：
+<ul>
+<li><strong>强符号</strong>：<strong>函数以及初始化的全局变量</strong>；</li>
+<li><strong>弱符号</strong>：<strong>未初始化的全局变量</strong>；<img src="./CSAPP%2013-linking/2.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>规则：
+<ul>
+<li>不许有多个同名的强符号，否则Linker error；</li>
+<li>如果有一个同名的强符号和多个弱符号，则取强；</li>
+<li>如果有多个同名的弱符号，随机选择；</li>
+</ul>
+</li>
+<li>注意，<strong>链接器不做类型检查</strong>，所以会发生如下问题：<img src="./CSAPP%2013-linking/3.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>引用double类型的x变量（8bytes）时可能会覆盖y的空间；</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-目标文件Object-Files">3. 目标文件Object Files</h2>
+<ul>
+<li>可重定位目标文件(.o file)</li>
+<li>可执行目标文件(a.out file)：前者经过链接得到的产物，可以直接复制到内存中并执行；</li>
+<li>共享目标文件(.so file)：特殊的可重定位目标文件，可以在程序加载或运行时被动态地加载进内存并链接；</li>
+</ul>
+<h2 id="4-ELF可重定位目标文件（可执行可链接模式）：">4. ELF可重定位目标文件（可执行可链接模式）：</h2>
+<p><img src="./CSAPP%2013-linking/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>ELF header：16字节的序列，包括字的大小等信息；</li>
+<li>.text section：代码段；</li>
+<li>.rodata section：只读数据，比如switch的跳转表、printf的格式字符串；</li>
+<li>.data：初始化的全局变量和静态C变量；</li>
+<li>.bss：未初始化以及初始化为0的全局变量和静态C变量；
+<ul>
+<li>实际上不占用任何存储空间，仅是一个占位符；</li>
+<li>Better Save Space；</li>
+<li>运行时自动分配这些变量的初始值为0；</li>
+<li>有些题目比较恶心，会区分.bss和COMMOM：
+<ul>
+<li>.bss存放未被初始化的静态变量以及初始化为0的全局或静态变量；</li>
+<li>COMMOM存放未被初始化的全局变量；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>.symtab：符号表；</li>
+<li>.rel.txt，.rel.data，占位符，即引用别的模块中定义的全局变量和函数的指令的占位符，就是下图箭头所指的；<img src="./CSAPP%2013-linking/6.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>.debug：调试信息(需要加上<code>gcc -g</code>)；</li>
+<li>Section header table：每个节的大小信息；</li>
+</ul>
+<h2 id="5-可执行文件的目标文件格式">5.可执行文件的目标文件格式</h2>
+<p><img src="./CSAPP%2013-linking/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>多了一个程序头表：包含第一条指令的地址；</li>
+<li>少了.rel.txt和.rel.data，因为已经链接完了，无需再重定位；</li>
+</ul>
+<h2 id="6-重定位">6. 重定位</h2>
+<ul>
+<li>重定位信息：<img src="./CSAPP%2013-linking/7.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+<h3 id="R-386-PC32重定位方式">R_386_PC32重定位方式</h3>
+<p><img src="./CSAPP%2013-linking/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>根据重定位前的.o文件，能得到哪些信息？
+<ul>
+<li>main在.text节中偏移为0处开始，占0x12bytes；</li>
+<li><code>e8 fc ff ff ff</code>中，<code>e8</code>是<code>call</code>的机器码，后面应该存放swap函数的地址，但目前未重定位，所以没有意义，是占位符；</li>
+<li>下一行的<code>7: R_386_PC32 swap</code>也是占位符，用于重定位，7表示需要在地址7(6 + 1，call的机器码占一个字节)处进行重定位，R_386_PC32表示需要计算的是PC相对地址；<br>
+<img src="./CSAPP%2013-linking/9.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+<li>根据以上信息，问题是：<br>
+<img src="./CSAPP%2013-linking/10.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>main函数从<code>0x8048380</code>开始，占0x12bytes，swap紧跟main后，所以其起始地址为<code>0x8048380 + 0x12 = 0x804892B</code>，由于其机器代码首地址需要按4字节边界对齐，所以应该是<code>0x8048394</code>；</li>
+<li><strong>重定位后，call指令的机器代码应该是什么？</strong>
+<ul>
+<li>由于采用R_386_PC32相对地址法，转移目标地址 = PC + 偏移地址(重定位值)；</li>
+<li>在执行call时，PC指向call指令的下一条地址，即<code>0x8048380 + 0x7 = 0x8048387</code>；</li>
+<li>但是，<strong>由于一开始有一个占位的初始偏移值<code>fc ff ff ff</code>即-4，链接器在进行重定位之前，会先减掉这个临时的偏移量</strong>，所以，正确的PC地址应该是<code>0x8048387 - (-4) = 0x804838b</code>；</li>
+<li>事实上，这个PC地址就是call指令的下一条语句的地址；</li>
+<li>重定位值 = 转移目标地址 - PC = <code>0x8048394 - 0x804838b = 0x9</code>；</li>
+<li>然后链接器将call指令的机器代码修正为<code>e8 09 00 00 00</code>；（小端法）</li>
+</ul>
+</li>
+</ul>
+<h3 id="R-386-32的重定位方式">R_386_32的重定位方式</h3>
+<p><img src="./CSAPP%2013-linking/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1>静态库链接Static Libraries</h1>
+<ul>
+<li>将所有相关的目标文件模块打包成一个单独的文件，称为静态库；</li>
+<li>使链接器构造可执行文件时，只要复制静态库里被程序引用的目标模块；</li>
+<li>相比于链接整个模块，减少了可执行文件在磁盘和内存中的大小；</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">create static libraries</span><br><span class="hljs-meta prompt_">unix&gt; </span><span class="language-bash">ar rs libc.a \ atoi.o printf.o ... random.o</span><br></code></pre></td></tr></table></figure>
+<p><img src="./CSAPP%2013-linking/12.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">与静态库链接</span><br><span class="hljs-meta prompt_">unix&gt; </span><span class="language-bash">gcc -static -o prog2r \ main2.o -L. -lvector</span><br></code></pre></td></tr></table></figure>
+<p><img src="./CSAPP%2013-linking/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>自定义创建静态库文件（ar工具）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Shell">gcc -c myproc1.c myproc2.c<br>ar rcs mylib.a myproc1.o myproc2.o<br><br>gcc -c main.c<br>gcc -static -o myproc main.o ./mylib.a # 标准的静态库无需显示给出<br></code></pre></td></tr></table></figure>
+<ul>
+<li>在进行符号解析到过程中，按从左往右的顺序进行链接，并将符号分为三个集合：
+<ul>
+<li>E：合并以组成可执行文件的所有目标文件集合；</li>
+<li>U：当前所有未解析的引用符号；</li>
+<li>D：当前所有定义的符号的集合，来更新U和E；</li>
+</ul>
+</li>
+<li>符号解析的完整过程如下：
+<ol>
+<li>扫描到main.o并加入E；</li>
+<li>把main.o中未解析的引用myfunc加入U，把main加入D；</li>
+<li>扫描到静态库文件mylib.a，将U中的符号与mylib.a中所有目标模块依次匹配，将myfunc从U中删除移到D，将myproc1.o加入E；</li>
+<li>此时myproc1.o中发现未定义printf符号，将其加入到U；</li>
+<li>不断扫描静态库文件，直至U、D不变；</li>
+<li>扫描默认的库文件libc.a时，找到printf.o定义，将printf.o加入到E，并将printf从U移动到D，此时U一定是空的，否则就报错了；</li>
+<li>由于未引用myproc2.o的内容，它并不在E中，被丢弃；<br>
+<img src="./CSAPP%2013-linking/14.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ol>
+</li>
+<li>但是静态库链接的顺序扫描会导致一个问题：<img src="./CSAPP%2013-linking/15.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>所以好的做法是<strong>将静态库放在命令行最后</strong>；</li>
+<li><strong>如果静态库之间并不相互独立，静态库需要重复出现</strong>；<img src="./CSAPP%2013-linking/16.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>静态库的缺陷：
+<ul>
+<li>主存资源浪费；</li>
+<li>磁盘空间浪费；</li>
+<li>更新困难，使用不便；</li>
+</ul>
+</li>
+</ul>
+<h1>动态链接的共享库Shared Libraries</h1>
+<ul>
+<li>共享库是一个目标文件（Linux：.so文件；Windows：.dll文件）；</li>
+<li>从程序中分离出来，磁盘和内存中都只有一个备份；</li>
+<li>可以<strong>在程序运行或加载时，加载到内存的任意位置，并和一个内存中的程序链接起来，称为动态链接</strong>；<br>
+<img src="./CSAPP%2013-linking/17.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li><code>ldd prog</code>可以打印出可执行文件需要的动态链接库；</li>
+<li>自定义创建动态链接库：（<code>-fpic</code>是生成位置无关的共享库代码文件）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Shell"><span class="hljs-meta prompt_">unix&gt; </span><span class="language-bash">gcc -Og -c test1.c test2.c</span><br><span class="hljs-meta prompt_">unix&gt; </span><span class="language-bash">gcc -shared -fpic -o test.so \ test1.o test2.o</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">unix&gt; </span><span class="language-bash">gcc -c main.c</span><br><span class="hljs-meta prompt_">unix&gt; </span><span class="language-bash">gcc -o <span class="hljs-built_in">test</span> main.o ./test.so</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>动态链接库在加载时的链接过程</strong>：<img src="./CSAPP%2013-linking/18.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>在静态链接器ld链接的过程中，生成重定位和符号表信息；</li>
+<li>加载可执行程序时，加载器发现在程序表中的 <strong>.interp 段</strong>，其中包含了动态链接器路径名 <a target="_blank" rel="noopener" href="http://ld-linux.so">ld-linux.so</a>，因而加载器根据指定路径加载并启动动态链接器运行；</li>
+<li>完成重定位后，将控制权交给可执行文件，开始执行程序；</li>
+<li><strong>动态链接库在运行时的链接过程</strong>：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;dlfcn.h&gt;</span></span><br><span class="hljs-comment">/* Dynamically load the shared library that contains addvec() */</span><br>handle = dlopen(<span class="hljs-string">&quot;./libvector.so&quot;</span>, RTLD_LAZY);<br><br><span class="hljs-comment">/* Get a pointer to the addvec() function we just loaded */</span><br>addvec = dlsym(handle, <span class="hljs-string">&quot;addvec&quot;</span>);<br><br><span class="hljs-comment">/* Now we can call addvec() just like any other function */</span><br>addvec(x, y, z, <span class="hljs-number">2</span>);<br><br><span class="hljs-comment">/* Unload the shared library */</span><br>dlclose(handle);<br></code></pre></td></tr></table></figure>
+<p><img src="./CSAPP%2013-linking/19.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>上述过程也被称为<strong>Lazy Binding (延迟绑定)</strong>，它将函数地址的绑定推迟到<strong>函数第一次被调用时</strong>，而不是在程序加载到内存时立即完成所有函数地址的绑定；</li>
+<li>延迟绑定依赖两种关键的数据结构：<strong>GOT（全局偏移表）</strong> 和 <strong>PLT（过程链接表）</strong>；</li>
+<li>GOT：
+<ul>
+<li>它是一个包含地址的表，存放在程序的数据段中（.data 或 .bss）。</li>
+<li>每个引用的全局对象（包括全局变量和动态链接函数）在 GOT 中占据一个条目（8 字节）。</li>
+<li>每个目标模块（目标文件或共享库）都会有自己的独立 GOT。</li>
+<li>在程序加载时，动态链接器计算全局变量或函数的绝对地址。将每个 GOT 条目更新为对应全局对象的<strong>绝对地址</strong>。</li>
+</ul>
+</li>
+<li>PLT：
+<ul>
+<li><strong>PLT 是一段可执行代码</strong>，用来间接调用动态链接的函数。</li>
+<li>每个动态链接的函数在 PLT 中都有一个对应的条目，<strong>每个条目大小为 16 字节</strong>。</li>
+<li>在程序中，<strong>所有对动态函数的调用都会先跳转到对应的 PLT 条目，而不是直接调用函数地址</strong>。</li>
+<li>每个动态函数在 GOT 中都有一个对应的条目，初始状态下，该条目指向动态链接器的解析代码。</li>
+<li><strong>当动态链接器解析了目标函数地址后，会更新对应的 GOT 条目为函数的实际地址</strong>。</li>
+<li><strong>第一次调用函数</strong>：
+<ul>
+<li>PLT 条目先访问 GOT，发现 GOT 中的地址是动态链接器的入口。</li>
+<li>动态链接器解析函数的实际地址，并更新 GOT 条目。</li>
+</ul>
+</li>
+<li><strong>后续调用函数</strong>：
+<ul>
+<li>PLT 条目直接跳转到 GOT 条目中存储的函数地址，避免重复解析。<br>
+<img src="./CSAPP%2013-linking/20.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" class="category-chain-item">专业学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CSAPP/" class="print-no-link">#CSAPP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CSAPP 13-linking</div>
+      <div>http://example.com/2025/01/05/CSAPP 13-linking/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/01/05/CSAPP%2014-ecf-procs/" title="CSAPP 14-ecf-procs">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CSAPP 14-ecf-procs</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/05/CSAPP%2009-machine-advanced/" title="CSAPP 09-machine-advanced">
+                        <span class="hidden-mobile">CSAPP 09-machine-advanced</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"kt8tJP0JzOqDguIARcT5bZLJ-MdYXbMMI","appKey":"GW7Kl42zz9pFl5o9hU1pTzV9","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://chinese-font.netlify.app/zh-cn/" target="_blank" rel="nofollow noopener"><span>中文网字计划</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
