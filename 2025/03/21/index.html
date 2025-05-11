@@ -1,0 +1,1112 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yokumi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据链路层">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网学习笔记(3)：数据链路层">
+<meta property="og:url" content="https://blog.yokumi.cn/2025/03/21/">
+<meta property="og:site_name" content="YokumiのBlog">
+<meta property="og:description" content="数据链路层">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/5.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/6.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/7.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/8.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/9.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/10.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/11.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/12.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/13.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/14.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/15.png">
+<meta property="article:published_time" content="2025-03-21T01:17:00.000Z">
+<meta property="article:modified_time" content="2025-05-10T12:17:54.500Z">
+<meta property="article:author" content="Yokumi">
+<meta property="article:tag" content="private">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.yokumi.cn/2025/03/21/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/2.png">
+  
+  
+  
+  <title>计网学习笔记(3)：数据链路层 - YokumiのBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.yokumi.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt8tJP0JzOqDguIARcT5bZLJ-MdYXbMMI","app_key":"GW7Kl42zz9pFl5o9hU1pTzV9","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YokumiのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计网学习笔记(3)：数据链路层"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-21 09:17" pubdate>
+          2025年3月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计网学习笔记(3)：数据链路层</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>数据链路层对实际在物理层中传输的信号起到差错控制和流量控制的作用，特别是在广播信道中，需要解决多个发送方同时发送信号造成的共享信道冲突，一般由接受方控制发送方。</p>
+<h1>Technologies</h1>
+<h2 id="Framing">Framing</h2>
+<h3 id="定义">定义</h3>
+<p>Encapsulates network packet into a frame，封装成帧，即将网络层发送的Packet加上Header和Trailer，组成Frame。</p>
+<h3 id="要求">要求</h3>
+<p>由于数据链路层间是虚拟通信，实际信号传输通过物理层传输01比特串，这要求数据链路层从01比特串中能正确识别出帧（<em><strong>帧同步</strong></em>）。</p>
+<ul>
+<li>Simple，容易实现；</li>
+<li>Code Independent，加上的内容与传输的消息内容无关；</li>
+<li>Efficient，所用信号带宽尽量小；</li>
+<li>Robustness，出错后能重新同步；</li>
+</ul>
+<h3 id="方式">方式</h3>
+<h4 id="Character-Count-字符计数法">Character Count 字符计数法</h4>
+<p>在每帧之前加上一个字符表示帧的长度，一错后面都错；</p>
+<h4 id="Byte-Stuffing-字符填充法">Byte Stuffing 字符填充法</h4>
+<p>用特定的标志表示帧的开始和结束：<img src="./%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>如果帧的其他控制和数据部分含有帧的开始符或结束符怎么办？——<em><strong>Transparent Transmission透明传输</strong></em><br>
+<img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>即：如果中间含有Flag，在Flag之前插入1个ESC；如果中间含有ESC，在ESC前面插入1个ESC；</p>
+<h4 id="Bit-Stuffing-比特填充法">Bit Stuffing 比特填充法</h4>
+<ol>
+<li>用连续的6个1表示开始和结束标志：01111110；</li>
+<li>中间部分，在从左到右每出现5个1之后插入1个0，可以有效避免中间部分被识别为开始符或结束符，且容易解码；</li>
+</ol>
+<h4 id="Physical-Layer-Coding-Violations-物理层编码违例法">Physical Layer Coding Violations 物理层编码违例法</h4>
+<p>适用于比较特殊的编码，比如Manchester编码，用没有出现跳变的信号表示开始符和结束符；</p>
+<h2 id="Error-control">Error control</h2>
+<h3 id="基本概念">基本概念</h3>
+<h4 id="Error-Types">Error Types</h4>
+<ul>
+<li>Lost Frames；</li>
+<li>Damaged Frames；</li>
+</ul>
+<h4 id="Error-Detection-检错">Error Detection 检错</h4>
+<ul>
+<li>Parity Check 奇偶校验：单冗余码；</li>
+<li>Cyclic Redundancy Check(CRC) 循环检错；</li>
+<li>Checksum：在网络层中；</li>
+</ul>
+<h4 id="Error-Correction-纠错">Error Correction 纠错</h4>
+<p>Error Correction Code(ECC) 纠错码，分为：</p>
+<ul>
+<li><em><strong>Forward Error Correction(FEC) 前向纠错</strong></em>：例如汉明编码；</li>
+<li><em><strong>Automatic Repeat reQuest(ARQ) 自动重传请求</strong></em>：检错+重传；</li>
+<li><em><strong>Hybrid Error Correction(HEC) 混合纠错</strong></em>；</li>
+</ul>
+<h4 id="Single-bit-Error-vs-Burst-Error">Single-bit Error vs. Burst Error</h4>
+<p><img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><em><strong>注意下图中突发错误的长度为5：从第一个错误的到最后一个错误的比特数</strong></em>；</p>
+<h3 id="ECC纠错码：汉明距离">ECC纠错码：汉明距离</h3>
+<p>在所有合法的码字中：</p>
+<ul>
+<li>如果需要检测出 t 位比特错误，需要最小汉明距离为 t + 1；</li>
+<li>如果需要纠正出 t 位比特错误，需要最小汉明距离位 2t + 1；</li>
+</ul>
+<h4 id="The-Num-of-Check-Bits-to-Correct-Single-Bit-Error">The Num of Check Bits to Correct Single Bit Error</h4>
+<p>只考虑纠正一位错误：</p>
+<ul>
+<li>$m$：原始信息长度；</li>
+<li>$r$：check bits，即需要增加的校验位长度；</li>
+<li>$n$：码字长度，即$n = m + r$；</li>
+</ul>
+<p>根据原始信息长度，推出存在$2^m$个合法信息，每一个合法信息按照$n$的码字传输，能产生和它有一位比特差错的种类有$n$个，所有共有$(n + 1)2^m$个码字；<br>
+$n$位码字的种类共有$2^n$个，所以要求：</p>
+<p>$$<br>
+(n + 1)2^m \le 2^n \Leftrightarrow m + r + 1 \le 2^r<br>
+$$</p>
+<h4 id="汉明编码：Correction-of-Single-Bit-Error">汉明编码：Correction of Single Bit Error</h4>
+<ul>
+<li>只允许在$2^i$位置处放置校验位Check Bits；</li>
+<li>剩下的位置填充数据位；</li>
+</ul>
+<p><img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/5.png" srcset="/img/loading.gif" lazyload alt=""><br>
+<img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/6.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="Error-Detection-Code">Error Detection Code</h3>
+<h4 id="Even-Parity-Checking-偶校验">Even-Parity Checking 偶校验</h4>
+<h4 id="Polynomial-Code-多项式编码">Polynomial Code 多项式编码</h4>
+<p>也称为<em><strong>CRC(Cyclic Redundancy Check，循环冗余校验)</strong></em> 或 <em><strong>FCS(Frame Check Sequence，帧校验序列)</strong></em> ；</p>
+<ul>
+<li>$M(x)$：将要传输的比特看成多项式，比如：$110001 \Rightarrow x^5 + x^4 + x^0$；</li>
+<li>运算定义为模2运算，即$x + y = x - y = x\oplus y$；</li>
+<li>$G(x)$：生成多项式；</li>
+</ul>
+<h5 id="计算过程">计算过程</h5>
+<ol>
+<li>$M(x) * x^r$，即在传输的数据右边增加$r$个0；</li>
+<li>$M(x) * x^r / G(x) \cdots R(x)$，即作除法后得到余数多项式$R(x)$；</li>
+<li>Sender发送方：$T(x) = M(x) * x^r + R(x) = M(x) * x^r - R(x)$；</li>
+<li>Receiver接收方：$T(x) / G(x)$，余数一定为0；</li>
+</ol>
+<h5 id="检查过程">检查过程</h5>
+<ol>
+<li>接收方如果收到错误的信息，即$T(x) + E(x)$；</li>
+<li>正常不出错的情况下，$T(x) / G(x)$余数为0；</li>
+<li>出错的情况下，结果为$E(x) / G(x)$的余数；</li>
+<li>能捕捉到所有的错误；</li>
+</ol>
+<h2 id="Flow-control">Flow control</h2>
+<h3 id="Flow-Control-Protocols">Flow Control Protocols</h3>
+<h4 id="Elementary-Protocols">Elementary Protocols</h4>
+<ul>
+<li><em><strong>Utopian Simplex Protocol 乌托邦单工协议</strong></em>；
+<ul>
+<li>通信是单通的；</li>
+<li>通信是无错的；</li>
+<li>接收方缓存空间无限；</li>
+<li>无需差错控制和流量控制；</li>
+</ul>
+</li>
+<li>***Simplex Stop-and-Wait Protocol for Error-Free Channel 停等协议
+<ul>
+<li>通信是单通的；</li>
+<li>通信是无错的；</li>
+<li>接收方缓存空间有限；</li>
+<li>需要流量控制：Stop-and-Wait
+<ul>
+<li>发送方发送一个Frame，等待；</li>
+<li>接收方如果正确收到信息，发送一个<em><strong>ACK(Acknowledgement，应答)</strong></em>；</li>
+<li>发送方接收到ACK后，发送下一个Frame；</li>
+</ul>
+</li>
+<li>如果通信不可靠，会产生如下问题：帧错误、帧丢失或ACK丢失<img src="./%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/7.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>其中，如果ACK丢失，发送方会在超时后发送第二个相同的帧，但是接收方并不知道！解决方法：<em><strong>Sequence Number</strong></em>；</li>
+</ul>
+</li>
+<li><em><strong>Protocol 3: Positive ACK with Retransmission(PAR) 带有重试的主动确认协议</strong></em>
+<ul>
+<li><em><strong>ARQ(Automatic Repeat reQuest) 自动重传请求</strong></em>
+<ul>
+<li>在每个Frame之前添加序号，来区分该Frame是重传的还是新的；</li>
+<li>链路层只需要1bit，即编号空间大小为2；</li>
+<li>传输层需要更大的编号空间；</li>
+<li>但是还是有问题：如果ACK传输延迟了，如下图所示，那么当那个重复发送的Frame0收到后返回给发送方时，发送方认为这是Frame1的应答信号，错误地认为Frame1已经正确发送到接收方；<img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/8.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>所以需要给ACK也添加序号：<img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/9.png" srcset="/img/loading.gif" lazyload alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> MAX_SEQ 1</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> &#123;</span> <br>	frame_arrival, <br>	cksum_err, <br>	timeout <br>&#125; event_type;<br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;protocol.h&quot;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">send</span><span class="hljs-params">()</span> &#123;<br>	seq_nr next_frame_to_send = <span class="hljs-number">0</span>;<br>	frame s;<br>	packet buffer;<br>	event_type event;<br>	<br>	from_network_layer(&amp;buffer);<br>	<br>	<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>		s.info = buffer;<br>		s.seq = next_frame_to_send;<br>		to_physical_layer(&amp;s);<br>		start_timer(s.seq);<br>		wait_for_event(&amp;event);<br>		<br>		<span class="hljs-keyword">if</span> (event == frame.arrival) &#123;<br>			from_physical_layer(&amp;s);<br>			<span class="hljs-keyword">if</span> (s.ack == next_frame_to_send) &#123;<br>				stop_timer(s.ack);<br>				from_network_layer(&amp;buffer);<br>				next_frame_to_send = <span class="hljs-number">1</span> - next_frame_to_send;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">receive</span><span class="hljs-params">()</span> &#123;<br>	seq_nr frame_expected = <span class="hljs-number">0</span>;<br>	frame r, s;<br>	event_type event;<br>	<br>	<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>		wait_for_event(&amp;event);<br>		<br>		<span class="hljs-keyword">if</span> (event == frame.arrival) &#123;<br>			from_physical_layer(&amp;r);<br>			<span class="hljs-keyword">if</span> (r.seq == frame_expected) &#123;<br>				to_network_layer(&amp;r.info);<br>				frame_expected = <span class="hljs-number">1</span> - frame_expected;<br>			&#125;<br>			s.ack = <span class="hljs-number">1</span> - frame_expected;<br>			to_physical_layer(&amp;s);<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><em><strong>Piggybacking 捎带应答</strong></em>
+<ul>
+<li>通信是全双工Full-duplex的；</li>
+<li>当接收方收到帧后，不立刻发送ACK，而是等待网络层有发送请求时，将ACK添加到需要发送的帧中一起发送；</li>
+<li>缺点是在如果长时间没有发送请求，会因等待应答而造成信道阻塞；</li>
+</ul>
+</li>
+</ul>
+<h4 id="Sliding-Window-Protocols-滑动窗口协议">Sliding Window Protocols 滑动窗口协议</h4>
+<h5 id="特点">特点</h5>
+<ul>
+<li>可靠，面向连接的服务；</li>
+<li>信道是全双工的；</li>
+<li>通过CRC+重传进行差错控制；</li>
+<li>通过滑动窗口进行流量控制；</li>
+</ul>
+<h5 id="Protocol-4-Sliding-Window-of-Size-1-大小为1的滑动窗口协议">Protocol 4: Sliding Window of Size 1 大小为1的滑动窗口协议</h5>
+<ul>
+<li>实际上就是停等协议，只不过变成了全双工，既能发又能收；</li>
+<li>在两端同时发送数据时会出现帧重复；</li>
+<li>信道效率低，特别是带宽时延积较大的信道，比如卫星通信；</li>
+</ul>
+<h5 id="Protocol-5-GBN-Go-Back-N-回退N步">Protocol 5: GBN(Go Back N 回退N步)</h5>
+<ul>
+<li>默认情况下接收窗口$W_r = 1$；</li>
+<li>$W_t + W_r \le 2^n$，所以发送窗口需要满足$W_t \le 2^{n} - 1$；</li>
+<li>如果收到的帧出错，之后接受到的帧都丢弃，直到出错的帧重新发送后被正确接收，在此期间接收方保持沉默，并不会应答；</li>
+<li>如果收到的帧与预期收到的不符，丢弃该帧，并回送ACK为当前最后一个已经收到的正确的帧的序号；发送方收到后需要从该ACK序号之后的帧开始重传；</li>
+<li>发送方在接收到ACK或帧计时器超时后，需要回退到发错的那一帧并重传；</li>
+<li>注意ACK的应答可以采用<em><strong>Cumulative ACK</strong></em>（累计ACK）：不需要每一帧都回送一个ACK，当接收方发送ACK = n时，表示n以及n之前的数据帧都已经正确收到；</li>
+<li>对于 $n$ bits的序列号码，$MAX_SEQ = 2^n - 1$；</li>
+<li>默认接受方的Buffer缓存空间 $= MAX_SEQ + 1$；</li>
+</ul>
+<p><em><strong>Protocol 4 vs. Protocol 5</strong></em>：<br>
+<img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Protocol-6-SR-ARQ-Selective-Repeat-选择重传">Protocol 6: SR ARQ(Selective Repeat 选择重传)</h5>
+<ul>
+<li>只有被拒绝的帧才需要重传；</li>
+<li>一般默认$W_t = W_r = 2^{n-1}$，注意与Protocol 5区分；</li>
+<li>一般，认为接收方需要的Buffer空间 $= W_r$，帧缓存的位置 = $frame.seq % W_r$，这样能否有效保证任意位置接受窗口内的帧不在同一位置；</li>
+<li><em><strong>Frame Timer</strong></em>：发送方每一个缓存的帧都需要一个Timer；</li>
+<li><em><strong>ACK Timer</strong></em>：只需要一个，以第一个为准；</li>
+<li><em><strong>NCK</strong></em>：以下两种情况，接收方会发送NCK用于加速重传：
+<ul>
+<li>收到的数据帧校验出错；</li>
+<li>收到的数据帧和预期的不符合；</li>
+<li>NCK的序号就是出错帧（指的是预期的帧）的序号；</li>
+</ul>
+</li>
+<li>向网络层提交数据是一个循环的过程：从接收窗口下沿开始依次提交收到的帧并向前滑动接收窗口直到空闲Buffer出现；</li>
+</ul>
+<h5 id="协议456的比较">协议456的比较</h5>
+<p><img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/11.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="Performance">Performance</h3>
+<p>$$<br>
+\alpha = \frac{T_{prop}}{T_{trans}}<br>
+$$</p>
+<h4 id="Error-free-Stop-and-Wait">Error-free Stop-and-Wait</h4>
+<p>$$<br>
+efficiency = \frac{1}{1+2\alpha}<br>
+$$</p>
+<h4 id="Stop-and-Wait-with-error">Stop-and-Wait with error</h4>
+<p>$$<br>
+efficiency = \frac{1 - p}{1 + 2\alpha}<br>
+$$</p>
+<h4 id="Error-free-Sliding-Window">Error-free Sliding-Window</h4>
+<p>$$<br>
+efficiency = \left{\begin{matrix}<br>
+\frac{W_T}{1 + 2\alpha},W_T &lt; 1 + 2\alpha \<br>
+1, W_T \ge 1 + 2\alpha<br>
+\end{matrix}\right.<br>
+$$</p>
+<h4 id="Error-free-Sliding-Window-with-Piggybacking">Error-free Sliding-Window with Piggybacking</h4>
+<p>$$<br>
+efficiency = \frac{W_T}{2 + 2\alpha}<br>
+$$</p>
+<h2 id="Media-Access-Control">Media Access Control</h2>
+<p>见计网学习笔记(4)：介质访问控制；</p>
+<h1>Services(to Network Layer)</h1>
+<ul>
+<li>Connectionless services
+<ul>
+<li>Unacknowledged connectionless services：大多数局域网LAN使用无确认；</li>
+<li>Acknowledged connectionless services：wireless system；</li>
+</ul>
+</li>
+<li>Acknowledged connection-oriented services：</li>
+</ul>
+<h1>Implement</h1>
+<p><img src="./%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>方框内表示一整个Router路由器，一般有3个接口，其中1和2组成路由器的网卡(NIC，Network interface cart)；</p>
+<h1>Examples of Point-to-Point DataLink Protocols</h1>
+<h4 id="HDLC-High-Level-DataLink-Control-高级数据链路控制">HDLC(High-Level DataLink Control, 高级数据链路控制)</h4>
+<h5 id="特点-2">特点</h5>
+<ul>
+<li>可靠，面向连接
+<ul>
+<li>流量控制，差错控制；</li>
+<li>GoBackN ARQ，Selective Repeat ARQ；</li>
+</ul>
+</li>
+<li>Synchronous serial transmission 同步串行链路传输；</li>
+<li>error detection：CRC；</li>
+<li>不支持相关链路和网络参数协商；</li>
+<li>不支持认证；</li>
+</ul>
+<h5 id="Frame-Type">Frame Type</h5>
+<p>采用零比特填充。<br>
+<img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/12.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Station-Type">Station Type</h5>
+<p><img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/13.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Point-to-Point-Protocol-PPP-点对点协议">Point-to-Point Protocol(PPP, 点对点协议)</h4>
+<h5 id="特点-3">特点</h5>
+<ul>
+<li>只支持点到点；</li>
+<li>Connectionless unacknowledged service；</li>
+<li>采用字节填充；</li>
+<li>适配多种网络层协议；</li>
+<li>支持身份认证；</li>
+<li>物理层可以采用异步和同步传输；</li>
+</ul>
+<h5 id="Frame-Format">Frame Format</h5>
+<p><img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/14.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<ul>
+<li>Address = 0xFF，表示支持所有站点；</li>
+<li>Control = 0x03，表示无编号模式；</li>
+<li>以上两个字段非必需，可以不要；</li>
+</ul>
+<h4 id="协议对比">协议对比</h4>
+<p><img src="%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/15.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<script>
+
+window.addEventListener('hexo-blog-decrypt', function() {
+
+console.log('文章已成功解密！');
+
+// 可以在这里添加额外的回调函数
+
+});
+
+</script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" class="category-chain-item">专业学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/private/" class="print-no-link">#private</a>
+      
+        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="print-no-link">#计算机网络</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计网学习笔记(3)：数据链路层</div>
+      <div>https://blog.yokumi.cn/2025/03/21/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Yokumi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/22/" title="计组学习笔记(2)：运算方法与运算器II">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计组学习笔记(2)：运算方法与运算器II</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/13/" title="计组学习笔记(2)：运算方法与运算器Ⅰ">
+                        <span class="hidden-mobile">计组学习笔记(2)：运算方法与运算器Ⅰ</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"kt8tJP0JzOqDguIARcT5bZLJ-MdYXbMMI","appKey":"GW7Kl42zz9pFl5o9hU1pTzV9","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://chinese-font.netlify.app/zh-cn/" target="_blank" rel="nofollow noopener"><span>中文网字计划</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
