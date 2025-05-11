@@ -21,33 +21,19 @@
   <meta name="author" content="Yokumi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="存储器的分类  按照介质分类：  半导体存储器、磁介质存储器、光存储器；   按照存储器与CPU的耦合程度：  内存（主存 + cache）、外存；   按照存储器的读写功能：  读写存储器RWM； 只读存储器ROW；   按照掉电后存储的信息是否保持：  易失性； 非易失性；   按照数据存取的随机性：  随机存取RAM：指随机给定一个地址就可以拿到数据并与前一个访问的地址无关； 顺序存取SAM">
-<meta property="og:type" content="article">
-<meta property="og:title" content="计组学习笔记(4)：存储系统I">
-<meta property="og:url" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客的一些进阶配置">
+<meta property="og:url" content="https://blog.yokumi.cn/2025/05/11/Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%BF%9B%E9%98%B6%E9%85%8D%E7%BD%AE/">
 <meta property="og:site_name" content="YokumiのBlog">
-<meta property="og:description" content="存储器的分类  按照介质分类：  半导体存储器、磁介质存储器、光存储器；   按照存储器与CPU的耦合程度：  内存（主存 + cache）、外存；   按照存储器的读写功能：  读写存储器RWM； 只读存储器ROW；   按照掉电后存储的信息是否保持：  易失性； 非易失性；   按照数据存取的随机性：  随机存取RAM：指随机给定一个地址就可以拿到数据并与前一个访问的地址无关； 顺序存取SAM">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/6.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/7.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/8.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/9.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/10.png">
-<meta property="article:published_time" content="2025-04-03T02:42:00.000Z">
-<meta property="article:modified_time" content="2025-05-11T12:05:33.277Z">
+<meta property="article:published_time" content="2025-05-11T11:51:33.000Z">
+<meta property="article:modified_time" content="2025-05-11T11:51:33.386Z">
 <meta property="article:author" content="Yokumi">
-<meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/1.png">
   
   
   
-  <title>计组学习笔记(4)：存储系统I - YokumiのBlog</title>
+  <title>Hexo博客的一些进阶配置 - YokumiのBlog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计组学习笔记(4)：存储系统I"></span>
+            <span id="subtitle" data-typed-text="Hexo博客的一些进阶配置"></span>
           
         </div>
 
@@ -254,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-03 10:42" pubdate>
-          2025年4月3日 上午
+        <time datetime="2025-05-11 19:51" pubdate>
+          2025年5月11日 晚上
         </time>
       </span>
     
@@ -266,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          846 字
+          0 字
         
       </span>
     
@@ -277,7 +263,7 @@
         
         
         
-          8 分钟
+          1 分钟
         
       </span>
     
@@ -323,150 +309,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">计组学习笔记(4)：存储系统I</h1>
+            <h1 id="seo-header">Hexo博客的一些进阶配置</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>存储器的分类</h1>
-<ul>
-<li>按照介质分类：
-<ul>
-<li>半导体存储器、磁介质存储器、光存储器；</li>
-</ul>
-</li>
-<li>按照存储器与CPU的耦合程度：
-<ul>
-<li>内存（主存 + cache）、外存；</li>
-</ul>
-</li>
-<li>按照存储器的读写功能：
-<ul>
-<li>读写存储器RWM；</li>
-<li>只读存储器ROW；</li>
-</ul>
-</li>
-<li>按照掉电后存储的信息是否保持：
-<ul>
-<li>易失性；</li>
-<li>非易失性；</li>
-</ul>
-</li>
-<li>按照数据存取的随机性：
-<ul>
-<li>随机存取RAM：指随机给定一个地址就可以拿到数据并与前一个访问的地址无关；</li>
-<li>顺序存取SAM：比如磁带；</li>
-<li>直接存取DAM：确定区域后顺序存取；</li>
-</ul>
-</li>
-<li>按照半导体存储器的信息存储方法：
-<ul>
-<li>静态Static；</li>
-<li>动态Dynamic；</li>
-</ul>
-</li>
-<li>习惯分类：
-<ul>
-<li>RAM vs. ROM；</li>
-<li>SRAM vs. DRAM(内存条) vs. 闪存；</li>
-<li>MASK ROM(掩膜) vs. PROM(可编程)；
-<ul>
-<li>EPROM(可擦除PROM)
-<ul>
-<li>紫外线擦除；</li>
-<li>电擦除；</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1>存储器目标</h1>
-<ul>
-<li>大容量；</li>
-<li>高速度；</li>
-<li>低价格；</li>
-</ul>
-<h2 id="层次结构存储器系统">层次结构存储器系统</h2>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="并行技术">并行技术</h2>
-<ul>
-<li>单体多字：一个读写体，每次存取多个字；</li>
-<li>多体单字：多个读写体，交叉编址，向多个地址读取内容；</li>
-</ul>
-<h2 id="存储容量">存储容量</h2>
-<p>存储容量 = 存储字数（存储单元数） $\times$ 存储字长（每单元的比特数）</p>
-<h2 id="存取速度">存取速度</h2>
-<ul>
-<li>访问时间/存取时间$T_A$：从启动一次存储器操作到该操作完成所经历的时间，即从存储器接收到读/写命令到信息被读出或写入完成所需的时间；</li>
-<li>存取周期$T_m$：存储器在连续读写过程中，完成一次完整的读/写操作所需的全部时间，即CPU连续两次独立访问存储器的最小时间间隔；</li>
-<li>存储器带宽：单位时间内能传输的信息量；</li>
-</ul>
-<blockquote>
-<p><strong>注</strong>：存取周期$T_m$一般大于存取时间$T_A$，因为存储器完成读/写操作后一般需要一段恢复内部状态的复原时间，即$存取周期 = 存取时间 + 恢复时间$；</p>
-</blockquote>
-<h1>SRAM</h1>
-<h2 id="基本结构">基本结构</h2>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/2.png" srcset="/img/loading.gif" lazyload alt=""><br>
-<img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="基本时序">基本时序</h2>
-<h3 id="读周期">读周期</h3>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="写周期">写周期</h2>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h1>只读存储器</h1>
-<h2 id="特点">特点</h2>
-<ul>
-<li>只能读出，不能写入；</li>
-<li>不易失；</li>
-<li>只读存储器写入数据的过程称为对其<strong>编程</strong>；</li>
-</ul>
-<h2 id="分类">分类</h2>
-<ul>
-<li>掩模式只读存储器：不能进行重写；</li>
-<li>一次可编程只读存储器PROM：
-<ul>
-<li>双极型PROM：
-<ul>
-<li>熔丝烧断型；</li>
-<li>PN结击穿型；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>多次可编程只读存储器；
-<ul>
-<li>光擦除EPROM：利用<strong>雪崩注入</strong>，擦除是对<strong>所有</strong>存储单元进行，不能实现选择性擦除；</li>
-<li>电擦除EEPROM/E$^2$PROM；</li>
-<li>电改写EAROM；</li>
-</ul>
-</li>
-<li>闪存Flash Memory；
-<ul>
-<li>NAND闪存：只允许顺序<strong>按页(Page)存取</strong>数据；<img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/6.png" srcset="/img/loading.gif" lazyload alt=""></li>
-<li>NOR闪存：具有完整地址/数据结构，能快速随机地读取任一单元；</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>NAND vs. NOR</strong><br>
-<img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/7.png" srcset="/img/loading.gif" lazyload alt=""></p>
-</blockquote>
-<blockquote>
-<p><strong>注</strong>：任何计算机必须有ROM，即必须要有经过编程的ROM（称为<strong>Bios</strong>，它保存着计算机最重要的基本输入输出的程序、开机后自检程序和系统自启动程序），用于计算机程序的初始装入，如果都是RAM，那么计算机初始状态下根本不存在程序和数据；</p>
-</blockquote>
-<h1>并行存储器</h1>
-<h2 id="双端口存储器DPRAM">双端口存储器DPRAM</h2>
-<h3 id="基本结构-2">基本结构</h3>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="实例：IDT7133">实例：IDT7133</h3>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/9.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<blockquote>
-<p><strong>注</strong>：其中Busy Flag用于控制能否访问，防止左右端口同时访问同一个地址造成冲突；Busy = 0表示不能访问；仲裁方式如下：</p>
-</blockquote>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
-
+                
                 
               </div>
             
@@ -474,34 +322,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" class="category-chain-item">专业学习</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="print-no-link">#计算机组成原理</a>
-      
-    </div>
   
 </div>
 
@@ -511,8 +331,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计组学习笔记(4)：存储系统I</div>
-      <div>https://blog.yokumi.cn/2025/04/03/计组学习笔记(4)：存储系统I/</div>
+      <div>Hexo博客的一些进阶配置</div>
+      <div>https://blog.yokumi.cn/2025/05/11/Hexo博客的一些进阶配置/</div>
     </div>
     <div class="license-meta">
       
@@ -524,7 +344,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月3日</div>
+          <div>2025年5月11日</div>
         </div>
       
       
@@ -551,6 +371,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/05/%E4%B8%80%E4%BA%9B%E6%9C%89%E5%85%B3Game%20Theory(%E5%8D%9A%E5%BC%88%E8%AE%BA)%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="一些有关Game Theory(博弈论)的学习记录">
+                        <span class="hidden-mobile">一些有关Game Theory(博弈论)的学习记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

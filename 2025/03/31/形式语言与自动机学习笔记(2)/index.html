@@ -21,12 +21,12 @@
   <meta name="author" content="Yokumi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="形式语言与自动机">
+    <meta name="description" content="正则集和正则式  正则集：字母表上一些特殊形式的字符串的集合，是正则式说表示的集合； 正则式：用类似代数表达式的方式表示正则语言； 运算：（按照运算优先级从高到低排序）  $*$(closure)闭包； $\cdot$ (concatenation)连接； $+$ (union)联合    注：  正则式相等等价于正则集相等； 一个正则式对应一个正则集，但一个正则集可能有多个正确的正则式；  右线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="形式语言与自动机学习笔记(2)">
 <meta property="og:url" content="https://blog.yokumi.cn/2025/03/31/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/">
 <meta property="og:site_name" content="YokumiのBlog">
-<meta property="og:description" content="形式语言与自动机">
+<meta property="og:description" content="正则集和正则式  正则集：字母表上一些特殊形式的字符串的集合，是正则式说表示的集合； 正则式：用类似代数表达式的方式表示正则语言； 运算：（按照运算优先级从高到低排序）  $*$(closure)闭包； $\cdot$ (concatenation)连接； $+$ (union)联合    注：  正则式相等等价于正则集相等； 一个正则式对应一个正则集，但一个正则集可能有多个正确的正则式；  右线">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.yokumi.cn/2025/03/31/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/1.png">
 <meta property="og:image" content="https://blog.yokumi.cn/2025/03/31/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/2.png">
@@ -36,10 +36,9 @@
 <meta property="og:image" content="https://blog.yokumi.cn/2025/03/31/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/6.png">
 <meta property="og:image" content="https://blog.yokumi.cn/2025/03/31/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/7.png">
 <meta property="article:published_time" content="2025-03-31T13:40:00.000Z">
-<meta property="article:modified_time" content="2025-05-10T12:17:54.281Z">
+<meta property="article:modified_time" content="2025-05-11T12:06:22.640Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="计算机基础">
-<meta property="article:tag" content="private">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.yokumi.cn/2025/03/31/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)/1.png">
   
@@ -113,7 +112,8 @@
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="YokumiのBlog" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -424,8 +424,6 @@
       
         <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" class="print-no-link">#计算机基础</a>
       
-        <a href="/tags/private/" class="print-no-link">#private</a>
-      
     </div>
   
 </div>
@@ -476,29 +474,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2025/04/03/%E9%98%BF%E9%87%8C%E4%BA%91ESC%20+%20V2RayA%E5%AE%9E%E7%8E%B0%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" title="阿里云ESC + V2RayA实现科学上网">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">阿里云ESC + V2RayA实现科学上网</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/" title="计组学习笔记(2)：运算方法与运算器II">
-                        <span class="hidden-mobile">计组学习笔记(2)：运算方法与运算器II</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
