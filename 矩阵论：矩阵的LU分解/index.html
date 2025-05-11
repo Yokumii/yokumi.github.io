@@ -1,0 +1,1067 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yokumi">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="《矩阵理论与方法》课程学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="矩阵论：矩阵的LU分解">
+<meta property="og:url" content="https://blog.yokumi.cn/%E7%9F%A9%E9%98%B5%E8%AE%BA%EF%BC%9A%E7%9F%A9%E9%98%B5%E7%9A%84LU%E5%88%86%E8%A7%A3/">
+<meta property="og:site_name" content="YokumiのBlog">
+<meta property="og:description" content="《矩阵理论与方法》课程学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-15T12:16:00.000Z">
+<meta property="article:modified_time" content="2025-05-10T12:17:54.365Z">
+<meta property="article:author" content="Yokumi">
+<meta property="article:tag" content="矩阵论">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>矩阵论：矩阵的LU分解 - YokumiのBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.yokumi.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"kt8tJP0JzOqDguIARcT5bZLJ-MdYXbMMI","app_key":"GW7Kl42zz9pFl5o9hU1pTzV9","server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YokumiのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/banner.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="矩阵论：矩阵的LU分解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-15 20:16" pubdate>
+          2025年1月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">矩阵论：矩阵的LU分解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>矩阵的LU分解</h1>
+<h2 id="Gauss消元法">Gauss消元法</h2>
+<p>在介绍LU分解之前，我们先通过Gauss消元法引入。</p>
+<p>对于求解以下线性方程组的问题：</p>
+<p>$$<br>
+\left{\begin{matrix}<br>
+a_{11}x_{11} + a_{12}x_{12} + \cdots + a_{1n}x_{1n} = b_1\<br>
+\vdots \<br>
+a_{n1}x_{n1} + a_{n2}x_{n2} + \cdots + a_{nn}x_{nn} = b_n \<br>
+\end{matrix}\right.<br>
+$$</p>
+<p>其矩阵形式为：</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp; b_1\<br>
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots\<br>
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} &amp; b_n<br>
+\end{bmatrix} \triangleq (A \vdots  b)<br>
+$$</p>
+<p><strong>Guass消元法</strong>的基本思想是将矩阵$ \boldsymbol{A}$通过初等行变换转化为阶梯型矩阵，我们假定该过程中不涉及“对换变换”，变换过程如下：</p>
+<p>记</p>
+<p>$$<br>
+A^{(1)} = A = \begin{bmatrix}<br>
+a_{11}^{(1)} &amp; a_{12}^{(1)} &amp; \cdots &amp; a_{1n}^{(1)}\<br>
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\<br>
+a_{n1}^{(1)} &amp; a_{n2}^{(1)} &amp; \cdots &amp; a_{nn}^{(1)}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>若$a_{11}^{(1)} \ne 0$，则：</p>
+<p>$$<br>
+A^{(1)} \xrightarrow{r_i - \frac{a_{21}^{(1)}}{a_{11}^{(1)}}r_1,i = 2,3,\cdots,n}<br>
+\begin{bmatrix}<br>
+a_{11}^{(1)} &amp; a_{12}^{(1)} &amp; \cdots &amp; a_{1n}^{(1)}\<br>
+0 &amp; a_{22}^{(2)} &amp; \cdots &amp; a_{2n}^{(2)}\<br>
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\<br>
+0 &amp; a_{n2}^{(2)} &amp; \cdots &amp; a_{nn}^{(2)}<br>
+\end{bmatrix} \triangleq A^{(2)}<br>
+$$</p>
+<p>若$a_{22}^{(2)} \ne 0$，则：</p>
+<p>$$<br>
+A^{(2)} \xrightarrow{r_i - \frac{a_{32}^{(2)}}{a_{22}^{(2)}}r_1,i = 3,4,\cdots,n}<br>
+\begin{bmatrix}<br>
+a_{11}^{(1)} &amp; a_{12}^{(1)} &amp; a_{13}^{(1)}&amp; \cdots &amp; a_{1n}^{(1)}\<br>
+&amp; a_{22}^{(2)} &amp; a_{23}^{(2)}&amp; \cdots &amp; a_{2n}^{(2)}\<br>
+&amp; &amp; a_{33}^{(3)} &amp; \cdots &amp; a_{3n}^{(3)}\<br>
+&amp; &amp; \vdots &amp; &amp; \vdots\<br>
+&amp; &amp; a_{n3}^{(3)} &amp; \cdots &amp; a_{nn}^{(3)}<br>
+\end{bmatrix} \triangleq A^{(3)}<br>
+$$</p>
+<p>如此继续，如果能进行$n-1$步，那么可以将矩阵$ \boldsymbol{A}$化为上三角矩阵：</p>
+<p>$$<br>
+\begin{bmatrix}<br>
+a_{11}^{(1)} &amp; a_{12}^{(1)} &amp; \cdots &amp; a_{1n}^{(1)}\<br>
+&amp; a_{22}^{(2)} &amp; \cdots &amp; a_{2n}^{(2)}\<br>
+&amp; &amp;  \ddots &amp; \vdots\<br>
+&amp; &amp; &amp; a_{nn}^{(n)}<br>
+\end{bmatrix} \triangleq A^{(n)}<br>
+$$</p>
+<p>上述过程就是Guass消元法的矩阵描述。</p>
+<p>在上述过程进行的过程中，易得，如果Guass消元法能进行到底：</p>
+<p>$$<br>
+\Leftrightarrow a_{11}^{(1)}a_{22}^{(2)}\cdots a_{n-1n-1}^{(n-1)} \ne 0<br>
+$$</p>
+<p>那么问题是，如何判断$ \boldsymbol{A}$的前$n-1$个主元$\ne 0$？</p>
+<p>回溯上述过程可知：</p>
+<p>$$<br>
+\begin{aligned}<br>
+&amp; a_{11}^{(1)} = a_{11}\<br>
+&amp; a_{11}^{(1)}a_{22}^{(2)} =<br>
+\begin{bmatrix}<br>
+a_{11}^{(1)} &amp; a_{12}^{(1)}\<br>
+0 &amp; a_{22}^{(22)}<br>
+\end{bmatrix} =<br>
+\begin{bmatrix}<br>
+a_{11} &amp; a_{12}\<br>
+a_{21} &amp; a_{22}<br>
+\end{bmatrix}\<br>
+&amp; \cdots \<br>
+&amp; a_{11}^{(1)}a_{22}^{(2)}\cdots a_{kk}^{(k)} =<br>
+\begin{bmatrix}<br>
+a_{11}^{(1)} &amp; a_{12}^{(1)} &amp; \cdots &amp; a_{1k}^{(1)}\<br>
+&amp; a_{22}^{(2)} &amp; \cdots &amp; a_{2k}^{(2)}\<br>
+&amp; &amp;  \ddots &amp; \vdots\<br>
+&amp; &amp; &amp; a_{kk}^{(k)}<br>
+\end{bmatrix} =<br>
+\begin{bmatrix}<br>
+a_{11} &amp; \cdots &amp; a_{1k}\<br>
+\vdots &amp; &amp; \vdots\<br>
+a_{k1} &amp; \cdots &amp; a_{kk}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>记：</p>
+<p>$$<br>
+\begin{aligned}<br>
+&amp; \Delta_1 = a_{11} \<br>
+&amp; \Delta_2 = \begin{bmatrix}<br>
+a_{11} &amp; a_{12}\<br>
+a_{21} &amp; a_{22}<br>
+\end{bmatrix} \<br>
+&amp; \cdots \<br>
+&amp; \Delta_{n-1} = \begin{bmatrix}<br>
+a_{11} &amp; \cdots &amp; a_{1n-1}\<br>
+\vdots &amp; &amp; \vdots\<br>
+a_{n-11} &amp; \cdots &amp; a_{n-1n-1}<br>
+\end{bmatrix}<br>
+\end{aligned}<br>
+$$</p>
+<p>可以发现，$\Delta_k$即为$ \boldsymbol{A}$的$k$阶<strong>顺序主子式</strong>。</p>
+<p>所以，得到如下命题：</p>
+<p><strong>命题 1</strong><br>
+当$\Delta_k \ne 0,k = 1,2,\cdots,n-1\Leftrightarrow a_{kk}^{(k)} \ne 0$</p>
+<p>于是，自然得到：</p>
+<p><strong>定理 1</strong><br>
+Guass消元法能进行到底 $\Leftrightarrow$ $\boldsymbol{A}$的前$n-1$个顺序主子式$\ne 0$；</p>
+<h2 id="矩阵LU分解的步骤推导">矩阵LU分解的步骤推导</h2>
+<p>从高斯消元法的过程，每一步初等行变换的过程相当于一个<strong>高斯变换</strong>，即左乘一个矩阵：</p>
+<p>$$<br>
+L_1 = \begin{bmatrix}<br>
+1 &amp; &amp; &amp; \<br>
+l_1 &amp; 1 &amp; &amp;\<br>
+l_2 &amp;  &amp; 1 &amp; &amp; \<br>
+\vdots &amp;  &amp;  &amp; \ddots &amp; \<br>
+l_n &amp; &amp; &amp; &amp; 1<br>
+\end{bmatrix}<br>
+$$</p>
+<p>其中，$l_i = -\frac{a_{i1}^{(1)}}{a_{11}^{(1)}},i = 2,3,\cdots,n$。</p>
+<p>易得，高斯消元法的过程可以表示为：</p>
+<p>$$<br>
+L_{n-1}L_{n-2}\cdots L_{1}A = U<br>
+$$</p>
+<p>其中，$\boldsymbol{L}_i$为下三角矩阵，$\boldsymbol{U}$为上三角矩阵。</p>
+<p>令 $\boldsymbol{L} = L_1^{-1}\cdots L_{n-2}^{-1}L_{n-1}^{-1}$，则有：</p>
+<p>$$<br>
+\boldsymbol{A} =  \boldsymbol{L} \boldsymbol{U}<br>
+$$</p>
+<p>这就是矩阵的<strong>LU分解</strong>。</p>
+<p>求得 $\boldsymbol{L}$ 和 $\boldsymbol{U}$ 后，如何计算 $x$？</p>
+<p>$$<br>
+Ax = LUx = b<br>
+$$</p>
+<p>取中间变量 $y = Ux$，则 $Ly = b$。</p>
+<p>那么，为什么LU分解能加速线性方程组的求解呢？</p>
+<p>实际上，虽然从矩阵形式上看，$\boldsymbol{L}$ 需要计算 $n-1$ 个 $L_i$ 的逆，但是实际算法求解过程中，三角型的矩阵的乘法和逆是容易计算的，并且甚至不需要额外的空间存储开销 \cite{Matrix_Computations}：算法会将 $\boldsymbol{L}$ 和 $\boldsymbol{U}$ 的元素直接存储到原矩阵 $\boldsymbol{A}$ 的相应位置上：</p>
+<ul>
+<li>$\boldsymbol{L}$ 的下三角部分（不包括对角线）会存储在 $\boldsymbol{A}$ 的下三角部分。</li>
+<li>$\boldsymbol{U}$ 的上三角部分和对角线会存储在 $\boldsymbol{A}$ 的上三角部分和对角线上。</li>
+</ul>
+<p>例如，对于矩阵</p>
+<p>$$<br>
+\boldsymbol{A} =\begin{bmatrix}<br>
+a_{11} &amp; a_{12} &amp; a_{13} \<br>
+a_{21} &amp; a_{22} &amp; a_{23} \<br>
+a_{31} &amp; a_{32} &amp; a_{33}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>经过 LU 分解后，它的存储会变为：</p>
+<p>$$<br>
+\boldsymbol{A} =\begin{bmatrix}<br>
+u_{11} &amp; u_{12} &amp; u_{13} \<br>
+l_{21} &amp; u_{22} &amp; u_{23} \<br>
+l_{31} &amp; l_{32} &amp; u_{33}<br>
+\end{bmatrix}<br>
+$$</p>
+<p>其中：</p>
+<ul>
+<li>$l_{ij}$ 为第 $i$ 行，第 $j$ 列的乘子；</li>
+<li>$u_{ij}$ 为第 $i$ 行，第 $j$ 列的上三角元素；</li>
+</ul>
+<p>通过这种方式，所有分解信息都存储在原矩阵中，无需额外空间。LU分解既降低了时间复杂度又降低了空间复杂度。</p>
+<p>不过，从我们进行高斯消元法的过程就可以发现，要保证高斯消元法能进行到底，需要避免乘子中的除数（$A_{kk}$）出现 0（实际应用中，很小的情况也应该避免），所以一般不直接应用LU分解，而是应用<strong>列主元PLU分解</strong>，它通过交换行来避免出现相对很小的主元，实现稳定的LU分解 \cite{数值分析5}，其伪代码如算法 \ref{列选主元PLU分解法} 所示。</p>
+<h3 id="算法：列选主元PLU分解法">算法：列选主元PLU分解法</h3>
+<p><strong>输入：</strong> 矩阵 $A \in \mathbb{R}^{n \times n}$<br>
+<strong>输出：</strong> 矩阵 $P, L, U$，使得 $P A = L U$</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs algorithm">初始化：<br>U = A, L = I, P = I<br><br>for k = 1 to n-1 do:<br>    1. 寻找主元：<br>       pivot = max_&#123;i=k, ..., n&#125; |U[i, k]|<br>       记录主元行号 row<br>       <br>    2. 若 row ≠ k:<br>       构造置换矩阵 P_k，交换 U 的第 k 行与第 row 行：<br>       P_k = 交换 k 行与 row 行的单位矩阵<br>       <br>       更新 U: U = P_k U<br>       更新 P: P = P_k P<br>       <br>       若 k &gt; 1，则更新 L: L = P_k L<br>    <br>    3. 对于 i = k+1 到 n:<br>       计算消元因子：<br>       L[i, k] = U[i, k] / U[k, k]<br>       <br>       更新 U：<br>       U[i, :] = U[i, :] - L[i, k] * U[k, :]<br>       <br>返回 P, L, U<br></code></pre></td></tr></table></figure>
+<p>$$<br>
+\boldsymbol{A} = \boldsymbol{L} \boldsymbol{U}<br>
+$$</p>
+<p>其中，若矩阵 $\boldsymbol{A}$ 满秩，即 $\operatorname{rank} A = r$，则可利用 LU 分解或 PLU 分解构造其满秩分解：</p>
+<p>• <strong>LU 分解构造满秩分解</strong></p>
+<p>若 $\boldsymbol{A}$ 可分解为 $\boldsymbol{A} = \boldsymbol{L} \boldsymbol{U}$，则从 $\boldsymbol{L}$ 提取前 $r$ 列，从 $\boldsymbol{U}$ 提取前 $r$ 行：<br>
+$$<br>
+\boldsymbol{F} = \boldsymbol{L}[:, 0:r],\quad \boldsymbol{G} = \boldsymbol{U}[0:r, :]<br>
+$$</p>
+<p>其中，$\boldsymbol{F}$ 为列满秩矩阵（$m \times r$），$\boldsymbol{G}$ 为行满秩矩阵（$r \times n$），从而得到矩阵的满秩分解。</p>
+<p>• <strong>PLU 分解构造满秩分解</strong></p>
+<p>设 $\boldsymbol{A}$ 通过列主元 LU 分解得：</p>
+<p>$$<br>
+\boldsymbol{A} = \boldsymbol{P} \boldsymbol{L} \boldsymbol{U}<br>
+$$</p>
+<p>同样取：<br>
+$$<br>
+\boldsymbol{B} = \boldsymbol{L}[:, 0:r],\quad \boldsymbol{C} = \boldsymbol{U}[0:r, :]<br>
+$$</p>
+<p>代入分解式可得：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{P} \boldsymbol{B} \boldsymbol{C}<br>
+$$</p>
+<p>其中，$\boldsymbol{P}$ 为置换矩阵，显然满秩。</p>
+<p>进一步推广，若方阵 $\boldsymbol{A}$ 可分解为：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{L} \boldsymbol{D} \boldsymbol{U}<br>
+$$</p>
+<p>其中，$\boldsymbol{D}$ 为对角矩阵，则称其为 <strong>LDU 分解</strong>。</p>
+<p>由高斯消元法的推导，可得如下定理及推论：</p>
+<p><strong>定理</strong>：矩阵 $\boldsymbol{A} = (a_{i j})_{n \times n}$ 存在唯一分解：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{L} \boldsymbol{D} \boldsymbol{U}<br>
+$$</p>
+<p>其中：</p>
+<p>• $\boldsymbol{L}$ 为单位下三角矩阵，</p>
+<p>• $\boldsymbol{U}$ 为单位上三角矩阵，</p>
+<p>• $\boldsymbol{D}$ 为对角矩阵，其对角元：$d_{k} = \frac{\Delta_{k}}{\Delta_{k-1}}, \quad k=1,2,\dots,n \quad (\Delta_0 = 1)$</p>
+<p>其中 $\Delta_k$ 为 $\boldsymbol{A}$ 的顺序主子式。</p>
+<p><strong>推论</strong>：若 $\boldsymbol{A}$ 为非奇异矩阵，则其可进行三角分解：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{L} \boldsymbol{U}<br>
+$$</p>
+<p>当且仅当 $\boldsymbol{A}$ 的顺序主子式：$\Delta_k \neq 0, \quad k=1,2,\dots,n$</p>
+<p><strong>进一步推广</strong>：对 <strong>Doolittle、Crout、Cholesky 分解</strong>，定义如下：</p>
+<p>• <strong>Doolittle 分解</strong>：设 $\boldsymbol{A}$ 具有唯一 LDU 分解，令：<br>
+$$<br>
+\hat{\boldsymbol{U}} = \boldsymbol{D} \boldsymbol{U}<br>
+$$</p>
+<p>则有：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{L} \hat{\boldsymbol{U}}<br>
+$$</p>
+<p>• <strong>Crout 分解</strong>：令：<br>
+$$<br>
+\hat{\boldsymbol{L}} = \boldsymbol{L} \boldsymbol{D}<br>
+$$</p>
+<p>则有：<br>
+$$<br>
+\boldsymbol{A} = \hat{\boldsymbol{L}} \boldsymbol{U}<br>
+$$</p>
+<p>• <strong>Cholesky 分解</strong>（平方根分解）：设 $\boldsymbol{A}$ 为实对称正定矩阵，则其可分解为：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{L} \widetilde{\boldsymbol{D}}^2 \boldsymbol{U}<br>
+$$</p>
+<p>其中：<br>
+$$<br>
+\widetilde{\boldsymbol{D}} = \operatorname{diag}(\sqrt{d_1},\sqrt{d_2},\dots,\sqrt{d_n})<br>
+$$</p>
+<p>进一步，可得：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{L} \widetilde{\boldsymbol{D}}^2 \boldsymbol{L}^\top<br>
+$$</p>
+<p>令：<br>
+$$<br>
+\boldsymbol{G} = \boldsymbol{L} \widetilde{\boldsymbol{D}}<br>
+$$</p>
+<p>则有：<br>
+$$<br>
+\boldsymbol{A} = \boldsymbol{G} \boldsymbol{G}^\top<br>
+$$</p>
+<p>这被称为 <strong>Cholesky 分解</strong>（对称三角分解）。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/" class="category-chain-item">专业学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%9F%A9%E9%98%B5%E8%AE%BA/" class="print-no-link">#矩阵论</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>矩阵论：矩阵的LU分解</div>
+      <div>https://blog.yokumi.cn/矩阵论：矩阵的LU分解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Yokumi</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/%E4%B8%80%E6%96%87%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8+%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="一文白嫖阿里云服务器+配置基本开发环境">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一文白嫖阿里云服务器+配置基本开发环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E7%9F%A9%E9%98%B5%E8%AE%BA%EF%BC%9A%E7%9F%A9%E9%98%B5%E5%87%BD%E6%95%B0%E5%92%8C%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" title="矩阵论：矩阵函数和矩阵求导">
+                        <span class="hidden-mobile">矩阵论：矩阵函数和矩阵求导</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"kt8tJP0JzOqDguIARcT5bZLJ-MdYXbMMI","appKey":"GW7Kl42zz9pFl5o9hU1pTzV9","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://chinese-font.netlify.app/zh-cn/" target="_blank" rel="nofollow noopener"><span>中文网字计划</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
