@@ -361,24 +361,24 @@
 </ul>
 </li>
 </ul>
-<p>两者的具体区别如下图所示：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504171352752.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>两者的具体区别如下图所示：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504171352752.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="1-4-Introducing-the-transformer-architecture">1.4 Introducing the transformer architecture</h2>
 <p>Transformer 的两个重要组件是 <strong>Encoder 编码器</strong> 和 <strong>Decoder 解码器</strong>，编码器将输入文本编码为向量，而解码器解码向量并生成相应文本。区别于传统的全连接型或卷积型，编码器和解码器之间采用 <strong>Self-attention mechanism 自注意力机制</strong> 连接；</p>
 <p>在 Transformer模型的基础上，又衍生出了两种不同架构：<strong>Bert(Bidirectional encoder representations from transformers)</strong> 和 <strong>GPT(Generative pretrained transformers)</strong>；</p>
-<p>从全拼也可以看出，这两种模型分别用于不同的任务，Bert模型主要用于 predict masked or hidden words 预测掩码值，适用于文本分类任务，以下是它和 GPT-Model 区别的图示：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504171450135.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>从全拼也可以看出，这两种模型分别用于不同的任务，Bert模型主要用于 predict masked or hidden words 预测掩码值，适用于文本分类任务，以下是它和 GPT-Model 区别的图示：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504171450135.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>GPT-Model 又分为：</p>
 <ul>
 <li><strong>Zero-shot 零样本学习</strong>：能够处理从未在训练数据中见过的任务或类别，即模型在面对新任务时不需要额外的训练和微调也能做出合理的决策；</li>
 <li><strong>Few-shot 少样本学习</strong>：模型在提供极少量样本或示例时，就能够理解并执行特定任务的能力；泛化能力强；</li>
 </ul>
 <p>下图具体说明了两者的区别：<br>
-<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504171510313.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504171510313.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>GPT-Model采用 <strong>自监督(Self-supervised learning)</strong> 的方式进行学习，即自标注形式(Self-labeling)。我们可以将句子或者文档中的下一个单词作为模型应该预测的标签进行训练。</p>
 <blockquote>
 <p><strong>注</strong>：模型能够执行未明确训练的任务的能力称为 <strong>Emergent Ability 涌现</strong>，模型并未针对专门任务进行训练，但是在大量数据集的训练下突然表现出未预料到的新行为或新能力。增加参数量往往会促进涌现行为的出现。</p>
 </blockquote>
 <h2 id="1-5-Building-a-large-language-model">1.5 Building a large language model</h2>
-<p><img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504172235133.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504172235133.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h1>零、</h1>
 
                 

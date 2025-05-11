@@ -28,19 +28,19 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="计组学习笔记(6)：中央处理器I">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//6.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/5.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/6.png">
 <meta property="article:published_time" content="2025-04-13T11:12:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.429Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="private">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/.cn//1.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/1.png">
   
   
   
@@ -333,7 +333,7 @@
 <li>中断处理；</li>
 </ol>
 <h1>CPU模型及其组成</h1>
-<p><img src="/.cn//1.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>CPU组成部分如下：</p>
 <ul>
 <li><strong>控制器</strong>：从指令cache中读取当前指令，并指出下一条指令在指令cache中的位置；对指令进行译码，产生操作控制信号；指挥并控制CPU、内存和IO设备之间的数据流动；
@@ -541,7 +541,7 @@
 <li>执行指令：不同指令操作步骤不同；</li>
 <li>检查有无中断请求；（公共操作）</li>
 </ol>
-<p>方框图表示如下，其中1个方框代表1个CPU周期；<img src="/.cn//2.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>方框图表示如下，其中1个方框代表1个CPU周期；<img src="/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h1>时序产生器和控制方式</h1>
 <h2 id="控制器分类">控制器分类</h2>
 <ul>
@@ -605,9 +605,9 @@
 <li>操作控制字段用于发出控制信号，每一位对应一个微命令；</li>
 <li>顺序控制字段用于产生下一条微指令的地址；</li>
 </ul>
-<p><img src="/.cn//3.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="微程序控制器原理">微程序控制器原理</h2>
-<p><img src="/.cn//4.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>一个基本的原理框图如上图所示：</p>
 <ul>
 <li>控制存储器：用来存放全部指令系统的微程序的<strong>只读存储器</strong>；
@@ -636,14 +636,14 @@
 </ol>
 <h2 id="机器指令与微指令的关系">机器指令与微指令的关系</h2>
 <p>注意区分程序与微程序、机器指令与微指令、地址与微地址的对应关系。前者与主存有关，而后者与控制存储器有关，如下图：<br>
-<img src="/.cn//5.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="微程序设计">微程序设计</h2>
 <h3 id="微命令编码">微命令编码</h3>
 <ol>
 <li>直接表示法：微指令的控制字段中每一位对应一个微命令（即控制信号）；</li>
 <li>编码表示法：把一组相斥的微命令合并成一个小组，对应一个字段，通过小组译码器对微命令信号进行译码，译码输出作为控制信号。$n$ 位二进制译码后可以表示 $2^{n} - 1$个微命令。比如3个互斥的微命令，原本需要3位，现在只需要合并为一个2位的字段，通过2:4译码器进行译码；如下图：</li>
 </ol>
-<p><img src="/.cn//6.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2025/04/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(6)%EF%BC%9A%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8I/6.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>注：为什么用 $n$ 位二进制可以表示 $2^n - 1$$ 个微命令，而不是 $2^n$ 个？</strong></p>
 <blockquote>
 <p>注意<strong>编码表示法中用“全 0 码不表示任何有效微命令”</strong>，即全0表示无操作，所以剩下 $2^n - 1$ 个微命令才是有效的；</p>

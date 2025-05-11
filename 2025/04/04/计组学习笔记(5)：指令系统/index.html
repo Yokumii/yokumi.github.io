@@ -28,18 +28,18 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="计组学习笔记(5)：指令系统">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//5.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/5.png">
 <meta property="article:published_time" content="2025-04-04T02:12:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.420Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="private">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/.cn//1.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/1.png">
   
   
   
@@ -372,7 +372,7 @@
 <li>等长指令字结构 vs. 变长指令字结构；</li>
 </ul>
 </li>
-<li>扩展操作码指令格式：其中，前缀1111作为特征位，用于区分这是几地址指令；<img src="/.cn//1.png" srcset="/img/loading.gif" lazyload alt></li>
+<li>扩展操作码指令格式：其中，前缀1111作为特征位，用于区分这是几地址指令；<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/1.png" srcset="/img/loading.gif" lazyload alt=""></li>
 <li>指令助记符：
 <ul>
 <li>助记符 $\rightarrow$ 二进制操作码：汇编（汇编器实现）；</li>
@@ -396,7 +396,7 @@
 <h3 id="操作数寻址">操作数寻址</h3>
 <p>形成操作数有效地址的方法，称为操作数寻址方法；<br>
 一种单地址指令的结构如下：<br>
-<img src="/.cn//2.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>操作数地址由变址X、间址I、形式地址A(也称偏移量offset)组成；</li>
 </ul>
@@ -424,14 +424,14 @@ $$</p>
 <h4 id="偏移寻址">偏移寻址</h4>
 <h5 id="相对寻址">相对寻址</h5>
 <p>程序计数器PC的内容加上偏移量A(有符号数)形成操作数的有效地址；<br>
-<img src="/.cn//3.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h5 id="基址寻址">基址寻址</h5>
 <p>基址寄存器的内容加上偏移量A(有符号数)形成操作数的有效地址；<br>
-<img src="/.cn//4.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h5 id="变址寻址">变址寻址</h5>
 <p>变址寄存器的内容加上偏移量A(有符号数)形成操作数的有效地址；其中变址寄存器的内容会自动递增或递减；</p>
 <h3 id="段寻址方式">段寻址方式</h3>
-<p><img src="/.cn//5.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <ul>
 <li>段寄存器左移4位形成20位物理地址；</li>
 </ul>

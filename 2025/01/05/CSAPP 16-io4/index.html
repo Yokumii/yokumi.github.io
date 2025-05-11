@@ -28,23 +28,23 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="I&#x2F;O">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//6.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//11.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//7.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//8.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//9.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//10.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/5.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/6.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/11.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/7.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/8.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/9.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/10.png">
 <meta property="article:published_time" content="2025-01-05T12:49:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.101Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/.cn//2.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2016-io4/CSAPP%2016-io4/2.png">
   
   
   
@@ -379,7 +379,7 @@ Linux 文件系统<strong>以 /（根目录）为起点</strong>，所有文件�
 所以文件描述符一般从3开始；</li>
 </ul>
 <h4 id="文件共享">文件共享</h4>
-<p><img src="/.cn//2.png" srcset="/img/loading.gif" lazyload alt><img src="/.cn//3.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="CSAPP%2016-io4/2.png" srcset="/img/loading.gif" lazyload alt=""><img src="CSAPP%2016-io4/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h3 id="读写文件">读写文件</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">read</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">void</span>* buf, <span class="hljs-type">size_t</span> n)</span>; <span class="hljs-comment">// 返回成功读取的字节数，失败为-1</span><br><span class="hljs-type">ssize_t</span> <span class="hljs-title function_">write</span><span class="hljs-params">(<span class="hljs-type">int</span> fd, <span class="hljs-type">const</span> <span class="hljs-type">void</span>* buf, <span class="hljs-type">size_t</span> n)</span>; <span class="hljs-comment">// 同上</span><br></code></pre></td></tr></table></figure>
 <p>注意ssize_t被定义为signed long类型，因为它需要返回-1，而size_t是unsigned long类型；<br>
@@ -402,16 +402,16 @@ Linux 文件系统<strong>以 /（根目录）为起点</strong>，所有文件�
 </blockquote>
 </li>
 <li>-1为Fork失败；<br>
-<img src="/.cn//1.png" srcset="/img/loading.gif" lazyload alt><br>
-fork会复制fork之后的所有代码创建子进程；其执行过程如下：<img src="/.cn//4.png" srcset="/img/loading.gif" lazyload alt><br>
+<img src="CSAPP%2016-io4/1.png" srcset="/img/loading.gif" lazyload alt=""><br>
+fork会复制fork之后的所有代码创建子进程；其执行过程如下：<img src="CSAPP%2016-io4/4.png" srcset="/img/loading.gif" lazyload alt=""><br>
 注意进程的调度规则不定，哪个先执行完都有可能；</li>
 </ul>
 <h1>I/O重定向</h1>
 <p>比如，我们希望将当前进程的stdout改为另一个文件，即更改描述符表；通过dup2来实现：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">dup2</span><span class="hljs-params">(<span class="hljs-type">int</span> oldfd, <span class="hljs-type">int</span> newfd)</span>;<br></code></pre></td></tr></table></figure>
-<p>如果原来fd1指向文件A，调用dup2(4,1)后：<img src="/.cn//5.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>如果原来fd1指向文件A，调用dup2(4,1)后：<img src="CSAPP%2016-io4/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h2 id="一个读的例子">一个读的例子</h2>
-<p><img src="/.cn//6.png" srcset="/img/loading.gif" lazyload alt><br>
+<p><img src="CSAPP%2016-io4/6.png" srcset="/img/loading.gif" lazyload alt=""><br>
 需要明确子进程和父进程共享同一打开文件表；</p>
 <ul>
 <li><code>s = getpid() &amp; 0x1</code>决定了进程的执行顺序，如果s = 0，则父进程先执行，如果s = 1，则子进程先执行；</li>
@@ -422,7 +422,7 @@ fork会复制fork之后的所有代码创建子进程；其执行过程如下：
 </ul>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Parent:</span> <span class="hljs-built_in">c1</span> = a, <span class="hljs-built_in">c2</span> = <span class="hljs-keyword">b</span><br><span class="hljs-symbol">Child:</span> <span class="hljs-built_in">c1</span> = a, <span class="hljs-built_in">c2</span> = c<br><br><span class="hljs-symbol">Child:</span> <span class="hljs-built_in">c1</span> = a, <span class="hljs-built_in">c2</span> = <span class="hljs-keyword">b</span><br><span class="hljs-symbol">Parent:</span> <span class="hljs-built_in">c1</span> = a, <span class="hljs-built_in">c2</span> = c<br></code></pre></td></tr></table></figure>
 <h2 id="一个写的例子">一个写的例子</h2>
-<p><img src="/.cn//11.png" srcset="/img/loading.gif" lazyload alt><br>
+<p><img src="CSAPP%2016-io4/11.png" srcset="/img/loading.gif" lazyload alt=""><br>
 首先需要明确一些标志的含义：</p>
 <ul>
 <li>O_CREAT：如果文件不存在，创建文件；</li>
@@ -441,9 +441,9 @@ fork会复制fork之后的所有代码创建子进程；其执行过程如下：
 <p>标准I/O库将一个打开的文件模型化为一个<strong>流</strong>。对于程序员而言，一个流就是一个指<br>
 向FILE 类型的结构的指针。每个ANSIC程序开始时都有三个打开的流stdin、stdout<br>
 和stderr，分别对应于标准输人、标准输出和标准错误；<br>
-<img src="/.cn//7.png" srcset="/img/loading.gif" lazyload alt></p>
+<img src="CSAPP%2016-io4/7.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h1>Unix I/O vs. Standard I/O</h1>
-<p><img src="/.cn//8.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="CSAPP%2016-io4/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h1>系统调用和API</h1>
 <ul>
 <li>应用编程接口（API）与系统调用两者在概念上不完全相同，它们都是系统提供给用户程序使用的编程接口，但前者指的是功能更广泛、抽象程度更高的函数，后者仅指通过软中断（自陷）指令向内核态发出特定服务请求的函数。</li>
@@ -453,12 +453,12 @@ fork会复制fork之后的所有代码创建子进程；其执行过程如下：
 </ul>
 <h1>I/O 类型</h1>
 <ul>
-<li><strong>Programmed I/O</strong>：无条件传统方式，查询方式，效率低；<img src="/.cn//9.png" srcset="/img/loading.gif" lazyload alt></li>
+<li><strong>Programmed I/O</strong>：无条件传统方式，查询方式，效率低；<img src="CSAPP%2016-io4/9.png" srcset="/img/loading.gif" lazyload alt=""></li>
 <li><strong>Interrupt Driven I/O</strong>：中断驱动 I/O 中，<strong>处理器启动 I/O 操作后无需等待，可以执行其他任务</strong>，直到设备通过中断信号通知处理器数据传输完成；</li>
 <li><strong>DMA</strong>：<strong>由 DMA 模块负责在 I/O 单元和主存之间直接传输数据</strong>，无需处理器干预；</li>
 </ul>
 <h1>总结</h1>
-<p><img src="/.cn//10.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="CSAPP%2016-io4/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
                 
               </div>

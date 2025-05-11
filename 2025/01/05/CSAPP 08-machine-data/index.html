@@ -28,19 +28,19 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="数据表示">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//6.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/5.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/6.png">
 <meta property="article:published_time" content="2025-01-04T16:16:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.049Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="汇编代码">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/.cn//1.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2008-machine-data/CSAPP%2008-machine-data/1.png">
   
   
   
@@ -327,7 +327,7 @@
                 <h1>Array数组</h1>
 <ul>
 <li><code>Type A[L]</code>会在内存中分配连续的$L * sizeof(Type)$个字节；</li>
-<li>其中单独的<code>A</code>表示数组指针；$A + i$事实上是$A + i * sizeof(Type)$的地址；<img src="/.cn//1.png" srcset="/img/loading.gif" lazyload alt></li>
+<li>其中单独的<code>A</code>表示数组指针；$A + i$事实上是$A + i * sizeof(Type)$的地址；<img src="./CSAPP%2008-machine-data/1.png" srcset="/img/loading.gif" lazyload alt=""></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">get_digit</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> x)</span> &#123;<br>	<span class="hljs-keyword">return</span> a[x];<br>&#125;<br><br><span class="hljs-comment">// 翻译成汇编代码</span><br><span class="hljs-comment">// %rdi = a, %rsi = x;</span><br>movl (%rdi, %rsi, <span class="hljs-number">4</span>), %eax; <span class="hljs-comment">// a + 4 * x;</span><br></code></pre></td></tr></table></figure>
 <ul>
@@ -376,7 +376,7 @@
 </tbody>
 </table>
 <ul>
-<li>其中<code>int *A2</code>声明了一个指向整形的指针，但它指向的地址显然没有被指定，即指向一个未被分配的内存空间，是一个坏指针；<img src="/.cn//2.png" srcset="/img/loading.gif" lazyload alt></li>
+<li>其中<code>int *A2</code>声明了一个指向整形的指针，但它指向的地址显然没有被指定，即指向一个未被分配的内存空间，是一个坏指针；<img src="./CSAPP%2008-machine-data/2.png" srcset="/img/loading.gif" lazyload alt=""></li>
 </ul>
 <table>
 <thead>
@@ -459,13 +459,13 @@
 <ul>
 <li>其中<code>int *A2[3]</code>相当于<code>int (*A4[3])</code>，其中，<code>()</code>的优先级最高，<code>[]</code>次之，然后是<code>*</code>；</li>
 <li><code>int *A2[3]</code>表示包含3个整形指针的数组；方括号<code>[]</code>的优先级高于<code>*</code>，所以<code>A2[3]</code>表示A2是一个数组；<code>int *</code>表示数组的每个元素是一个指向int类型的指针。</li>
-<li><code>int (*A3)[3]</code>表示指向一个包含3个整形的数组的指针；<code>()</code>的优先级高于<code>[]</code>，所以 <code>(\*A3)</code>表示<code>A3</code>是一个指针。<img src="/.cn//3.png" srcset="/img/loading.gif" lazyload alt></li>
-<li>二维数组按行优先存储；<img src="/.cn//4.png" srcset="/img/loading.gif" lazyload alt></li>
+<li><code>int (*A3)[3]</code>表示指向一个包含3个整形的数组的指针；<code>()</code>的优先级高于<code>[]</code>，所以 <code>(\*A3)</code>表示<code>A3</code>是一个指针。<img src="./CSAPP%2008-machine-data/3.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>二维数组按行优先存储；<img src="./CSAPP%2008-machine-data/4.png" srcset="/img/loading.gif" lazyload alt=""></li>
 <li>要访问<code>A[i][j]</code>，取<code>A + (i * C + j) * 4</code>即可；</li>
 </ul>
 <h1>Structure自定义结构体</h1>
 <ul>
-<li>结构体也是一段连续的内存区域；<img src="/.cn//5.png" srcset="/img/loading.gif" lazyload alt></li>
+<li>结构体也是一段连续的内存区域；<img src="./CSAPP%2008-machine-data/5.png" srcset="/img/loading.gif" lazyload alt=""></li>
 <li>结构体的某个类型对象的<strong>地址必须是k = 2, 4, 8的倍数（对齐）</strong>；原因是：
 <ul>
 <li><strong>内存访问的单位是块</strong>：
@@ -517,7 +517,7 @@
 <ul>
 <li>根据最大的类型对象所占字节数分配内存；</li>
 <li>一次只能使用一个对象；<br>
-<img src="/.cn//6.png" srcset="/img/loading.gif" lazyload alt></li>
+<img src="./CSAPP%2008-machine-data/6.png" srcset="/img/loading.gif" lazyload alt=""></li>
 </ul>
 <ol>
 <li>Same as (float) u?

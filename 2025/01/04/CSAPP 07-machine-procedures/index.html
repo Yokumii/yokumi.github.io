@@ -28,19 +28,19 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="进程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//6.png">
-<meta property="og:image" content="https://blog.yokumi.cn/.cn//4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/5.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/6.png">
+<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/4.png">
 <meta property="article:published_time" content="2025-01-04T12:55:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.040Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="汇编代码">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/.cn//1.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2007-machine-procedures/CSAPP%2007-machine-procedures/1.png">
   
   
   
@@ -350,8 +350,8 @@
 </ul>
 </li>
 <li>label是不占位置的；<br>
-<img src="/.cn//1.png" srcset="/img/loading.gif" lazyload alt><br>
-<img src="/.cn//2.png" srcset="/img/loading.gif" lazyload alt></li>
+<img src="./CSAPP%2007-machine-procedures/1.png" srcset="/img/loading.gif" lazyload alt=""><br>
+<img src="./CSAPP%2007-machine-procedures/2.png" srcset="/img/loading.gif" lazyload alt=""></li>
 <li><strong>Stack Frames栈帧</strong>：即过程活动记录，每次调用函数分配的一段独立的栈帧，<code>ret</code>时释放栈帧；</li>
 <li>一个常见的调用过程的栈内容如下：（向下生长，往下为低地址）</li>
 </ul>
@@ -391,7 +391,7 @@
 <h1>数据传送与局部存储</h1>
 <ul>
 <li>以下讨论均为整形，浮点数有另一套东西；</li>
-<li>当传递参数超过6个时，x86-64要求<strong>超过寄存器限制的参数按照从右到左的顺序压入栈（后面的参数先进入栈）</strong>：<img src="/.cn//3.png" srcset="/img/loading.gif" lazyload alt></li>
+<li>当传递参数超过6个时，x86-64要求<strong>超过寄存器限制的参数按照从右到左的顺序压入栈（后面的参数先进入栈）</strong>：<img src="./CSAPP%2007-machine-procedures/3.png" srcset="/img/loading.gif" lazyload alt=""></li>
 <li>由于寄存器在所有进程之间进行共享，所以规定Callee被调用者不会覆盖Caller调用者会使用到的寄存器的值：
 <ul>
 <li>Caller Saved调用者保存：<strong>调用者（Caller）负责保存</strong>在函数调用前需要保留的寄存器值，如果调用者需要在函数调用后继续使用某些寄存器中的值，那么它必须在调用函数之前将这些值保存到栈中或其他地方，并在函数返回后再恢复；
@@ -407,13 +407,13 @@
 </li>
 </ul>
 </li>
-<li>一个Callee Saved的例子<img src="/.cn//5.png" srcset="/img/loading.gif" lazyload alt>
+<li>一个Callee Saved的例子<img src="./CSAPP%2007-machine-procedures/5.png" srcset="/img/loading.gif" lazyload alt="">
 <ul>
 <li>首先，<code>%rdi</code>作用Caller Saved，需要由该函数保存，由于<code>%rbx</code>为Callee Saved，即被调用者保存，其值在该函数运行过程中不会发生改变，所以将<code>%rdi</code>保存在<code>%rbx</code>中，通过寄存器实现了保存；</li>
 <li>上述操作导致了一个问题，<code>%rbx</code>作为Callee Saved，而该函数作为其上一层（主函数）的被调用者，该函数作为被调用者需要保存<code>%rbx</code>，所以，该函数一开头将<code>%rbx</code>压入栈，再最后又弹回给<code>%rbx</code>，通过在栈上存储，实现了保存；</li>
 </ul>
 </li>
-<li>再看一个递归的例子<img src="/.cn//6.png" srcset="/img/loading.gif" lazyload alt>
+<li>再看一个递归的例子<img src="./CSAPP%2007-machine-procedures/6.png" srcset="/img/loading.gif" lazyload alt="">
 <ul>
 <li>在该函数中递归调用时，作为主调函数，需要保存<code>%rdi</code>，与上面的例子类似保存在<code>%rbx</code>中；</li>
 <li>由于<code>%rbx</code>是Callee Saved，pcouter_r作为主函数和上一层pcounter_r的被调用者，所以也需要保存<code>%rbx</code>；</li>
@@ -421,7 +421,7 @@
 </li>
 </ul>
 <h1>一个函数调用的例子</h1>
-<p><img src="/.cn//4.png" srcset="/img/loading.gif" lazyload alt></p>
+<p><img src="CSAPP%2007-machine-procedures/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <ol>
 <li>栈操作不是运用传统的push和pop操作，直接移动指针，两者含义是否相同？
 <ul>

@@ -341,10 +341,10 @@
 <p>比如可以设计 Prompt 如下：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">现有以下任务<span class="hljs-attribute">X</span>：略；以下是用于任务<span class="hljs-attribute">X</span>的代码：略；请你仔细检查代码的正确性、风格和效率，并就如何改进它给出建设性的批评和建议；<br></code></pre></td></tr></table></figure>
 <p>然后，将之前生成的代码和检查后的反馈一起作为 Context 输入给 LLM，让 LLM 根据反馈建议修改代码；</p>
-<p>一个简单的示意图如下：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504081117237.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>一个简单的示意图如下：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504081117237.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>当然，实际应用中会涉及多次迭代，以获得更高的精度；</p>
 <h2 id="应用：SELF-RAG">应用：SELF-RAG</h2>
-<p>SELF-RAG 在检索以及生成的过程中引入了自我反思机制，下图直观呈现了它和传统 RAG 的区别：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504081124295.png" srcset="/img/loading.gif" lazyload alt></p>
+<p>SELF-RAG 在检索以及生成的过程中引入了自我反思机制，下图直观呈现了它和传统 RAG 的区别：<img src="https://raw.githubusercontent.com/Yokumii/MyPicBucket/img/img/202504081124295.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <h1>贰、Tool Use Pattern</h1>
 <p>代理通过调用 API 来获取预训练模型权重中缺少的额外信息，比如调用 Web 搜索、访问本地知识库、执行代码等等；</p>
 <h1>叁、Planning Pattern</h1>
