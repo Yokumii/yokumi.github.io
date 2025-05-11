@@ -6,7 +6,7 @@
   <link href="https://blog.yokumi.cn/atom.xml" rel="self"/>
   
   <link href="https://blog.yokumi.cn/"/>
-  <updated>2025-05-11T12:29:46.871Z</updated>
+  <updated>2025-05-11T15:42:25.935Z</updated>
   <id>https://blog.yokumi.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.yokumi.cn/2025/05/11/Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%BF%9B%E9%98%B6%E9%85%8D%E7%BD%AE/"/>
     <id>https://blog.yokumi.cn/2025/05/11/Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%BF%9B%E9%98%B6%E9%85%8D%E7%BD%AE/</id>
     <published>2025-05-11T11:51:33.000Z</published>
-    <updated>2025-05-11T12:29:46.871Z</updated>
+    <updated>2025-05-11T15:42:25.935Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>关于 Hexo 的基础配置，已经在 <a href="https://blog.yokumi.cn/2025/01/17/%E4%B8%80%E6%96%87%E7%99%BD%E5%AB%96%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8+%E9%85%8D%E7%BD%AE%E5%9F%BA%E6%9C%AC%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83+%E5%8D%9A%E5%AE%A2%E7%AD%89%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/">一文白嫖阿里云服务器+配置基本开发环境+博客等服务部署</a>文章中介绍。</p></blockquote><h1>一、添加 RSS 外链</h1><ol><li>安装 <code>hexo-generator-feed</code> 插件；</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install hexo-generator-feed --save<br></code></pre></td></tr></table></figure><ol start="2"><li>修改 <code>_config.yml</code> 配置文件；</li></ol><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-meta"># 订阅 RSS</span><br><span class="hljs-symbol">feed:</span><br><span class="hljs-symbol">  type:</span> atom<br><span class="hljs-symbol">  path:</span> atom.xml<br><span class="hljs-symbol">  limit:</span> <span class="hljs-number">40</span><br><span class="hljs-symbol">  hub:</span><br><span class="hljs-symbol">  content:</span><br><span class="hljs-symbol">  content_limit:</span> false<br><span class="hljs-symbol">  content_limit_delim:</span> <span class="hljs-string">&#x27; &#x27;</span><br><span class="hljs-symbol">  order_by:</span> -date<br></code></pre></td></tr></table></figure><p>其中，<code>limit</code> 表示限制文章数量，可根据需要自行配置；</p><ol start="3"><li>重新生成并部署；</li><li>通过 <code>http://你的域名/atom.xml</code> 就可以访问你的 RSS 了；</li><li>在你需要的地方添加即可；</li></ol>]]></content>
     
@@ -165,9 +165,9 @@
     
     <category term="人工智能" scheme="https://blog.yokumi.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
-    <category term="LLM" scheme="https://blog.yokumi.cn/tags/LLM/"/>
-    
     <category term="Python" scheme="https://blog.yokumi.cn/tags/Python/"/>
+    
+    <category term="LLM" scheme="https://blog.yokumi.cn/tags/LLM/"/>
     
   </entry>
   
@@ -446,9 +446,9 @@
     <category term="专业学习" scheme="https://blog.yokumi.cn/categories/%E4%B8%93%E4%B8%9A%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="硬件" scheme="https://blog.yokumi.cn/tags/%E7%A1%AC%E4%BB%B6/"/>
-    
     <category term="计算机基础" scheme="https://blog.yokumi.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="硬件" scheme="https://blog.yokumi.cn/tags/%E7%A1%AC%E4%BB%B6/"/>
     
   </entry>
   
