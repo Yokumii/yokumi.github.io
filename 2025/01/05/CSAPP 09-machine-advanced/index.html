@@ -28,15 +28,15 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="缓冲区溢出">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2009-machine-advanced/CSAPP%2009-machine-advanced/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2009-machine-advanced/CSAPP%2009-machine-advanced/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2009-machine-advanced/CSAPP%2009-machine-advanced/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2009-machine-advanced/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2009-machine-advanced/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2009-machine-advanced/3.png">
 <meta property="article:published_time" content="2025-01-05T02:23:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.056Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/01/05/CSAPP%2009-machine-advanced/CSAPP%2009-machine-advanced/1.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/CSAPP%2009-machine-advanced/1.png">
   
   
   
@@ -258,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          514 字
+          515 字
         
       </span>
     
@@ -320,45 +320,36 @@
             
               <div class="markdown-body">
                 
-                <h1>程序运行的内存分配策略</h1>
-<ol>
-<li>静态存储分配
-<ol>
+                <h1 id="程序运行的内存分配策略"><a href="#程序运行的内存分配策略" class="headerlink" title="程序运行的内存分配策略"></a>程序运行的内存分配策略</h1><ol>
+<li>静态存储分配<ol>
 <li>编译时就能确定每个数据目标在运行时刻的存储空间需求,因而在编译时就可以给他们分配固定的内存空间；</li>
 <li>程序代码中<strong>不允许有可变数据结构(比如可变数组)的存在,也不允许有嵌套或者递归的结构出现</strong>,因为会导致编译程序无法计算准确的存储空间需求</li>
 </ol>
 </li>
-<li>栈式存储分配
-<ol>
+<li>栈式存储分配<ol>
 <li>在编译期间，过程、函数以及嵌套程序块的活动记录大小（最大值）应该是可以确定的（以便进入的时候动态地分配活动记录的空间），这是进行栈式存储分配的必要条件，如果不满足则应该使用堆式存储管理</li>
 </ol>
 </li>
-<li>堆式存储分配
-<ol>
-<li><strong>数据对象的生存期与创建它的过程/函数的执行期无关</strong></li>
-<li>在任意时刻以任意次序从数据段的堆区分配和释放数据对象的运行时存储空间，分配和释放数据对象的操作是应用程序通过向操作系统提出申请来实现<br>
-<img src="./CSAPP%2009-machine-advanced/1.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>堆式存储分配<ol>
+<li><strong>数据对象的生存期与创建它的过程&#x2F;函数的执行期无关</strong></li>
+<li>在任意时刻以任意次序从数据段的堆区分配和释放数据对象的运行时存储空间，分配和释放数据对象的操作是应用程序通过向操作系统提出申请来实现<br><img src="/./CSAPP%2009-machine-advanced/1.png" srcset="/img/loading.gif" lazyload></li>
 </ol>
 </li>
 </ol>
-<h1>缓冲区溢出攻击</h1>
-<ul>
-<li>一个例子<img src="./CSAPP%2009-machine-advanced/2.png" srcset="/img/loading.gif" lazyload alt=""></li>
-<li>应对之道：
-<ul>
+<h1 id="缓冲区溢出攻击"><a href="#缓冲区溢出攻击" class="headerlink" title="缓冲区溢出攻击"></a>缓冲区溢出攻击</h1><ul>
+<li>一个例子<img src="/./CSAPP%2009-machine-advanced/2.png" srcset="/img/loading.gif" lazyload></li>
+<li>应对之道：<ul>
 <li>Stack Randomization，栈随机化，栈底指针浮动；</li>
 <li>设置金丝雀Canary；</li>
 <li>栈区域规定是不可执行的</li>
 </ul>
 </li>
 </ul>
-<h1>金丝雀</h1>
-<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs x86asm">40072f:  <span class="hljs-keyword">sub</span>    <span class="hljs-number">$0</span>x18,%rsp    # 分配栈空间24bytes<br><span class="hljs-number">400733</span>:  <span class="hljs-keyword">mov</span>    %fs:<span class="hljs-number">0x28</span>,%rax   # Get Canary %fs:<span class="hljs-number">0x28</span>是一个只读的内存区域<br>40073c:  <span class="hljs-keyword">mov</span>    %rax,<span class="hljs-number">0x8</span>(%rsp)  # Place it on stack(Canary 8byetes)<br><span class="hljs-number">400741</span>:  <span class="hljs-keyword">xor</span>    %eax,%eax  # 自己和自己做异或，即擦除Canary<br><span class="hljs-number">400743</span>:  <span class="hljs-keyword">mov</span>    %rsp,%rdi<br><span class="hljs-number">400746</span>:  callq  4006e0 &lt;gets&gt;<br>40074b:  <span class="hljs-keyword">mov</span>    %rsp,%rdi<br>40074e:  callq  <span class="hljs-number">400570</span> &lt;puts@plt&gt;<br><span class="hljs-number">400753</span>:  <span class="hljs-keyword">mov</span>    <span class="hljs-number">0x8</span>(%rsp),%rax  # Get it again from stack<br><span class="hljs-number">400758</span>:  <span class="hljs-keyword">xor</span>    %fs:<span class="hljs-number">0x28</span>,%rax   # 重新和只读区域上的值做异或<br><span class="hljs-number">400761</span>:  <span class="hljs-keyword">je</span>     <span class="hljs-number">400768</span> &lt;echo+<span class="hljs-number">0x39</span>&gt; # ZF = <span class="hljs-number">0</span>，即说明两者相等，没问题<br><span class="hljs-number">400763</span>:  callq  <span class="hljs-number">400580</span> &lt;__stack_chk_fail@plt&gt; # 否则说明stack上的Canary被顶掉，Fail<br><span class="hljs-number">400768</span>:  <span class="hljs-keyword">add</span>    <span class="hljs-number">$0</span>x18,%rsp<br>40076c:  retq<br></code></pre></td></tr></table></figure>
-<h1>面向返回攻击Return-Oriented Programming Attacks</h1>
-<ul>
+<h1 id="金丝雀"><a href="#金丝雀" class="headerlink" title="金丝雀"></a>金丝雀</h1><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs x86asm">40072f:  <span class="hljs-keyword">sub</span>    <span class="hljs-number">$0</span>x18,%rsp    # 分配栈空间24bytes<br><span class="hljs-number">400733</span>:  <span class="hljs-keyword">mov</span>    %fs:<span class="hljs-number">0x28</span>,%rax   # Get Canary %fs:<span class="hljs-number">0x28</span>是一个只读的内存区域<br>40073c:  <span class="hljs-keyword">mov</span>    %rax,<span class="hljs-number">0x8</span>(%rsp)  # Place it on stack(Canary 8byetes)<br><span class="hljs-number">400741</span>:  <span class="hljs-keyword">xor</span>    %eax,%eax  # 自己和自己做异或，即擦除Canary<br><span class="hljs-number">400743</span>:  <span class="hljs-keyword">mov</span>    %rsp,%rdi<br><span class="hljs-number">400746</span>:  callq  4006e0 &lt;gets&gt;<br>40074b:  <span class="hljs-keyword">mov</span>    %rsp,%rdi<br>40074e:  callq  <span class="hljs-number">400570</span> &lt;puts@plt&gt;<br><span class="hljs-number">400753</span>:  <span class="hljs-keyword">mov</span>    <span class="hljs-number">0x8</span>(%rsp),%rax  # Get it again from stack<br><span class="hljs-number">400758</span>:  <span class="hljs-keyword">xor</span>    %fs:<span class="hljs-number">0x28</span>,%rax   # 重新和只读区域上的值做异或<br><span class="hljs-number">400761</span>:  <span class="hljs-keyword">je</span>     <span class="hljs-number">400768</span> &lt;echo+<span class="hljs-number">0x39</span>&gt; # ZF = <span class="hljs-number">0</span>，即说明两者相等，没问题<br><span class="hljs-number">400763</span>:  callq  <span class="hljs-number">400580</span> &lt;__stack_chk_fail@plt&gt; # 否则说明stack上的Canary被顶掉，Fail<br><span class="hljs-number">400768</span>:  <span class="hljs-keyword">add</span>    <span class="hljs-number">$0</span>x18,%rsp<br>40076c:  retq<br></code></pre></td></tr></table></figure>
+
+<h1 id="面向返回攻击Return-Oriented-Programming-Attacks"><a href="#面向返回攻击Return-Oriented-Programming-Attacks" class="headerlink" title="面向返回攻击Return-Oriented Programming Attacks"></a>面向返回攻击Return-Oriented Programming Attacks</h1><ul>
 <li>利用已有的代码Gadget，跳转到Gadgets上逐步执行操作；</li>
-<li>还是防不了金丝雀；<br>
-<img src="./CSAPP%2009-machine-advanced/3.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>还是防不了金丝雀；<br>  <img src="/./CSAPP%2009-machine-advanced/3.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
 
                 

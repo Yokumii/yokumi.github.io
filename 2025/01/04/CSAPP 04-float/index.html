@@ -28,16 +28,16 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="浮点数的机器表示">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2004-float/CSAPP%2004-float/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2004-float/CSAPP%2004-float/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2004-float/CSAPP%2004-float/3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2004-float/CSAPP%2004-float/4.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2004-float/2.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2004-float/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2004-float/3.png">
+<meta property="og:image" content="https://blog.yokumi.cn/CSAPP%2004-float/4.png">
 <meta property="article:published_time" content="2025-01-04T06:27:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.015Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/01/04/CSAPP%2004-float/CSAPP%2004-float/2.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/CSAPP%2004-float/2.png">
   
   
   
@@ -259,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          374 字
+          388 字
         
       </span>
     
@@ -321,76 +321,62 @@
             
               <div class="markdown-body">
                 
-                <h1>二进制表示方法</h1>
-<ul>
+                <h1 id="二进制表示方法"><a href="#二进制表示方法" class="headerlink" title="二进制表示方法"></a>二进制表示方法</h1><ul>
 <li>引入负指数即可；</li>
 <li>缺陷是无法平衡整数部分的范围和小数范围的精度；</li>
 </ul>
-<h1>IEEE标准</h1>
-<p><img src="./CSAPP%2004-float/2.png" srcset="/img/loading.gif" lazyload alt=""><br>
-<img src="./CSAPP%2004-float/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h1 id="IEEE标准"><a href="#IEEE标准" class="headerlink" title="IEEE标准"></a>IEEE标准</h1><p><img src="/./CSAPP%2004-float/2.png" srcset="/img/loading.gif" lazyload><br><img src="/./CSAPP%2004-float/1.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>exp：阶码；</li>
 <li>frac：尾数；</li>
 </ul>
 <ol>
-<li>规格化Normalized：exp不全为0且不全为1；
-<ol>
-<li>$E = exp - Bias = exp - (2^{k-1} - 1),Bias  = 2^{k - 1} - 1$ ；
-<ol>
-<li>32bits：$Bias = 2^7 -1 = 127,exp\in [1,254]\rightarrow E\in [-126,127]$；</li>
-<li>64bits：$Bias = 2^{10} - 1 = 1023,exp \in [1, 2023]\rightarrow E\in [-1022,1023]$；</li>
+<li>规格化Normalized：exp不全为0且不全为1；<ol>
+<li>$E &#x3D; exp - Bias &#x3D; exp - (2^{k-1} - 1),Bias  &#x3D; 2^{k - 1} - 1$ ；<ol>
+<li>32bits：$Bias &#x3D; 2^7 -1 &#x3D; 127,exp\in [1,254]\rightarrow E\in [-126,127]$；</li>
+<li>64bits：$Bias &#x3D; 2^{10} - 1 &#x3D; 1023,exp \in [1, 2023]\rightarrow E\in [-1022,1023]$；</li>
 </ol>
 </li>
-<li>$M = 1.frac_{(2)}$；</li>
+<li>$M &#x3D; 1.frac_{(2)}$；</li>
 </ol>
 </li>
-<li>非规格化Denormalized：exp全为0；
-<ol>
-<li>$E = 1 - Bias$；</li>
-<li>$M = frac$；</li>
+<li>非规格化Denormalized：exp全为0；<ol>
+<li>$E &#x3D; 1 - Bias$；</li>
+<li>$M &#x3D; frac$；</li>
 </ol>
 </li>
-<li>特殊值Special Values：exp全为1；
-<ol>
-<li>exp全为1，frac全为0，s = 0表示正无穷$+\infty$，s = 1表示负无穷$-\infty$；</li>
-<li>exp全为1，frac不为0，表示NaN，不是一个数；<br>
-<img src="./CSAPP%2004-float/3.png" srcset="/img/loading.gif" lazyload alt=""></li>
+<li>特殊值Special Values：exp全为1；<ol>
+<li>exp全为1，frac全为0，s &#x3D; 0表示正无穷$+\infty$，s &#x3D; 1表示负无穷$-\infty$；</li>
+<li>exp全为1，frac不为0，表示NaN，不是一个数；<br><img src="/./CSAPP%2004-float/3.png" srcset="/img/loading.gif" lazyload></li>
 </ol>
 </li>
 </ol>
 <ul>
 <li>分布特点：在0附近均匀分布，到外面扩大（指数分布）；</li>
 <li>舍入规则：4舍6入5向偶；（不在考试范围内）；</li>
-<li>类型转换：
-<ul>
-<li>$double/float\rightarrow int$
-<ul>
+<li>类型转换：<ul>
+<li>$double&#x2F;float\rightarrow int$<ul>
 <li>直接对实际存储的二进制串进行位截断；</li>
 <li>体现为向0舍入；</li>
 <li>超界的情况转化为$T_{min}$；</li>
 </ul>
 </li>
-<li>$int \rightarrow float$
-<ul>
+<li>$int \rightarrow float$<ul>
 <li>位数相同，不会截断，但可能会发生舍入；</li>
 </ul>
 </li>
-<li>$int/float \rightarrow double$
-<ul>
+<li>$int&#x2F;float \rightarrow double$<ul>
 <li>double的有效位数更多，所以能保留精确度；</li>
 </ul>
 </li>
-<li>$double \rightarrow float$
-<ul>
+<li>$double \rightarrow float$<ul>
 <li>能表达的范围变小，可能溢出为$\infty$，并且精度降低，可能发生舍入；</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p><img src="./CSAPP%2004-float/4.png" srcset="/img/loading.gif" lazyload alt=""><br>
-解答：</p>
+<p><img src="/./CSAPP%2004-float/4.png" srcset="/img/loading.gif" lazyload><br>解答：</p>
 <ol>
 <li>x如果很大，(float)x会发生舍入；</li>
 <li>double表示范围大于int，所以能精确表示；</li>

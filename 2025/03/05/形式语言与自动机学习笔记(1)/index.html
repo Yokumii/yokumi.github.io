@@ -28,14 +28,14 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="形式语言与自动机">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/1.png">
+<meta property="og:image" content="https://blog.yokumi.cn/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/1.png">
 <meta property="article:published_time" content="2025-03-05T13:20:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.268Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="计算机基础">
 <meta property="article:tag" content="private">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/03/05/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/1.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/1.png">
   
   
   
@@ -319,70 +319,51 @@
             
               <div class="markdown-body">
                 
-                <h1>一、概述</h1>
-<ul>
+                <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><ul>
 <li><strong>形式语言</strong>：形式化描述的字母表上的字符串构成的集合；</li>
 <li><strong>自动机</strong>：具有离散输入输出的数学模型；</li>
 </ul>
 <blockquote>
-<p>形式语言与自动机的关系：<br>
-形式语言——字符串，自动机——字符串的识别系统<img src="./%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>形式语言与自动机的关系：<br>形式语言——字符串，自动机——字符串的识别系统<img src="/./%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/1.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
 <ul>
 <li><strong>文法</strong>：定义语言的数学模型；</li>
 <li><strong>元语言</strong>：描述语言的语言；</li>
 </ul>
-<h1>二、Chomsky文法体系</h1>
-<h2 id="概念简述">概念简述</h2>
-<p>文法$G$是一个四元组$G=(N，T，P，S)$，其中：</p>
+<h1 id="二、Chomsky文法体系"><a href="#二、Chomsky文法体系" class="headerlink" title="二、Chomsky文法体系"></a>二、Chomsky文法体系</h1><h2 id="概念简述"><a href="#概念简述" class="headerlink" title="概念简述"></a>概念简述</h2><p>文法$G$是一个四元组$G&#x3D;(N，T，P，S)$，其中：</p>
 <ul>
 <li>$N$：非终结符的有限集合；</li>
-<li>$T$：终结符的有限集合，且$N\cap T = \phi$；</li>
+<li>$T$：终结符的有限集合，且$N\cap T &#x3D; \phi$；</li>
 <li>$P$：形式为$\alpha \rightarrow \beta$的生成式的有限集合，且$\alpha \in (N \cup T)^* N^+ (N \cup T), \beta \in(N\cup T)^*$，即$\alpha$中至少含有一个非终结符；</li>
 <li>$S$：起始符，且$S\in N$；</li>
 </ul>
-<p>应用生成式就是将非终结符不断替换为终结符+非终结符的符号串，再替换得到的新的字符串中的非终结符，最终得到只含有终结符的符号串；<br>
-我们将中间过程的符号串称为句型，最终推导出的只含有终结符的符号串称为句子，显然，<em><strong>句型包含句子</strong></em>。</p>
-<p>我们将文法产生的语言记为$L(G)$：<br>
-$$<br>
-L(G) = { \omega \mid \omega \in T^* \text{ 且 } S \Rightarrow^* \omega }<br>
-$$<br>
-即必须是由终结符组成，并且由起始串$S$推导得到；</p>
+<p>应用生成式就是将非终结符不断替换为终结符+非终结符的符号串，再替换得到的新的字符串中的非终结符，最终得到只含有终结符的符号串；<br>我们将中间过程的符号串称为句型，最终推导出的只含有终结符的符号串称为句子，显然，<em><strong>句型包含句子</strong></em>。</p>
+<p>我们将文法产生的语言记为$L(G)$：<br>$$<br>L(G) &#x3D; { \omega \mid \omega \in T^* \text{ 且 } S \Rightarrow^* \omega }<br>$$<br>即必须是由终结符组成，并且由起始串$S$推导得到；</p>
 <p>关于Chomsky文法体系，对生成式做出一些限制，分为以下4类：</p>
-<h2 id="0型文法">0型文法</h2>
-<ul>
+<h2 id="0型文法"><a href="#0型文法" class="headerlink" title="0型文法"></a>0型文法</h2><ul>
 <li>无限制</li>
 <li>对应递归可枚举语言</li>
 <li>对应图灵机</li>
 </ul>
-<h2 id="1型文法">1型文法</h2>
-<ul>
+<h2 id="1型文法"><a href="#1型文法" class="headerlink" title="1型文法"></a>1型文法</h2><ul>
 <li>上下文有关文法</li>
 <li>对应上下文有关语言</li>
 <li>对应线性有界自动机（不考虑空串）</li>
 </ul>
-<p>1型文法对生成式做出了如下限制：$\alpha \rightarrow \beta$，其中$|\alpha| \leq |\beta|$，且$\alpha, \beta \in (N \cup T)^*$，且$\alpha$至少含有一个非终结符号；<br>
-该限制的意义是保证了推到过程中字符串长度单调不减；</p>
-<h2 id="2型文法">2型文法</h2>
-<ul>
+<p>1型文法对生成式做出了如下限制：$\alpha \rightarrow \beta$，其中$|\alpha| \leq |\beta|$，且$\alpha, \beta \in (N \cup T)^*$，且$\alpha$至少含有一个非终结符号；<br>该限制的意义是保证了推到过程中字符串长度单调不减；</p>
+<h2 id="2型文法"><a href="#2型文法" class="headerlink" title="2型文法"></a>2型文法</h2><ul>
 <li>上下文无关文法</li>
 <li>对应上下文无关语言</li>
 <li>对应下推自动机</li>
 </ul>
-<p>2型文法对生成式做出了如下限制：$A \rightarrow \alpha$，其中$A$是一个非终结符，$\alpha$是由非终结符和终结符组成的任意字符串（可以是空串）；<br>
-该限制的意义是每次替换单独一个非终结符，支持递归结构的解析；</p>
-<h2 id="3型文法">3型文法</h2>
-<ul>
+<p>2型文法对生成式做出了如下限制：$A \rightarrow \alpha$，其中$A$是一个非终结符，$\alpha$是由非终结符和终结符组成的任意字符串（可以是空串）；<br>该限制的意义是每次替换单独一个非终结符，支持递归结构的解析；</p>
+<h2 id="3型文法"><a href="#3型文法" class="headerlink" title="3型文法"></a>3型文法</h2><ul>
 <li>正则文法（分为左线性文法和右线性文法）</li>
 <li>对应正则语言</li>
 <li>对应优先自动机</li>
 </ul>
-<p>左线性文法对生成式做出了如下限制：$A \rightarrow B\omega$或$A \rightarrow \omega$，其中$A,B$为非终结符，$\omega$为终结符；<br>
-右线性文法对生成式做出了如下限制：$A \rightarrow \omega B$或$A \rightarrow \omega$，其中$A,B$为非终结符，$\omega$为终结符；<br>
-该限制的意义是，生成式只能在字符串的左边或者右边扩展非终结符，限制了语言的复杂性和递归性；</p>
-<h1>有限自动机</h1>
-<h2 id="DFA">DFA</h2>
-<p>DFA是一个五元组$M = (Q,T,\delta. q_0, F)$；</p>
+<p>左线性文法对生成式做出了如下限制：$A \rightarrow B\omega$或$A \rightarrow \omega$，其中$A,B$为非终结符，$\omega$为终结符；<br>右线性文法对生成式做出了如下限制：$A \rightarrow \omega B$或$A \rightarrow \omega$，其中$A,B$为非终结符，$\omega$为终结符；<br>该限制的意义是，生成式只能在字符串的左边或者右边扩展非终结符，限制了语言的复杂性和递归性；</p>
+<h1 id="有限自动机"><a href="#有限自动机" class="headerlink" title="有限自动机"></a>有限自动机</h1><h2 id="DFA"><a href="#DFA" class="headerlink" title="DFA"></a>DFA</h2><p>DFA是一个五元组$M &#x3D; (Q,T,\delta. q_0, F)$；</p>
 <ul>
 <li>$Q$：有限状态集合；</li>
 <li>$T$：有限的输入字母表；</li>
@@ -390,23 +371,14 @@ $$<br>
 <li>$q_0$：起始状态；</li>
 <li>$F$：终止状态的集合；</li>
 </ul>
-<p><strong>$\delta’$函数</strong>：接受一个字符串输入的状态转移函数：<br>
-$$<br>
-\delta’:Q\times T^* \rightarrow Q<br>
-$$<br>
-对任何$q \in Q$，作出如下定义：</p>
+<p><strong>$\delta’$函数</strong>：接受一个字符串输入的状态转移函数：<br>$$<br>\delta’:Q\times T^* \rightarrow Q<br>$$<br>对任何$q \in Q$，作出如下定义：</p>
 <ul>
-<li>$\delta’(q, \varepsilon) = q$；</li>
-<li>若$\omega$为字符串，$a$为一个字符，则$\delta’(q, a\omega) = \delta(\delta’(q, \omega), a)$；</li>
+<li>$\delta’(q, \varepsilon) &#x3D; q$；</li>
+<li>若$\omega$为字符串，$a$为一个字符，则$\delta’(q, a\omega) &#x3D; \delta(\delta’(q, \omega), a)$；</li>
 </ul>
 <p><strong>被DFA接受的字符串</strong>：输入结束后使DFA达到终止状态；</p>
 <p><strong>格局</strong>：当前状态$q$，待输入字符串$\omega$，用$(q, \omega)$表示当前瞬时状态；</p>
-<h2 id="UFA-不确定的有限自动机">UFA 不确定的有限自动机</h2>
-<p>在某个状态，对应某个输入，有多个转移，能到达多个状态；UFA和DFA的定义上的区别只有$\delta$函数：<br>
-$$<br>
-\delta：Q\times T\rightarrow 2^Q<br>
-$$<br>
-如果接受一个字符串后UFA能够到达的状态集合包含一个及以上F中的元素，则称为该字符串能被UFA接受；</p>
+<h2 id="UFA-不确定的有限自动机"><a href="#UFA-不确定的有限自动机" class="headerlink" title="UFA 不确定的有限自动机"></a>UFA 不确定的有限自动机</h2><p>在某个状态，对应某个输入，有多个转移，能到达多个状态；UFA和DFA的定义上的区别只有$\delta$函数：<br>$$<br>\delta：Q\times T\rightarrow 2^Q<br>$$<br>如果接受一个字符串后UFA能够到达的状态集合包含一个及以上F中的元素，则称为该字符串能被UFA接受；</p>
 <script>
 
 window.addEventListener('hexo-blog-decrypt', function() {
@@ -418,6 +390,7 @@ console.log('文章已成功解密！');
 });
 
 </script>
+
 
                 
               </div>

@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          414 字
+          419 字
         
       </span>
     
@@ -316,31 +316,19 @@
             
               <div class="markdown-body">
                 
-                <h2 id="矩阵序列介绍">矩阵序列介绍</h2>
-<p>在《线性代数》课程中主要学习了矩阵的代数运算，我们继续将《数学分析》中的理论推广至矩阵空间，对于矩阵的分析，类似数列，我们同样从极限理论开始，介绍矩阵序列的极限运算。</p>
-<h3 id="定义">定义</h3>
-<p>设 ${A^{(k)}}<em>{k=1}^\infty$ 是一个矩阵序列，其中 $A^{(k)} \in \mathbb{C}^{m \times n}$。当 $a</em>{ij}^{(k)} \to a_{ij}(k \to \infty)$ 时，称 ${A^{(k)}}$ 收敛，或成矩阵 $A = (a_{ij})<em>{m \times n}$ 为 ${A^{(k)}}$ 的极限，或称 ${A^{(k)}}$ 收敛于 $A$，记为<br>
-$$<br>
-\lim</em>{k \to \infty} A^{(k)} = A, A^{(k)} \to A<br>
-$$<br>
-不收敛的矩阵序列称为 <strong>发散</strong>。</p>
+                <h2 id="矩阵序列介绍"><a href="#矩阵序列介绍" class="headerlink" title="矩阵序列介绍"></a>矩阵序列介绍</h2><p>在《线性代数》课程中主要学习了矩阵的代数运算，我们继续将《数学分析》中的理论推广至矩阵空间，对于矩阵的分析，类似数列，我们同样从极限理论开始，介绍矩阵序列的极限运算。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>设 ${A^{(k)}}<em>{k&#x3D;1}^\infty$ 是一个矩阵序列，其中 $A^{(k)} \in \mathbb{C}^{m \times n}$。当 $a</em>{ij}^{(k)} \to a_{ij}(k \to \infty)$ 时，称 ${A^{(k)}}$ 收敛，或成矩阵 $A &#x3D; (a_{ij})<em>{m \times n}$ 为 ${A^{(k)}}$ 的极限，或称 ${A^{(k)}}$ 收敛于 $A$，记为<br>$$<br>\lim</em>{k \to \infty} A^{(k)} &#x3D; A, A^{(k)} \to A<br>$$<br>不收敛的矩阵序列称为 <strong>发散</strong>。</p>
 <p>同样，矩阵序列收敛有很多与数列收敛类似的性质，此处不再赘述，继续往下研究其收敛的等价条件。</p>
-<h3 id="定理">定理</h3>
-<p><strong>定理 1</strong> 设 $A^{(k)} \in \mathbb{C}^{m \times n}$，则</p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p><strong>定理 1</strong> 设 $A^{(k)} \in \mathbb{C}^{m \times n}$，则</p>
 <ol>
 <li>$A^{(k)} \to O$ 的充要条件是 $\Vert A^{(k)}\Vert \to 0$；</li>
 <li>$A^{(k)} \to A$ 的充要条件是 $\Vert A^{(k)} - A \Vert \to 0$；</li>
 </ol>
 <p>这里，$\Vert \cdot \Vert$ 是 $\mathbb{C}^{m \times n}$ 上任何一种矩阵范数。</p>
 <p>至此，我们将矩阵收敛的判断与范数建立了联系。</p>
-<h3 id="定义-2">定义</h3>
-<p><strong>定义 1</strong> 矩阵序列 ${A^{(k)}}$ 称为 <strong>有界</strong> 的，如果存在常数 $M &gt; 0$，使得对于一切 $k$ 都有<br>
-$$<br>
-\left | a_{ij}^{(k)}\right | &lt; M(i = 1,2,\dots,m;j = 1,2,\dots,n)<br>
-$$</p>
+<h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p><strong>定义 1</strong> 矩阵序列 ${A^{(k)}}$ 称为 <strong>有界</strong> 的，如果存在常数 $M &gt; 0$，使得对于一切 $k$ 都有<br>$$<br>\left | a_{ij}^{(k)}\right | &lt; M(i &#x3D; 1,2,\dots,m;j &#x3D; 1,2,\dots,n)<br>$$</p>
 <p><strong>定义 2</strong> 设 $A$ 为方阵，且 $A^k \to O(k \to \infty)$，则称 $A$ 为 <strong>收敛矩阵</strong>。</p>
-<h3 id="定理-2">定理</h3>
-<p><strong>定理 2</strong> $A$ 为收敛矩阵的充要条件是 $\rho(A) &lt; 1$。</p>
+<h3 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h3><p><strong>定理 2</strong> $A$ 为收敛矩阵的充要条件是 $\rho(A) &lt; 1$。</p>
 <p><strong>定理 3</strong> $A$ 为收敛矩阵的充分条件是只要有一种矩阵范数 $\left|\cdot\right|$，使得 $\Vert A \Vert &lt; 1$。</p>
 
                 

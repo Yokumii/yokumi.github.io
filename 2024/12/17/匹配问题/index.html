@@ -28,16 +28,16 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="匹配问题">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2024/12/17/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E5%AE%9A%E4%B9%89.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2024/12/17/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E9%9C%8D%E5%B0%94%E5%A9%9A%E5%A7%BB%E5%AE%9A%E7%90%86.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2024/12/17/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/Gale-Shapley%E7%AE%97%E6%B3%95%20.png">
+<meta property="og:image" content="https://blog.yokumi.cn/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E5%AE%9A%E4%B9%89.png">
+<meta property="og:image" content="https://blog.yokumi.cn/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E9%9C%8D%E5%B0%94%E5%A9%9A%E5%A7%BB%E5%AE%9A%E7%90%86.png">
+<meta property="og:image" content="https://blog.yokumi.cn/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/Gale-Shapley%E7%AE%97%E6%B3%95%20.png">
 <meta property="article:published_time" content="2024-12-17T14:45:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.203Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="离散数学">
 <meta property="article:tag" content="图论">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2024/12/17/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E5%AE%9A%E4%B9%89.png">
+<meta name="twitter:image" content="https://blog.yokumi.cn/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E5%AE%9A%E4%B9%89.png">
   
   
   
@@ -259,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          737 字
+          738 字
         
       </span>
     
@@ -321,33 +321,27 @@
             
               <div class="markdown-body">
                 
-                <h1>匹配/对集问题</h1>
-<h2 id="定义">定义</h2>
-<blockquote>
-<p><img src="%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E5%AE%9A%E4%B9%89.png" srcset="/img/loading.gif" lazyload alt=""><br>
-翻译成人话就是，匹配要求边集中任何两条边不相邻，最大匹配要求边数最多，完全匹配要求所有顶点都包含。</p>
+                <h1 id="匹配-对集问题"><a href="#匹配-对集问题" class="headerlink" title="匹配&#x2F;对集问题"></a>匹配&#x2F;对集问题</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p><img src="/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E5%8C%B9%E9%85%8D%E5%AE%9A%E4%B9%89.png" srcset="/img/loading.gif" lazyload><br>翻译成人话就是，匹配要求边集中任何两条边不相邻，最大匹配要求边数最多，完全匹配要求所有顶点都包含。</p>
 </blockquote>
-<h2 id="霍尔婚姻定理-HALL’S-MARRIAGE-THEOREM">霍尔婚姻定理 HALL’S  MARRIAGE  THEOREM</h2>
-<blockquote>
-<p><img src="%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E9%9C%8D%E5%B0%94%E5%A9%9A%E5%A7%BB%E5%AE%9A%E7%90%86.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="霍尔婚姻定理-HALL’S-MARRIAGE-THEOREM"><a href="#霍尔婚姻定理-HALL’S-MARRIAGE-THEOREM" class="headerlink" title="霍尔婚姻定理 HALL’S  MARRIAGE  THEOREM"></a>霍尔婚姻定理 HALL’S  MARRIAGE  THEOREM</h2><blockquote>
+<p><img src="/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/%E9%9C%8D%E5%B0%94%E5%A9%9A%E5%A7%BB%E5%AE%9A%E7%90%86.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
-<h1>稳定匹配问题</h1>
-<blockquote>
+<h1 id="稳定匹配问题"><a href="#稳定匹配问题" class="headerlink" title="稳定匹配问题"></a>稳定匹配问题</h1><blockquote>
 <p><strong>问题描述</strong>：给出一个$n$个男性的集合$M$和$n$个女性的集合$W$，找到一个“稳定”匹配。</p>
 <blockquote>
-<p>每位男性根据对女性的心仪程度从高至低进行排名；<br>
-每位女性根据对男性的心仪程度从高至低进行排名；</p>
+<p>每位男性根据对女性的心仪程度从高至低进行排名；<br>每位女性根据对男性的心仪程度从高至低进行排名；</p>
 </blockquote>
 <p><strong>不稳定对</strong>：给出一个完美匹配$S$，男性$m$和女性$w$是不稳定的，如果同时满足下列条件：</p>
 <blockquote>
-<p>$m$相比起当前配偶，更喜欢$w$；<br>
-$w$相比起当前配偶，更喜欢$m$；</p>
+<p>$m$相比起当前配偶，更喜欢$w$；<br>$w$相比起当前配偶，更喜欢$m$；</p>
 </blockquote>
 <p><strong>稳定匹配</strong>：一个不包含不稳定对的完美匹配。</p>
 </blockquote>
-<h3 id="Gale-Shapley-算法（延迟决定法）">Gale-Shapley 算法（延迟决定法）</h3>
-<p><img src="%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/Gale-Shapley%E7%AE%97%E6%B3%95%20.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="Gale-Shapley-算法（延迟决定法）"><a href="#Gale-Shapley-算法（延迟决定法）" class="headerlink" title="Gale-Shapley 算法（延迟决定法）"></a>Gale-Shapley 算法（延迟决定法）</h3><p><img src="/%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/Gale-Shapley%E7%AE%97%E6%B3%95%20.png" srcset="/img/loading.gif" lazyload></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">10005</span>;<br><span class="hljs-type">int</span> M[N] = &#123;<span class="hljs-number">0</span>&#125;, W[N] = &#123;<span class="hljs-number">0</span>&#125;; <span class="hljs-comment">// 第0个元素表示已经配对的男性/女性个数；男性和女性集合，0表示目前还单身，&gt;0表示已经和该数字对应的异性配对</span><br><span class="hljs-type">int</span> M_pri[N][N] = &#123;<span class="hljs-number">0</span>&#125;, W_pri[N][N] = &#123;<span class="hljs-number">0</span>&#125;; <span class="hljs-comment">// 第0个元素记录的是男生 m 在寻找心仪女生时的进度；男性和女性对异性的心仪程度排名</span><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getPri</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">G_S</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span></span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">output</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span></span>;<br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">lovemore</span><span class="hljs-params">(<span class="hljs-type">int</span> m,<span class="hljs-type">int</span> w,<span class="hljs-type">int</span> num)</span></span>;<br><br><span class="hljs-comment">// 获取心仪程度输入</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">getPri</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>            cin &gt;&gt; M_pri[i][j]; <span class="hljs-comment">// 表示第i位男性对女性心仪程度排名，M_pri[i][j]位女生排名第j名；</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>            cin &gt;&gt; W_pri[i][j]; <span class="hljs-comment">// 表示第i位女性对男性心仪程度排名，W_pri[i][j]位男生排名第j名；</span><br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// Gale-Shapley 算法</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">G_S</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span> </span>&#123;<br>    <span class="hljs-type">int</span> m, w;<br>	<span class="hljs-keyword">while</span> (M[<span class="hljs-number">0</span>] != num) <span class="hljs-comment">// 男生们还未完成配对</span><br>	&#123;<br>		w = m = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">while</span> (M[++m] != <span class="hljs-number">0</span>) ; <span class="hljs-comment">// 找到第一个出现的还没有配对的男生m</span><br>		w = M_pri[m][++M_pri[m][<span class="hljs-number">0</span>]]; <span class="hljs-comment">// 找到第m位男生心中剩下排名第一的女生w</span><br>		<span class="hljs-keyword">if</span> (W[w])	<span class="hljs-comment">//如果女生已经在约会了</span><br>		&#123;<br>			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">lovemore</span>(m,w,num)) <span class="hljs-comment">// 如果w更爱m</span><br>			&#123;<br>				M[W[w]] = <span class="hljs-number">0</span>; <span class="hljs-comment">// w 甩了当前和她配对的</span><br>				M[m] = w;<br>				W[w] = m;	<br>			&#125;<br>			<span class="hljs-keyword">else</span> <br>				<span class="hljs-keyword">continue</span>;<br>		&#125;<br>		<span class="hljs-keyword">else</span> <span class="hljs-comment">// 如果女生没有约会还是自由状态，成功配对</span><br>		&#123;<br>			M[m]=w;<br>            M[<span class="hljs-number">0</span>]++;<br>			W[w]=m;<br>            W[<span class="hljs-number">0</span>]++;<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">// 判断w是不是更爱m</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">lovemore</span><span class="hljs-params">(<span class="hljs-type">int</span> m,<span class="hljs-type">int</span> w,<span class="hljs-type">int</span> num)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++) &#123; <span class="hljs-comment">// 按排名从高到低往下找</span><br>        <span class="hljs-keyword">if</span> (W_pri[w][i] == W[w]) &#123; <span class="hljs-comment">// 先找到和w配对的那个</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (W_pri[w][i] == m) &#123; <span class="hljs-comment">// 先找到m，说明更爱m</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">output</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span> </span>&#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt;= num; i++)<br>		cout&lt;&lt;<span class="hljs-string">&quot;(&quot;</span>&lt;&lt;i&lt;&lt;<span class="hljs-string">&quot;, &quot;</span>&lt;&lt;M[i]&lt;&lt;<span class="hljs-string">&quot;)&quot;</span>&lt;&lt;endl;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-type">int</span> n;<br>	cin&gt;&gt;n;<br>	<span class="hljs-built_in">getPri</span>(n);<br>	<span class="hljs-built_in">G_S</span>(n);<br>	<span class="hljs-built_in">output</span>(n);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">solve</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
                 
               </div>

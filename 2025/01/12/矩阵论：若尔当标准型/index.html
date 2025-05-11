@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          732 字
+          740 字
         
       </span>
     
@@ -317,71 +317,22 @@
               <div class="markdown-body">
                 
                 <p>线性变换既然有矩阵表示，我们希望其应用到向量上得到的象能方便得到，即我们希望线性变换对应的矩阵尽量简单，比如能变为对角矩阵。为此，我们首先引入线性变换的特征值和特征向量，它和普通方阵类似。</p>
-<h4 id="特征值与特征向量">特征值与特征向量</h4>
-<p><strong>定义 1</strong> 设 $T: V \to V$ 是一个线性变换，如果存在 $\lambda_0 \in K$，使得存在非零向量 $x \in V$ 满足：<br>
-$$ T x = \lambda_0 x$$<br>
-那么我们称 $\lambda_0$ 是 $T$ 的<strong>特征值</strong>，$x$ 是 $T$ 属于 $\lambda_0$ 的<strong>特征向量</strong>。</p>
-<p><strong>定义 2</strong> 设 $\boldsymbol{A} = (a_{ij})<em>{n\times n}$ 是数域 $K$ 上的 $n$ 阶矩阵，$\lambda$ 是参数，$\boldsymbol{A}$ 的特征矩阵 $\lambda I - A$ 的行列式：<br>
-$$<br>
-\det (\lambda I-A) = \begin{vmatrix}<br>
-\lambda-a</em>{11} &amp; -a_{12} &amp; \cdots &amp; -a_{1n} \<br>
--a_{21} &amp; \lambda-a_{22} &amp; \cdots &amp; -a_{2n} \<br>
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>
--a_{n1} &amp; -a_{n2} &amp; \cdots &amp; \lambda-a_{nn}<br>
-\end{vmatrix}<br>
-$$<br>
-称为矩阵 $\boldsymbol{A}$ 的<strong>特征多项式</strong>，记为 $\varphi(\lambda)$。它的根 $\lambda_0$ 称为 $\boldsymbol{A}$ 的<strong>特征值</strong>，而对应的非零解向量 $(\xi_1, \xi_2, \dots, \xi_n)^T$ 称为 $\boldsymbol{A}$ 的属于特征值 $\lambda_0$ 的<strong>特征向量</strong>。</p>
-<h3 id="最小多项式">最小多项式</h3>
-<p><strong>定义 3</strong> 设 $\boldsymbol{A}$ 的首项系数为 $1$，次数最小，且以 $\boldsymbol{A}$ 为根的 $\lambda$ 的多项式，称为 $\boldsymbol{A}$ 的<strong>最小多项式</strong>，记为 $m(\lambda)$。</p>
-<h3 id="最小多项式与特征多项式的关系">最小多项式与特征多项式的关系</h3>
-<p><strong>定理 1</strong> 设矩阵 $\boldsymbol{A}$ 的最小多项式 $m(\lambda)$ 可整除以 $\boldsymbol{A}$ 为根的任一首 $1$ 多项式 $\psi(\lambda)$，且 $m(\lambda)$ 是唯一的。</p>
+<h4 id="特征值与特征向量"><a href="#特征值与特征向量" class="headerlink" title="特征值与特征向量"></a>特征值与特征向量</h4><p><strong>定义 1</strong> 设 $T: V \to V$ 是一个线性变换，如果存在 $\lambda_0 \in K$，使得存在非零向量 $x \in V$ 满足：<br>$$ T x &#x3D; \lambda_0 x$$<br>那么我们称 $\lambda_0$ 是 $T$ 的<strong>特征值</strong>，$x$ 是 $T$ 属于 $\lambda_0$ 的<strong>特征向量</strong>。</p>
+<p><strong>定义 2</strong> 设 $\boldsymbol{A} &#x3D; (a_{ij})<em>{n\times n}$ 是数域 $K$ 上的 $n$ 阶矩阵，$\lambda$ 是参数，$\boldsymbol{A}$ 的特征矩阵 $\lambda I - A$ 的行列式：<br>$$<br>\det (\lambda I-A) &#x3D; \begin{vmatrix}<br>\lambda-a</em>{11} &amp; -a_{12} &amp; \cdots &amp; -a_{1n} \<br>-a_{21} &amp; \lambda-a_{22} &amp; \cdots &amp; -a_{2n} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>-a_{n1} &amp; -a_{n2} &amp; \cdots &amp; \lambda-a_{nn}<br>\end{vmatrix}<br>$$<br>称为矩阵 $\boldsymbol{A}$ 的<strong>特征多项式</strong>，记为 $\varphi(\lambda)$。它的根 $\lambda_0$ 称为 $\boldsymbol{A}$ 的<strong>特征值</strong>，而对应的非零解向量 $(\xi_1, \xi_2, \dots, \xi_n)^T$ 称为 $\boldsymbol{A}$ 的属于特征值 $\lambda_0$ 的<strong>特征向量</strong>。</p>
+<h3 id="最小多项式"><a href="#最小多项式" class="headerlink" title="最小多项式"></a>最小多项式</h3><p><strong>定义 3</strong> 设 $\boldsymbol{A}$ 的首项系数为 $1$，次数最小，且以 $\boldsymbol{A}$ 为根的 $\lambda$ 的多项式，称为 $\boldsymbol{A}$ 的<strong>最小多项式</strong>，记为 $m(\lambda)$。</p>
+<h3 id="最小多项式与特征多项式的关系"><a href="#最小多项式与特征多项式的关系" class="headerlink" title="最小多项式与特征多项式的关系"></a>最小多项式与特征多项式的关系</h3><p><strong>定理 1</strong> 设矩阵 $\boldsymbol{A}$ 的最小多项式 $m(\lambda)$ 可整除以 $\boldsymbol{A}$ 为根的任一首 $1$ 多项式 $\psi(\lambda)$，且 $m(\lambda)$ 是唯一的。</p>
 <p><strong>定理 2</strong> 矩阵 $\boldsymbol{A}$ 的最小多项式 $m(\lambda)$ 与其特征多项式 $\varphi(\lambda)$ 的零点相同（不计重数）。</p>
-<p><strong>定理 3</strong> 设 $n$ 阶矩阵 $\boldsymbol{A}$ 的特征多项式为 $\varphi(\lambda)$，特征矩阵 $\lambda I - A$ 的全体 $n-1$ 阶子式的最大公因式为 $d(\lambda)$，则 $\boldsymbol{A}$ 的最小多项式为：<br>
-$$ m(\lambda) = \frac{\varphi(\lambda)}{d(\lambda)} $$</p>
-<h3 id="Jordan-标准型">Jordan 标准型</h3>
-<p><strong>定义 4</strong> 设矩阵 $\boldsymbol{J}$ 由以下 Jordan 块构成：<br>
-$$<br>
-\boldsymbol{J} = \begin{bmatrix}<br>
-\boldsymbol{J}_1(\lambda_1) &amp; &amp; &amp; \<br>
-&amp; \boldsymbol{J}_2(\lambda_2) &amp; &amp; \<br>
-&amp; &amp; \ddots &amp; \<br>
-&amp; &amp; &amp; \boldsymbol{J}_s(\lambda_s)<br>
-\end{bmatrix}<br>
-$$<br>
-其中，Jordan 块的形式如下：<br>
-$$<br>
-\boldsymbol{J}_i(\lambda_i) =<br>
-\begin{bmatrix}<br>
-\lambda_i &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \<br>
-0 &amp; \lambda_i &amp; 1 &amp; \cdots &amp; 0 \<br>
-0 &amp; 0 &amp; \lambda_i &amp; \cdots &amp; 0 \<br>
-\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; 1 \<br>
-0 &amp; 0 &amp; 0 &amp; \cdots &amp; \lambda_i<br>
-\end{bmatrix}<br>
-$$<br>
-称 $\boldsymbol{J}$ 为矩阵 $\boldsymbol{A}$ 的<strong>Jordan 标准型</strong>。</p>
-<h3 id="计算-Jordan-标准型的步骤">计算 Jordan 标准型的步骤</h3>
-<ol>
-<li>
-<p><strong>求矩阵 $\boldsymbol{A}$ 的初等因子组</strong>，设为：<br>
-$$ (\lambda - \lambda_1)^{m_1}, (\lambda - \lambda_2)^{m_2}, \dots, (\lambda - \lambda_s)^{m_s} $$<br>
-且 $m_1 + m_2 + \cdots + m_s = n$。</p>
+<p><strong>定理 3</strong> 设 $n$ 阶矩阵 $\boldsymbol{A}$ 的特征多项式为 $\varphi(\lambda)$，特征矩阵 $\lambda I - A$ 的全体 $n-1$ 阶子式的最大公因式为 $d(\lambda)$，则 $\boldsymbol{A}$ 的最小多项式为：<br>$$ m(\lambda) &#x3D; \frac{\varphi(\lambda)}{d(\lambda)} $$</p>
+<h3 id="Jordan-标准型"><a href="#Jordan-标准型" class="headerlink" title="Jordan 标准型"></a>Jordan 标准型</h3><p><strong>定义 4</strong> 设矩阵 $\boldsymbol{J}$ 由以下 Jordan 块构成：<br>$$<br>\boldsymbol{J} &#x3D; \begin{bmatrix}<br>\boldsymbol{J}_1(\lambda_1) &amp; &amp; &amp; \<br>&amp; \boldsymbol{J}_2(\lambda_2) &amp; &amp; \<br>&amp; &amp; \ddots &amp; \<br>&amp; &amp; &amp; \boldsymbol{J}_s(\lambda_s)<br>\end{bmatrix}<br>$$<br>其中，Jordan 块的形式如下：<br>$$<br>\boldsymbol{J}_i(\lambda_i) &#x3D;<br>\begin{bmatrix}<br>\lambda_i &amp; 1 &amp; 0 &amp; \cdots &amp; 0 \<br>0 &amp; \lambda_i &amp; 1 &amp; \cdots &amp; 0 \<br>0 &amp; 0 &amp; \lambda_i &amp; \cdots &amp; 0 \<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; 1 \<br>0 &amp; 0 &amp; 0 &amp; \cdots &amp; \lambda_i<br>\end{bmatrix}<br>$$<br>称 $\boldsymbol{J}$ 为矩阵 $\boldsymbol{A}$ 的<strong>Jordan 标准型</strong>。</p>
+<h3 id="计算-Jordan-标准型的步骤"><a href="#计算-Jordan-标准型的步骤" class="headerlink" title="计算 Jordan 标准型的步骤"></a>计算 Jordan 标准型的步骤</h3><ol>
+<li><p><strong>求矩阵 $\boldsymbol{A}$ 的初等因子组</strong>，设为：<br>$$ (\lambda - \lambda_1)^{m_1}, (\lambda - \lambda_2)^{m_2}, \dots, (\lambda - \lambda_s)^{m_s} $$<br>且 $m_1 + m_2 + \cdots + m_s &#x3D; n$。</p>
 </li>
-<li>
-<p><strong>写出每个初等因子对应的 Jordan 块</strong>。</p>
+<li><p><strong>写出每个初等因子对应的 Jordan 块</strong>。</p>
 </li>
-<li>
-<p><strong>构造 Jordan 标准型</strong>：<br>
-$$ \boldsymbol{J} = \begin{bmatrix}<br>
-\boldsymbol{J}_1(\lambda_1) &amp; &amp; &amp; \<br>
-&amp; \boldsymbol{J}_2(\lambda_2) &amp; &amp; \<br>
-&amp; &amp; \ddots &amp; \<br>
-&amp; &amp; &amp; \boldsymbol{J}_s(\lambda_s)<br>
-\end{bmatrix}$$</p>
+<li><p><strong>构造 Jordan 标准型</strong>：<br>$$ \boldsymbol{J} &#x3D; \begin{bmatrix}<br>\boldsymbol{J}_1(\lambda_1) &amp; &amp; &amp; \<br>&amp; \boldsymbol{J}_2(\lambda_2) &amp; &amp; \<br>&amp; &amp; \ddots &amp; \<br>&amp; &amp; &amp; \boldsymbol{J}_s(\lambda_s)<br>\end{bmatrix}$$</p>
 </li>
 </ol>
-<h3 id="计算工具">计算工具</h3>
-<p>在实际计算中，Python 提供了强大的 <code>NumPy</code> 和 <code>SymPy</code> 库，可以用于快速计算 Jordan 标准型。</p>
+<h3 id="计算工具"><a href="#计算工具" class="headerlink" title="计算工具"></a>计算工具</h3><p>在实际计算中，Python 提供了强大的 <code>NumPy</code> 和 <code>SymPy</code> 库，可以用于快速计算 Jordan 标准型。</p>
 
                 
               </div>

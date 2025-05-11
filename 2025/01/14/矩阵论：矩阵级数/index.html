@@ -254,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          614 字
+          635 字
         
       </span>
     
@@ -316,55 +316,19 @@
             
               <div class="markdown-body">
                 
-                <h3 id="矩阵级数介绍">矩阵级数介绍</h3>
-<p>在数学分析中，级数（特别是幂级数）的理论占有重要地位。在建立矩阵分析的理论时，矩阵级数，特别是幂级数，是建立矩阵函数的理论基础。</p>
+                <h3 id="矩阵级数介绍"><a href="#矩阵级数介绍" class="headerlink" title="矩阵级数介绍"></a>矩阵级数介绍</h3><p>在数学分析中，级数（特别是幂级数）的理论占有重要地位。在建立矩阵分析的理论时，矩阵级数，特别是幂级数，是建立矩阵函数的理论基础。</p>
 <p>类似数列级数，我们给出其收敛、发散以及和的定义。</p>
-<h4 id="定义-1">定义 1</h4>
-<p>把矩阵序列所形成的无穷和 $A^{(0)} + A^{(1)} + A^{(2)} + \cdots + A^{(k)} + \cdots$ 称为 <strong>矩阵级数</strong>，记为 $\sum_{k = 0}^{\infty} A^{(k)}$。则有：<br>
-$$<br>
-\sum_{k=0}^\infty A^{(k)} = A^{(0)} + A^{(1)} + A^{(2)} + \cdots + A^{(k)} + \cdots<br>
-$$</p>
-<h4 id="定义-2">定义 2</h4>
-<p>记 $S^{(N)} = \sum_{k=0}^N A^{(k)}$，称其为矩阵级数的部分和。如果矩阵序列 ${S^{(N)}}$ <strong>收敛</strong>，且有极限 $S$，则有：<br>
-$$<br>
-\lim_{N \to \infty} S^{(N)} = S<br>
-$$<br>
-那么就称矩阵级数收敛，并且有 $S$，记为：<br>
-$$<br>
-S = \sum_{k=0}^\infty A^{(k)}<br>
-$$<br>
-不收敛的矩阵称为 <strong>发散</strong> 的。</p>
-<p>若用 $s_{ij}$ 表示 $S$ 的第 $i$ 行第 $j$ 列元素，那么，和 $\sum_{k=0}^N A^{(k)} = S^{(N)}$ 的意义是：<br>
-$$<br>
-\sum_{k = 0}^{\infty}a_{ij}^{(k)} = s_{ij}, \quad (i=1,2,\dots,m; \quad j=1,2,\dots,n)<br>
-$$</p>
-<h4 id="定义-3">定义 3</h4>
-<p>如果上述级数中 $mn$ 个数项级数都是绝对收敛的，则称矩阵级数是 <strong>绝对收敛</strong> 的。</p>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义 1"></a>定义 1</h4><p>把矩阵序列所形成的无穷和 $A^{(0)} + A^{(1)} + A^{(2)} + \cdots + A^{(k)} + \cdots$ 称为 <strong>矩阵级数</strong>，记为 $\sum_{k &#x3D; 0}^{\infty} A^{(k)}$。则有：<br>$$<br>\sum_{k&#x3D;0}^\infty A^{(k)} &#x3D; A^{(0)} + A^{(1)} + A^{(2)} + \cdots + A^{(k)} + \cdots<br>$$</p>
+<h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义 2"></a>定义 2</h4><p>记 $S^{(N)} &#x3D; \sum_{k&#x3D;0}^N A^{(k)}$，称其为矩阵级数的部分和。如果矩阵序列 ${S^{(N)}}$ <strong>收敛</strong>，且有极限 $S$，则有：<br>$$<br>\lim_{N \to \infty} S^{(N)} &#x3D; S<br>$$<br>那么就称矩阵级数收敛，并且有 $S$，记为：<br>$$<br>S &#x3D; \sum_{k&#x3D;0}^\infty A^{(k)}<br>$$<br>不收敛的矩阵称为 <strong>发散</strong> 的。</p>
+<p>若用 $s_{ij}$ 表示 $S$ 的第 $i$ 行第 $j$ 列元素，那么，和 $\sum_{k&#x3D;0}^N A^{(k)} &#x3D; S^{(N)}$ 的意义是：<br>$$<br>\sum_{k &#x3D; 0}^{\infty}a_{ij}^{(k)} &#x3D; s_{ij}, \quad (i&#x3D;1,2,\dots,m; \quad j&#x3D;1,2,\dots,n)<br>$$</p>
+<h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义 3"></a>定义 3</h4><p>如果上述级数中 $mn$ 个数项级数都是绝对收敛的，则称矩阵级数是 <strong>绝对收敛</strong> 的。</p>
 <p>我们不再赘述有关矩阵级数绝对收敛的一些判别和性质，而是将重点放在矩阵的幂级数上。</p>
 <p>首先，我们看一个比较简单的方阵幂级数。</p>
-<h4 id="定理-1">定理 1</h4>
-<p>方阵 $A$ 的 <strong>幂级数（Neumann 级数）</strong><br>
-$$<br>
-\sum_{k = 0}^{\infty} A^k = I + A + A^2 + \dots + A^k + \dots<br>
-$$<br>
-收敛的充要条件是 $A$ 为收敛矩阵，并且在其收敛时，其和为 $(I - A)^{-1}$。</p>
+<h4 id="定理-1"><a href="#定理-1" class="headerlink" title="定理 1"></a>定理 1</h4><p>方阵 $A$ 的 <strong>幂级数（Neumann 级数）</strong><br>$$<br>\sum_{k &#x3D; 0}^{\infty} A^k &#x3D; I + A + A^2 + \dots + A^k + \dots<br>$$<br>收敛的充要条件是 $A$ 为收敛矩阵，并且在其收敛时，其和为 $(I - A)^{-1}$。</p>
 <p>如果用级数和来估算部分和矩阵，会存在一定误差：</p>
-<h4 id="定理-2">定理 2</h4>
-<p>设方阵 $A$ 对某一矩阵范数 $\Vert \cdot \Vert$ 有 $\Vert A\Vert &lt; 1$，则对任何非负整数 $N$，以 $(I-A)^{-1}$ 为部分和 $I + A + A^2 + \dots + A^N$ 的近似矩阵时，其误差为：<br>
-$$<br>
-\Vert (I-A)^{-1} - (I + A + A^2 + \dots + A^N)\Vert \le \frac{\Vert A\Vert ^{N+1}}{1 - \Vert A\Vert}<br>
-$$</p>
-<p>现在，我们继续将矩阵幂级数 $\sum_{k = 0}^{\infty} c_kA^k$ 与对应的纯量幂级数 $\sum_{k = 0}^{\infty} c_kz^k$ 建立联系。</p>
-<h4 id="定理-3">定理 3</h4>
-<p>设幂级数<br>
-$$<br>
-f(z) = \sum_{k = 0}^{\infty}c_kz^k<br>
-$$<br>
-的收敛半径为 $r$，如果方阵 $A$ 满足 $\rho (A) &lt; r$，则矩阵幂级数<br>
-$$<br>
-\sum_{k = 0}^{\infty}c_kA^k<br>
-$$<br>
-是绝对收敛的；如果 $\rho (A) &gt; r$，则矩阵幂级数是发散的。</p>
+<h4 id="定理-2"><a href="#定理-2" class="headerlink" title="定理 2"></a>定理 2</h4><p>设方阵 $A$ 对某一矩阵范数 $\Vert \cdot \Vert$ 有 $\Vert A\Vert &lt; 1$，则对任何非负整数 $N$，以 $(I-A)^{-1}$ 为部分和 $I + A + A^2 + \dots + A^N$ 的近似矩阵时，其误差为：<br>$$<br>\Vert (I-A)^{-1} - (I + A + A^2 + \dots + A^N)\Vert \le \frac{\Vert A\Vert ^{N+1}}{1 - \Vert A\Vert}<br>$$</p>
+<p>现在，我们继续将矩阵幂级数 $\sum_{k &#x3D; 0}^{\infty} c_kA^k$ 与对应的纯量幂级数 $\sum_{k &#x3D; 0}^{\infty} c_kz^k$ 建立联系。</p>
+<h4 id="定理-3"><a href="#定理-3" class="headerlink" title="定理 3"></a>定理 3</h4><p>设幂级数<br>$$<br>f(z) &#x3D; \sum_{k &#x3D; 0}^{\infty}c_kz^k<br>$$<br>的收敛半径为 $r$，如果方阵 $A$ 满足 $\rho (A) &lt; r$，则矩阵幂级数<br>$$<br>\sum_{k &#x3D; 0}^{\infty}c_kA^k<br>$$<br>是绝对收敛的；如果 $\rho (A) &gt; r$，则矩阵幂级数是发散的。</p>
 
                 
               </div>

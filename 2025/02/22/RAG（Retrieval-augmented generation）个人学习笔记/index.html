@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="YokumiのBlog">
 <meta property="og:description" content="个人关于RAG的学习记录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/02/22/RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG_FT_Table.jpg">
+<meta property="og:image" content="https://blog.yokumi.cn/RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG_FT_Table.jpg">
 <meta property="article:published_time" content="2025-02-22T08:54:00.000Z">
 <meta property="article:modified_time" content="2025-05-10T12:17:54.193Z">
 <meta property="article:author" content="Yokumi">
@@ -36,7 +36,7 @@
 <meta property="article:tag" content="RAG">
 <meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/02/22/RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG_FT_Table.jpg">
+<meta name="twitter:image" content="https://blog.yokumi.cn/RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG_FT_Table.jpg">
   
   
   
@@ -258,7 +258,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          225 字
+          226 字
         
       </span>
     
@@ -320,19 +320,14 @@
             
               <div class="markdown-body">
                 
-                <h1>为什么需要RAG？</h1>
-<p>传统的LLM模型主要存在以下2个问题：幻觉以及外部知识/最新知识的缺失，RAG可以通过结合基于检索和生成模型的优势来提供更准确和上下文相关的响应，可以添加自己的预料构建知识库。</p>
-<h1>RAG vs. fine-tuning a LLM model</h1>
-<p>下图源自<a target="_blank" rel="noopener" href="https://github.com/Tongji-KGLLM/RAG-Survey/">RAG-Survey</a><br>
-<img src="./RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG_FT_Table.jpg" srcset="/img/loading.gif" lazyload alt=""><br>
-结合个人理解：</p>
+                <h1 id="为什么需要RAG？"><a href="#为什么需要RAG？" class="headerlink" title="为什么需要RAG？"></a>为什么需要RAG？</h1><p>传统的LLM模型主要存在以下2个问题：幻觉以及外部知识&#x2F;最新知识的缺失，RAG可以通过结合基于检索和生成模型的优势来提供更准确和上下文相关的响应，可以添加自己的预料构建知识库。</p>
+<h1 id="RAG-vs-fine-tuning-a-LLM-model"><a href="#RAG-vs-fine-tuning-a-LLM-model" class="headerlink" title="RAG vs. fine-tuning a LLM model"></a>RAG vs. fine-tuning a LLM model</h1><p>下图源自<a target="_blank" rel="noopener" href="https://github.com/Tongji-KGLLM/RAG-Survey/">RAG-Survey</a><br><img src="/./RAG%EF%BC%88Retrieval-augmented%20generation%EF%BC%89%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/RAG_FT_Table.jpg" srcset="/img/loading.gif" lazyload><br>结合个人理解：</p>
 <ol>
 <li>RAG更适合知识库需要动态更新的情景，这部分数据不作为用于LLM的训练数据，而是通过LLM的能力进行检索。</li>
 <li>RAG由于采用检索的形式，数据来源是可知的，而LLM是黑箱。</li>
 <li>RAG 可以对生成过程提供更多控制。</li>
 </ol>
-<h1>Query Classification 查询分类</h1>
-<p>并非所有查询都需要用到检索增强，需要将查询分类为需要使用RAG和直接用LLM生成两类。</p>
+<h1 id="Query-Classification-查询分类"><a href="#Query-Classification-查询分类" class="headerlink" title="Query Classification 查询分类"></a>Query Classification 查询分类</h1><p>并非所有查询都需要用到检索增强，需要将查询分类为需要使用RAG和直接用LLM生成两类。</p>
 <blockquote>
 <p>持续更新中…</p>
 </blockquote>
