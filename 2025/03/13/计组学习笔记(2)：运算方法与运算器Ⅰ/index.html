@@ -21,23 +21,18 @@
   <meta name="author" content="Yokumi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="数据表示方法 定点数  机器码 将有符号数中的符号位进行数字化编码得到机器码，原有符号数称为真值。 原码  用第一位表示符号位，正0负1； 真值转化为原码只需根据正负添加符号位； 0有2种表示； 运算不便；  补码  正数补码和原码相同； 负数的原码转补码相当于+$2^{n - 1}$；从二进制码来看就是除符号位之外的数值位取反再加1；  反码  正数的补码和反码相同； 负数的反码转补码，除符号位">
+    <meta name="description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计组学习笔记(2)：运算方法与运算器Ⅰ">
 <meta property="og:url" content="https://blog.yokumi.cn/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/">
 <meta property="og:site_name" content="YokumiのBlog">
-<meta property="og:description" content="数据表示方法 定点数  机器码 将有符号数中的符号位进行数字化编码得到机器码，原有符号数称为真值。 原码  用第一位表示符号位，正0负1； 真值转化为原码只需根据正负添加符号位； 0有2种表示； 运算不便；  补码  正数补码和原码相同； 负数的原码转补码相当于+$2^{n - 1}$；从二进制码来看就是除符号位之外的数值位取反再加1；  反码  正数的补码和反码相同； 负数的反码转补码，除符号位">
+<meta property="og:description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/4.png">
 <meta property="article:published_time" content="2025-03-13T04:26:00.000Z">
 <meta property="article:modified_time" content="2025-05-11T15:52:11.265Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/1.png">
   
   
   
@@ -332,123 +327,26 @@
             <h1 id="seo-header">计组学习笔记(2)：运算方法与运算器Ⅰ</h1>
             
             
-              <div class="markdown-body">
-                
-                <h1>数据表示方法</h1>
-<h2 id="定点数">定点数</h2>
-<p><img src="/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="机器码">机器码</h2>
-<p>将有符号数中的符号位进行数字化编码得到机器码，原有符号数称为真值。</p>
-<h3 id="原码">原码</h3>
-<ul>
-<li>用第一位表示符号位，正0负1；</li>
-<li>真值转化为原码只需根据正负添加符号位；</li>
-<li>0有2种表示；</li>
-<li>运算不便；</li>
-</ul>
-<h3 id="补码">补码</h3>
-<ul>
-<li>正数补码和原码相同；</li>
-<li>负数的原码转补码相当于+$2^{n - 1}$；从二进制码来看就是除符号位之外的数值位取反再加1；</li>
-</ul>
-<h3 id="反码">反码</h3>
-<ul>
-<li>正数的补码和反码相同；</li>
-<li>负数的反码转补码，除符号位之外的数值位取反；</li>
-</ul>
-<h3 id="移码">移码</h3>
-<p>$$<br>
-[x_{移}] = x + 2^{n-1}<br>
-$$</p>
-<ul>
-<li>移码可用来表示浮点数的指数；</li>
-<li>移码和补码尾数相同，符号位相反；</li>
-</ul>
-<h2 id="补码运算">补码运算</h2>
-<p>$$<br>
-[x + y]<em>{补} = [x]</em>{补} + [y]<em>补<br>
-$$<br>
-$$<br>
-[x - y]</em>{补} = [x]<em>{补} - [y]</em>{补}<br>
-$$<br>
-$$<br>
--[y]<em>{补} = [-y]</em>{补}<br>
-$$</p>
-<p>注：已知$y$的补码，求$-y$的补码，按位取反+1即可；</p>
-<h2 id="溢出检测方法">溢出检测方法</h2>
-<h3 id="双符号位法">双符号位法</h3>
-<h4 id="变形补码">变形补码</h4>
-<p>正数符号位用00表示，负数符号位用11表示；</p>
-<ul>
-<li>运算后符号位变01，表示发生正溢出；</li>
-<li>运算后符号位变10，表示发生负溢出；</li>
-<li>运算后符号位为00或11，未溢出；</li>
-<li>正确结果应该是最高符号位；</li>
-</ul>
-<p>通过以上结果可以发现，溢出的情况有以下两种：</p>
-<ul>
-<li>最高有效位发生进位，但第1符号位（即正常补码的符号位）未发生进位；</li>
-<li>第1符号位发生进位，但最高有效位未发生进位；</li>
-</ul>
-<p>所以，现代计算机中直接采用单符号位法用于溢出检测。</p>
-<h3 id="单符号位法">单符号位法</h3>
-<p>$$<br>
-OF = C_f \oplus C_0<br>
-$$</p>
-<p>其中：</p>
-<ul>
-<li>$OF$，溢出标志；</li>
-<li>$C_f$，符号位的进位；</li>
-<li>$C_0$，最高有效位的进位；</li>
-</ul>
-<h1>加法器</h1>
-<h2 id="1位全加器">1位全加器</h2>
-<p>$$<br>
-S_i = A_i\oplus B_i \oplus C_i<br>
-$$</p>
-<p>$$<br>
-C_i = A_iB_i + (A_i\oplus B_i)C_i<br>
-$$</p>
-<p>电路图如下：<br>
-<img src="/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="n位行波进位的补码加法器">n位行波进位的补码加法器</h2>
-<p><img src="/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>观察上图，考虑$n = 2$的简单情况：</p>
-<ul>
-<li>高1位等待低1位产生进位的时间为$3T + 3T + T + T = 3T + 3T + 2T$；</li>
-<li>在得到低一位的进位后，产生该位进位需要$2T$；</li>
-<li>最后产生溢出标志和进位标志需要$3T$；</li>
-</ul>
-<p>所以对于$n$位行波进位加法器，时间延迟为$3T + 3T + (n - 1) * 2T + 2T + 3T = （2n + 9)T$；</p>
-<p>如果不考虑溢出检测，最后不需要通过$2T + 3T$，直接产生结果需要$3T$，时间延迟为$3T + 3T + 2(n - 1)T + 3T = 2(n - 1)T + 9T$；</p>
-<h2 id="先行进位加法器">先行进位加法器</h2>
-<p>加法器进位链的基本逻辑关系为：<br>
-$$<br>
-C_{i + 1} = A_iB_i + (A_i+B_i)C_i<br>
-$$</p>
-<p>令：</p>
-<ul>
-<li>$G_i = A_iB_i$，本地进位；</li>
-<li>$P_i = A_i + B_i$，进位传递条件；</li>
-</ul>
-<p>于是：<br>
-$$<br>
-C_{i+1} = G_i + P_iC_i<br>
-$$</p>
-<p>由此可以递推出如下关系：<br>
-<img src="/2025/03/13/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8%E2%85%A0/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<script>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 密码不太对哦." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="85f83b97d683ad59e5bea5679001faf5ba9391eee02b74c527b5661d590bcd64">78a8a0a48df9527c0292892c699695ea127bf2dae5708c183a412ab90891dd5eb20e9cdcd7d1ae402a87df8cf587c3181871dcf4bf10ed502b160d94e5e158d95c62fc43c36e7541177318b8b9f60460892af74a13f0d0117648e82c1c145bc013bc08111ee9f3e6abb22147f76df3e08e1fdb81ac11047579ecd4ed31cc04e4364e9fcc8901b19d0022d3e2551687b8251a3232fa6658c7c915d96b5b7bd95382f96b4ff29d02e68a1a68361410a06f0a4b157dc30acd07533cb8cf9ee5483cfe099f363b1e6936229d659f9064f99067986b1a59fd6b41567356bf600aceca5d32d66f798317242647a9843c33fcc9fa0b825f9aedb856b41dd6582d3d54fc1f6f0f37df9d07f28b947422a710dfe12a6e6cae6105343515b8848e26bcbe499b673b8c869bf35fa2e5336ad931c505087e16e648a709e99335c987b1ddc9eb1606a0a53b6e4f9948ef93905876b936d0b5dd1f23543cf8f5c7c9afb1e2ad19f9bec64b9f7fe2abe17463dac7fd0a12245a38dfb61fb4bdecc5d5b771bf792f0e5fdab6c0a36ad6c8fc2dcec5497b9e19d3395fc7c433ab096f62af92faba18460fec885df625d56445aee02afdfccf39ddf7c7d1f5f20fb11a997d51f61238d3ed46d85d18e5e6dfc253466767e39d236a166255ec1945c36ad455737601b9d56e766050a5b46387269d301e6995dd5d71bef23408b3b8f6cc1b8228a80fddafa15e08c5d4fc27e976a80090c75d5221e87068d3ec90ab81302ff70748bc544845c0cee62d4a4f956f89eed65515a0e12f0830cac3af9533a31c0c983cff1629441d12019394033fab28b94a8b255b509fa0f61e57d6d9afd17f64edcb646c43c0bfab045cb2e9f9bdc3d77427bf3db6f22a8fe406f6f8e67b6f248c7895457175c9bc20b4b3fb95a633fe788b091d1fd3227b59120734bdd1ab895b3451fd953fda7834e67034fa5facfd66738c9096079f2e45ae87940ec03892017c38502ee41e54f45f99c81697d57065147219baa63f249dd74ab6116918565353bdbcce6ae6c8693058f4ef36d3be2a5eea24e26238877836c277d26bfdf3fcc34e56580b2ac987927812b26acf04868f2c0c5da9b133cba6ed322433e7d420e50374ddf381f3636dec839917107b28a8ec642f675edff6ff2bb6358b27be1b95704221afbb4e6aa80a40a2b36f32d7723aeb32fcd82f143597601c8b6d9784fb1b418592d59621f14400c535eadbc58c949a23c20f5b91382581bffcdd83548e29f5492e436494c145745414d24f7f2ad6c098ebae43e960225afcb1567a6e13a989afdc2a89609a925bdc38f21cb0c43b5b6da8f20bf4ab7a66bd53bab4d73408012589f99f05ea0267d90fec73fe54c2f03015276ee0dfd84b93d9c20e0eb8b9374df192fb0ec6b0d7ae01017037474b39f766d0dba57977a4670858a7911b8d623024cca1557b17a0e9ec6d49713bfc732afd517b0e4ae4e8afc48bf44769e7fe5cc1c3da80378641edd2f3efe3c8e993f764586c521ec25f56f396b02c2a9a5a1774631d54f3262a3cdd502da72b2e29b76045c2cdfddf1c108f2f746fc8093e17690d76ad6f3a063055ca2ba3184e8563bd8d7d20c7b49dcba005d25d84e2d99585abeaac391c23666e9df2b000a35f1514efd19f919c10b8897ef72fbb50c526bb90aa533cce341f395837d6bb8dedbd920f6f700edcf88426c897f1901e7467e7b4c478af581ac99f4b251b5844192ca72dee255d246254aa38934c85f037514838d97171d4334f590ccb7e76972615dda2159aed195141e4267aca190328721ec69f45de7697fa12d1b718c48bc400b8eb1afd3101220a8b352b9e7167051f1a616686fcda6ed25e482616df784905f9dc9105f37056f8775c7b78d67a286bdda73c1b18a6f98db3b8eb642a9cae4a288987816f419a2a0fde60f5bc2ab3e7d0f0fe677a63cc3a82e9453b5144c7eb144e1dac7dc938e0410057c76d0b1f1ec74cddd95342819d22bc4f68530577d5b7af7953388eb6287978e6f714a8849ceaa18dc04145c8d364ef5a1720199fd38ca933367cda04abce2bbf556dfaf9551a3745d1088732667a670416d3eea4e6347b2aaf8b32bbb1f8f5118b8da60ffbcbd6444967f549332abebe4e410a3f941b7e3e5e5254ee29b069f429072d77710c090254baa2ad54f8dbe104c575171528a48983bf3cf363e3b0341a71a374d170429549ca70d86baa6b162ac24ac3d115d9ffb74d107472e823112be75dd826f151255ae68bfbb3d9ff53db0275a4ebeaf0484d33fc5f3bdd6a0f4adad87a9b1e9c03559e5fcb39e1b7ffd46c979fed168e18348ab8664250a93cc3b23a83b3879a8dc9cfa201149313e01ddfbeb05aadffd92cc37d6219c027fc39c76f2a68350869daa8da866acae56ba94a76704cbb2ce4301076b807997780b22cc20207fa55db1e42944707cfa6e36218a3ad3c0c405567e58f20467c3bd1c2b81be0ac21bfc6857bd88e3eae346b027bf3a3f47d4fb826613124125e168059b25f68a0f0067888cb23fa839204557d62847f7e700cde7131dbc13ae697dbf2c42825ae56e1f428e8dec63f7b04aef5203f1111d3a60bbc0d0c32a5abe97ea4ce8a6d94d2f00d198e85ec68316fcdeaf80fea03101eb15641f54bc569d9b9ec09cc430a6300f44b8a2366954eb3854e7ae57b8bcc7dfe89e01de69736d6d63b43ea83dfaa9f040beace719cfedaeb10b0de8f1adf4ee59ca58990044843ad179e97b3d1953d155f14c93b0ef319289aef0a108ee2b45bb972c34b407b70c5d98cd767d1b3e9833128148c97c629d11eba0c3418685dcf65578acb86ebde4b6683fc03ae7e21476e4f0c3bc015b1124401572052971baca28144a5b437981bbf93d929eb16ac889f5a580344ed847186815661748cb7d187856381241b70c48bccf5715f064deb2328b0e0f6cb4bcfd69b29224ce0b5149bd5bcf7628cf4d1884352f9b7bc7941f6c1fb4db241448874583fc33aa2f81ee0dc29f5b1cdf0b183cc6bcb8038f7e727ee1604f75e6f9422b71c16f982113c4fb08f8c7a8783c6fb90386564de98b132e7e6f96925a9e1ed743bd6f311a51c2df847585479b7b2a5a1f721716746a9d6b00f7da8b77686faff99be555055209fbd4665769c17fa65f218e579adeede197ae6e4d89242a2e2ebeec58ee810ba28e51c6e83386bf3335309a5f3f526625d1d781ae426061885610fd1e27e34a7355d746c2048ef83b85266e2102fd7feadf3169d886e4713f54c791a05e386c68461f9ccb622e3108d51d378f2091d74be61395d8ced082732577d7a4f2e0ef5467f62ce8029d87a4894d1a611f2a91af1838af89e4bd2b289dce25a534c365b103e954beb4387158342dfef955a85d531c11c7eb9103231a486ade88b1ce8fbd62042912ae06832d0927d8bf7098277229b08c33cacf299e87d168573d3473e2b87597699955e4204a182a0f9a859ca0f06fc1e1fbef1fc696779f130ebd3ae60c2caf2cde55193a55f7843286cd28fbe9217c9c2739477454a3909c9b1f5e4ad4d20a4c0f54c4035b6a1606b4d8eb326f33754fac07afa3a6bbf1b47b5a511af68fcd78af4abc9f9e7a15d4477166bb5abe98df5598572676bc2384a9c2f462ebf148a68bb55f34b0ba5e2962a968fdde3e11777d3d961709439f564bb47cfb33363c06280e0ca4d0526ed2bc848e81fe377d468b9d7a3326802e724ce656dd1407620e59b05c2f9888113beaf3621fbc65994aa7b21c7c0d89aacf45609f6b4469b58aba3431d87d9499f1d798054658d3b456bfd93dc9df07f7fefced8cd7606f4714366dcd22573543656d100b15325a46153a997a8bf3fee93fd1d1e47734501486b62d3b30010053f284617e8f3cdde6abd84c7756e8b1a6c68d800500b648c2f5659f8b8ae3619b091e6e6182433ae7470542689220cc031fb5c885cfe30f33c2a86fad5cd04ea3bba0500710f6fdc11595d3018a238062e5562072ed380cec888a8b9e632f8c41ce66869f13ed6afedeb9d5e3e07d372fa95442f7d17384bebe36525c571a731f2488f2fa83082a09a14c76cbca44bca5beafde08419d5a629ddff8233de6e004c69842e700763c129662266af58e6df0f15dcd7fade5a28a8a580a836333a320044675abfb8323e54b6e60a53fd88e73ad9e0a8c0dc784d668e2f90c8317538f9d80d15e6dbd1a1dc35f90811d5e7330fdabd00b90651387d5ad88a2961c200836243b19fe6d0aecda88c715be1f29dd8028501bbc8f3a3a942d08c2b649b2b993c6a2967e8a156b2974b789c1c1cd056173115a89ca3b0889f634a59eba9bfa8a4bb570d8c5928209f686cf061a5decea8a551691d116921c883425688199503639c67bfa89b69ebe9781715d63577d76c0a79d90dc2c18f18d5d4e00929d4d068190ccb38232a51ffae77013d85715fd40a7f5b31ab01b75f3d4d247477d8ff3e9dcccd256033abb89ea7a155be306b8323f591c17e503bce0e7f3fa2799de168d29dcb9aa257b23fad77d6bbc017bae35fb55b2d6e03f2f0eb97b4973781921a638419a5ca19afbdb99f3cfd40e68f868d069c6299877133e3d7e883ff21898496cd7de4d4fb27ac77336168f19587cbb7310ea2e64ff7cc95f9567a3da793af49dcff61a8c4584a3c962d22d0a3d1e9a9bbf0cd32b3cd552d1ccd1d996690913d0d21bf899f1b39e19e8fd56aad6ddd2797916f648c1b2e7ed670ae09b54a8ea592f8e0784481bbe20a0fa8c52ce6f07adf589dfd6609a67606f6baa4a76bd6f27d3db8e217c57f81435736e7713baa19c1d5485d8bd0d1b7abd999b127d6fb0be91e4652afe2a14e7f116fceb2d2c3487671e939839303a8bf29947aabcaf8adc7a4b620d7b944578e832ec914dbcb24cddec4b9b4835d17c9d02ee714c1475c0e9c6169585aebfbad97999d34d50c2130af58910a48b19a28863268b90db901ef6a84e430769a86696ae178c2c8848111a1fdd637577368b1526f0b47ddd2af86ca34f797a641994edc6e9071649983e989d8d4a25256d3e78598beca6f3323be4430ed52a183279407cc1901e831798425e2d7a5c0deebe2a5e9336db98f73e0aaa881c8dd9687b046dcb0441255afa3c23b4a66c51534b9553bd0e4d44a60b92bc025ccb47608b600bf460a249e36a0824bf1ef5aca75920161e0db327a97a653928b302ea00262c5c186f7bcfd2f9707b1215f1178ffaaac74952c04e93c29c272d7ffd686c731f19376e5bb01a4df7fad1aad3d830c03668911e3afac95e6a450371742bd5aed17b0c80f51e6d86babcf6372e4ace9c51dc8395140546730799fbeb8a975c20e0ed1345aa2c7c58527f3251ef74a8d2c9ce16ace81e6383b6c113fd29964fe6b3ed4d88660687bc305a59f525fb14c659d47d247f3b1f115264207230fcb7601f527aaf8132aa745e9e86377b6731acccde67197cd602315fe71d7cd67a2b9853fa07624ff702a8bdbf58cf872c4e2a74b9c456713f275f1517cae572ec5a78ae4f2dcdf9b53e93c398ae7efbbfee07dc38738dfc7c90acd6d24bcf80f9ae26e8e020ae79efda3f43a4e1f539f50f77581d99d6e5cc6a2b56b3c94b9f7d6766ebfe44347a18cb086d837e3e8a706a6af3e00ebab9bc6b223e615feb5e85a0d9fee6ef1302c30a3a49003abf738104b5fa95125e5793a858ef77a097d1063aba0f82c312b8f0aac304992c5f5417016817bb4ad04bd63cd65a1d0da777f9adfe1b612e3b7d192b965c5e29f0cdbc2931ec7a358e0ed6110c0969a1d7cbfbad28b074d779decdea80242fc703065ffa6efb249cf6b47c2c7172616ebade90fb98bcd1884ee96b0b82aee742130a2d07091b3050ad971b1d752bc1b63aa87186ced248565044dc988de726a3c455f92de926d796a8deb6b8bd90a70b1cd1a41a4cd323adb72e0ea902f165cded48b671fa17d004faa5123bf00e7c48dcca09df31e882d4f75762418a2b718b8b5c48255eb484e5aa27722e6a1e0f632de6dd2aff2376a81d03f4572716fd73af26d71278f7bcec97b16c7a273eb38f30ab013e81d53236d4ad2e3963a7e45901cfdce68aaa2d8dcfdaae1e8c654733d77b169557e6fea150fe3dd8169539803cf18edea7f9ed60bd66ed65304e34bd94c80bf8b202d0de3169a5e72506f4153ee9ad5ef6fe85a151d88b6696ab994c87ec6cd9fb2ebd3cd1de0f5d878a556c07e7eacd65a4512cc0e3165111eb4b16ed1b107357f28a3094a81db3b39384ff7ce3f4f97ac60c8f0d1aa</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-window.addEventListener('hexo-blog-decrypt', function() {
-
-console.log('文章已成功解密！');
-
-
-});
-
-</script>
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -773,6 +671,23 @@ console.log('文章已成功解密！');
   
 
 
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   

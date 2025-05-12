@@ -21,29 +21,18 @@
   <meta name="author" content="Yokumi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="存储器的分类  按照介质分类：  半导体存储器、磁介质存储器、光存储器；   按照存储器与CPU的耦合程度：  内存（主存 + cache）、外存；   按照存储器的读写功能：  读写存储器RWM； 只读存储器ROW；   按照掉电后存储的信息是否保持：  易失性； 非易失性；   按照数据存取的随机性：  随机存取RAM：指随机给定一个地址就可以拿到数据并与前一个访问的地址无关； 顺序存取SAM">
+    <meta name="description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计组学习笔记(4)：存储系统I">
 <meta property="og:url" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/">
 <meta property="og:site_name" content="YokumiのBlog">
-<meta property="og:description" content="存储器的分类  按照介质分类：  半导体存储器、磁介质存储器、光存储器；   按照存储器与CPU的耦合程度：  内存（主存 + cache）、外存；   按照存储器的读写功能：  读写存储器RWM； 只读存储器ROW；   按照掉电后存储的信息是否保持：  易失性； 非易失性；   按照数据存取的随机性：  随机存取RAM：指随机给定一个地址就可以拿到数据并与前一个访问的地址无关； 顺序存取SAM">
+<meta property="og:description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/6.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/7.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/8.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/9.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/10.png">
 <meta property="article:published_time" content="2025-04-03T02:42:00.000Z">
 <meta property="article:modified_time" content="2025-05-11T15:52:11.273Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/1.png">
   
   
   
@@ -338,149 +327,26 @@
             <h1 id="seo-header">计组学习笔记(4)：存储系统I</h1>
             
             
-              <div class="markdown-body">
-                
-                <h1>存储器的分类</h1>
-<ul>
-<li>按照介质分类：
-<ul>
-<li>半导体存储器、磁介质存储器、光存储器；</li>
-</ul>
-</li>
-<li>按照存储器与CPU的耦合程度：
-<ul>
-<li>内存（主存 + cache）、外存；</li>
-</ul>
-</li>
-<li>按照存储器的读写功能：
-<ul>
-<li>读写存储器RWM；</li>
-<li>只读存储器ROW；</li>
-</ul>
-</li>
-<li>按照掉电后存储的信息是否保持：
-<ul>
-<li>易失性；</li>
-<li>非易失性；</li>
-</ul>
-</li>
-<li>按照数据存取的随机性：
-<ul>
-<li>随机存取RAM：指随机给定一个地址就可以拿到数据并与前一个访问的地址无关；</li>
-<li>顺序存取SAM：比如磁带；</li>
-<li>直接存取DAM：确定区域后顺序存取；</li>
-</ul>
-</li>
-<li>按照半导体存储器的信息存储方法：
-<ul>
-<li>静态Static；</li>
-<li>动态Dynamic；</li>
-</ul>
-</li>
-<li>习惯分类：
-<ul>
-<li>RAM vs. ROM；</li>
-<li>SRAM vs. DRAM(内存条) vs. 闪存；</li>
-<li>MASK ROM(掩膜) vs. PROM(可编程)；
-<ul>
-<li>EPROM(可擦除PROM)
-<ul>
-<li>紫外线擦除；</li>
-<li>电擦除；</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1>存储器目标</h1>
-<ul>
-<li>大容量；</li>
-<li>高速度；</li>
-<li>低价格；</li>
-</ul>
-<h2 id="层次结构存储器系统">层次结构存储器系统</h2>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="并行技术">并行技术</h2>
-<ul>
-<li>单体多字：一个读写体，每次存取多个字；</li>
-<li>多体单字：多个读写体，交叉编址，向多个地址读取内容；</li>
-</ul>
-<h2 id="存储容量">存储容量</h2>
-<p>存储容量 = 存储字数（存储单元数） $\times$ 存储字长（每单元的比特数）</p>
-<h2 id="存取速度">存取速度</h2>
-<ul>
-<li>访问时间/存取时间$T_A$：从启动一次存储器操作到该操作完成所经历的时间，即从存储器接收到读/写命令到信息被读出或写入完成所需的时间；</li>
-<li>存取周期$T_m$：存储器在连续读写过程中，完成一次完整的读/写操作所需的全部时间，即CPU连续两次独立访问存储器的最小时间间隔；</li>
-<li>存储器带宽：单位时间内能传输的信息量；</li>
-</ul>
-<blockquote>
-<p><strong>注</strong>：存取周期$T_m$一般大于存取时间$T_A$，因为存储器完成读/写操作后一般需要一段恢复内部状态的复原时间，即$存取周期 = 存取时间 + 恢复时间$；</p>
-</blockquote>
-<h1>SRAM</h1>
-<h2 id="基本结构">基本结构</h2>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/2.png" srcset="/img/loading.gif" lazyload alt=""><br>
-<img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="基本时序">基本时序</h2>
-<h3 id="读周期">读周期</h3>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="写周期">写周期</h2>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h1>只读存储器</h1>
-<h2 id="特点">特点</h2>
-<ul>
-<li>只能读出，不能写入；</li>
-<li>不易失；</li>
-<li>只读存储器写入数据的过程称为对其<strong>编程</strong>；</li>
-</ul>
-<h2 id="分类">分类</h2>
-<ul>
-<li>掩模式只读存储器：不能进行重写；</li>
-<li>一次可编程只读存储器PROM：
-<ul>
-<li>双极型PROM：
-<ul>
-<li>熔丝烧断型；</li>
-<li>PN结击穿型；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>多次可编程只读存储器；
-<ul>
-<li>光擦除EPROM：利用<strong>雪崩注入</strong>，擦除是对<strong>所有</strong>存储单元进行，不能实现选择性擦除；</li>
-<li>电擦除EEPROM/E$^2$PROM；</li>
-<li>电改写EAROM；</li>
-</ul>
-</li>
-<li>闪存Flash Memory；
-<ul>
-<li>NAND闪存：只允许顺序<strong>按页(Page)存取</strong>数据；<img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/6.png" srcset="/img/loading.gif" lazyload alt=""></li>
-<li>NOR闪存：具有完整地址/数据结构，能快速随机地读取任一单元；</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p><strong>NAND vs. NOR</strong><br>
-<img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/7.png" srcset="/img/loading.gif" lazyload alt=""></p>
-</blockquote>
-<blockquote>
-<p><strong>注</strong>：任何计算机必须有ROM，即必须要有经过编程的ROM（称为<strong>Bios</strong>，它保存着计算机最重要的基本输入输出的程序、开机后自检程序和系统自启动程序），用于计算机程序的初始装入，如果都是RAM，那么计算机初始状态下根本不存在程序和数据；</p>
-</blockquote>
-<h1>并行存储器</h1>
-<h2 id="双端口存储器DPRAM">双端口存储器DPRAM</h2>
-<h3 id="基本结构-2">基本结构</h3>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="实例：IDT7133">实例：IDT7133</h3>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/9.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<blockquote>
-<p><strong>注</strong>：其中Busy Flag用于控制能否访问，防止左右端口同时访问同一个地址造成冲突；Busy = 0表示不能访问；仲裁方式如下：</p>
-</blockquote>
-<p><img src="/2025/04/03/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(4)%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9FI/10.png" srcset="/img/loading.gif" lazyload alt=""></p>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 密码不太对哦." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="592221b0f0ac68614122a2f4cda13a7fca7c6ddac08446ffe7592d73747051ed">78a8a0a48df9527c0292892c699695ea2e6b22b3aec418538e94339037cd4b6b5dbbc62353d00c2d80f3cf19b3503927c08c1b053bd84be444f00455213db9797acde223c5eba74f30f495775b628398a1ad9bfaf51f603209638bb6583f86be5bf2be16f205149c16cb995062b2c52d82b5ee76824ce84521f3f4629fffc31feb8a899809f794fac3961d36fb19884a29f91245c488a0e0056188a52bf2eeb829a13a202e95d1e6e54a1b98c4a3c8a0e29a4d7cd2bc342ef4fab724844bb3c90a8e7dd1478ee21d00087223141588b780d3320f6acfb9173c004b456fb8b10c73a695b5975e693f05192e92c70a9c771765fc7401c299f1fe8ef42a232069d8387f98c837a790132300e1172299a48f6d6bacdfbf9a7a0655758bdc5eb718ec9c96a23a5d41ccf103de9579606c8f1435bdde597489045633fe285c4961e607825ae15ecc088a0678655b4f17592c30f850f36a9fc847f298e4834a6efb947dc469f4164b1a22e9108a6fe94209b00b17630b4332db5980f0c25915cfa3effcc88efbe7cffed7ca3382c1e32aae39487d36eb40f1ba3bf7555b692e7790e321b54a9dff75462688f8605ae050c2fa7b64ebe8315d94f885012cd99788998f02e0a3f611d8ecac144d6451e50170c7bdc1159676d04ec690d65b417bb196cbe78403e57b6c5bcf9d1f26591fdfeeb3dfeb73dbb97e47295a63b07c0b223f6af248f51e2462ef44282d235e04a7be49f41b683f0ccbd35d059464cdf2f1c31788bb960f8dced182a7d5f8c931069d1ce0aa5f12b4c3cb7d2e5be2e8c645945db7787a7e4b0a48d20707f3acc7d51b8116eff8f827b1247e8f3e9d9ea4dc13c566e169cfe5f7f7010b8259a8b483bbe61515c6af2f7b7803ac66c392e92f947b18e68c84937c19b70d5d953d241de1492f85c2d5972f8c13906b3335c8758c6c87d329b14f0438abe72e5241df2e5700257d1b2c4d37e74eb60dd8ea792c53889ec273b1d8915cbca88bbea077c70ee13261d97d2767302af016c8da1308aa74e5344de641cac02e043feb9de7adc09825058a1d64914c7721f9890f3f582d1f4988cb4d043dfe8ab6117fe7e412aaefc8faa7ea4cbab870752104db5815611e0e56d98e580e5cfb4884081316944fe0c5ff8cea057303de5859ff9a1d24992967314fb635c1da57318d31a4f4a3e04a1a8ea4a0f54a0418ace1885d59073eeab7c18b7c9c84196f83d9c66e054fcbf0a4dd69c467f8aed9e9754d9b820bd46a991a445fe41dce3de97f8def3b35170e6e1f892b3cd6403dbb60be47592abaa9e57fc9e77f92a97a7da191226e0ffb1a5ad7f2f12043b5a46f9be6f6ae2e8943b412b833b89b1178dc2ce0caadd16ef6fb42b5f9476949dd87d6989446102eef26b517d6ad46ea818951a9f9afc098c59d6704fb7e9f422dedb7d6f4e561c5a3cb5766848095cc29636af5f33f5826e622c9a05023acbb69859e46904b00c967c38d479e847cf723c25df86ba06f3bfca9053b0d9e24444573508f41d06125f1c41f5053e7cbc6ac05854c2cab25bcec3cc8858fcecb7b1059ecc50996e8953129b0918af978b3b3401afa8ccecdb174ce20950fae9cec61d0ee2a374c0c08e4939cd5a462c893856f82398abca189e6c25a36f10868d0a05ac9c442079111759a53660272ff0b5bca43adffe95e3c99553e06e0c1c03c524924cfaf1dec807caaa7baf4e996a446358336b7dc957dd781e5ea6ad3de49089397d31309f6d11d31ed6b2d47cf185c2f98feb0ce66e719e08ca25a23f01bff7186120729d9a9fd61283532885d64ad1d4949ac477e5cf6de3d11f55f180ea000bcef1d8e265b73d7b6f334ea6d9d1184f5d32e3e5d490b57d2c3bf0338a5055203c58fe1b679e32d6988fe1324701d94bbea236b08779ace03888b640cd1f434642b406b70aba9a3dd6a59182bdbdc217473b53d699990bbb990f398746c18f608b98984a7119ba75c0a6fad985fa3eafbbd9600d190120a7ead6e9f989a84f59a704215367b1a014c31ba4121aab9d270aa192aba9e0ed1391c9bf27a53da7fec92a69ae43b18caf70f539343aa3b0c7a37a65a55400d08b5d25b0f82f03311f089d0aae3f22dc821b2b02c835dae2c41e24b18ce954277cdd3369101ab61271309b515462a63e8a646b6ba09943e7192738146de4b3d34aa78cf1cd5f96efeb1bac38a31cd9cce73f556ec2f8633b2a35387385bb49915e67737ff64660dd8cab91de903234079dc59dea03fd4dcec00bd465d7960ff6ee720436e9098775a8efbfaf6d1d7dec4c10f09a1f069d9639d7f448dedea5ec58cf8418aac0922f0f57e3034a6655ea6cfdd8772f18dcaaded39557a92278c2a250e387398a7a4d24fa40573d22733d71ca0f4be13ae189f8756d4719e16c5694e4aaedcccf6b47c75530ea82e0cf986bca798c420ee8ff95758cf9b0ae96f6f0f8df0095b172f8f8cd83148d2e9dfe565a8b2e6c151c7736f946e2c2ee82212a6c4212e6ced3abac5c2e7b11409f5d6627b0e7a0aadf1d4f07b930a2269b28851c0fb1dfef597813fefc52d11bce0bb7afd8c32fac95d59559a5fed43a5f397faf515d29ac70cb3018488f2c1440d529c48d54e2f3daafb28a39aed79bc1ea20a0812dc54e5174a99b4a2c033a83f50a7181fe78a2dca72a8c14d969cfb8ddf2aed7bb1c9417043fc986209c6f16d0644f58e197fc901693bc909e28971b89794d363ad9cd32cbea0dbe12adbc3f37be3efd32aedead84c047a7f7a2ace2a198ebf5f5e12249ca708556a80a2c5de82fbe4b17a2e0890e5b73868ca7a88f7b59c83702e78473e2377936197742eb42da146ca1b5c2a12b1ded56c6b9e373654d6204bf1acf1d2b643a81c737d24d471be21afdce51e826bb32836abc16ed1e0abfe8f9999cab1938af375357c5f9be534728dfc692f5fd79400c67adb5acca2daadbacc95fccf1425a7d07c10eba50e353d14202733099836ac6d4fe815420e668dc03b78ec8c3f6c0c03bbf198b37e4739021e5cb578db83743230aeb117567e8bfa4993dc6a40b056323d413612c35e497863798c986fef4e911bf74cc9f828af69cb22c3288d81c3c40b9da988e13595e4e460e2ef6fcb2138f6f1e8a576880b47f7a907722ce9835c5dcbb4dfcdaf16f1cee984f0059586cc782f4d138afd6a8ec5cdd141f69bc83d337d6e9e21f8ef69ede4e8d47ce27b411df73705709808de7c0de1d8d5c7a293b9c1218dc575b690d0ecb37f88b4b7f3e3f4727a67b3b6374b7534ff1feccdd7394354775a3af32f5c41bcb434c772d781c8a1199b353426f70aee51258baf94d37dd9a1efb98a7764bd241cc9be2ff6b3bad2940bb9495b9b918728cd8eeaeb3c4b68aef474f6caf3f9ff02a9e1537778806a6e47da5ff60705921f164cc9178e85ede9bc15b06bddff5ce4467a33b45784e2242bb41120c977387b715fad58f122514beb1b2941ff20e7fd734def3431ecc4c98b1e4e0374451501746677dd684d5fa0078b4ea39d27cf067b7ef3d48d2ab4733fec3146f2d5d09a1d51281e6489526da95ddfdf5fb551f4b3e4223a5354a4f36b6c2ad5020ecf6fda86f1c4f0e522238e2b7e05bfd560ed9f72582eaec0d0fffd1165ee577222ec9491be051e616d3f07283dc8ea7bc2dcc3e972e21c7f46f275399a9114bc4cc6287038361914bf1f4db8775e222a3b20d5af54b1cc32a8e6bf7a32684d0de93e2a5df5895af36381a73b041a92317ee5991c4dda7a0bf463fefaa2da46090b507e4d4a011bd0ea63d89b8fa2e2ca52f7e96e8e281758246345214149ed559aaac0c6ea04f2f90b6c18205ec4af1f06fd755c890aee493f5e3305d6e1cc2336e6e7e4cd3c85124f9616c008a8979a66bf7772169b44dd04d28842c735860e8485e471129a65c242bd3fadfe2e3ed699e015eaa61b0fd7123b4cc90e49b1949e1a30cd81a730ab866ee81cc1d2913d5f0cda5c75c383b2f8a248c615b83d47beac4b1e437497fa7e0d6a917a38bc2af20da083f8160b361b1415cbc8007131f6ae87ea776d04a86f9c64df0068139534e75f919e60137faafd1dbac17bdedc50e06375e0b85c8467be2c79bd451c17ae1ff5e011bf6225c539b7848363553394a614328a3f87b913f62e11baf7214acb28ee4eea79eb427e48662eb1bc6e88f51cb5f929e827f36d502dab534b1600f4b48e68ffeeabf048be1f35160e5c73aaedb9a017af6e4c9fe61cd3ea3a6e065ea4b5c96038f9d13f07878b493fc34607bf8df5ed8789e813d7edeffc766dd0f77cdd77488ed14316cbc506abf0fdbe8a83fdbbd8dd1f040be75c75fca770bd36775c1dc22ad5db12f4444b53131db841f9d648665748ba6a0e40c72c8c916f6f8253841f85e979535f802ce27d36235f8df98720ee594ffccaa8ab22200c33ba82e817c1d74eb5dd312d061862517e6e4e58257f1cf23c6c5569582670c7945d6ac4104f7bc17af035d3a66221332e2be8fba3adfc338429fb74c60b3b7b4664c4b7718dccedd7c8171ae441e213cce44addc68545e2279b3ac10690f8a3fe9cc95ebdaffb4f00a1f6a68268a9566ab935609c3494f0bcc835e5fa053075a39f7a2e0bcb0a1fce3e546c7b2b7bd854477e4c1fbce00258bd960ee8e29111c5aba122ba378b36f05386bd1907b0ad4ae76bb860dabe9ced945f9fabd53f65c98290c554a6f184e502370443c243a6ce7ba76c4f7c01700cf526526fcdeed05363565a162a5ce58e728d8978804c40065e0ffa34a05f82472f77fdb83aa89fc1c7bc2c8352cd6bfada4fa7cb80fa1b2528ba7791f49b58d7f3fc8c531f3eb6b142deb5fa40e9d9c5128b5b2710a02288229004afce05288b30ef1ee79374bd8293eebd17f7ba60e44caf0b508ed3e47b8348594e67fccb64a57ee0398a518f6d01faef2bfd23dc00c4ca2c6adfc80dd735675745c704cb4131ae494b914b306d1bf324c0648fb272b444ce392bdd7d7bd80ac7f54ee5d67f9191d5cfa2b24c55d3ebb03a7fd35c06326f369d3b4b4ee3da92761c902ecb2f7f84e5ba37794f7dbfbc328b66e2008bcf3071aa4828dde801bc941e834561481842ce3c217ec22b48021d081449f8e2c9fec38b193ce70d9eacd8b36b904c88b8bee5a99c337af0aeb2db5ab469f2af21eefd0c2d883bb2c05811a99f850df77edea456b89947aa9c9b968cbb4e4812a59b2217ba717801f0e84008bfa48d3d097a9f0e2f12b558dd3c0b3c73916adfca368b51b83b773bdee8ccc2728e9f3a9d98f28dfee3dd64ca55a3cd84134190741d7cadec81fe651cf731789099177a4e6e82d622f98338d64f3f21b9c7f089c172a54e1a4f35b00fc43fd0c4454e5e5311a0da6a64c76c10f9e2c562b4e03426104e89348f2b5f90d68ddb5843ba5034c742e9be33c88d3e272a487b46c0e2e7c6db0d59dfe725fc171930d1ee877705deb636a7ad80e8bcebc004c4f1dea6791c09f3fe04e987be31c8688ffc1a17ad06f5c006b6f40db36f60f7cd0a0f1b66e7e5bf74e44187faa2481e88a439607f6a575573e218cd7ca065c26e6f3ca257a451b086c2d355ab79944c881dd38f4eaf324e6ac3a8c4ed9e2ea1282914a96a44f861e79a32a1240b67a9fb7d4d5eaee133cfa10ae05e9013239dee8050c43307ff78f22d778831e4ab18a86f9e5f8f3d4a10f583cef07ed8bad88ccbdfcfbf5c84c5f8d9e4fb04bb262391c3866367b2627f3edb523dc3405ac4aca827642ac79d3625670bd61bd1eae7d9d45dccbd3303d0a196f168016c417ee394d87822a7c0f1c5692e9d81e115e058b67a959b8ef41c8bdad0fc71dc357d39dbe4981b3538fd9d5f0deaf364245cf6f3e13da4ccd77327d2a6c445b50b4b9f602a24e5684ebc175821a0deee9d0a26c7471be534fbd91b664f59ef9472fb4e4ee305f1f3a72b695314dd79f309df66be5cea7a199dd144d9245110bc783b7bc06d1c2f6bd9f730bea434a75e4c6f2d8b4be8483b4f70a3f8da32e4a6e531eb3d23a3c5f7d7cc24c5085d7d9c66b5f1367f4100cc3e237da3e1e5807492fa8128034cd150434517a26b10a6ed3fa69c5258283bd934b2e0e84bc9c51299b321e8d9a0b8ebc4bcc19cfdc87edccae60d0405fae358e2b6d513656a7e4dfa34edf003e4fd7d7290cbeb393f4f71dabfad8680644f80a4a0bbdbfded5c3f5892dc2bb2d6111ca3df79d4b228dc6fc5e30b396720c02d8c6029208c55b5b136582e46600e7f370fce1451cc9318d9d026c0cfbde6543dc3131895bf03dfe36a7ad0a7ff720855ffb6bc149e4d73801b29b5f363f2ea1298352664b2d06fef03857b70913599841df578c265d910bb960a774c535d6b4f78ceaf37e3741fa5f217c3c20bd1773cce4ddce729f23a69ce947bd5b16e35ecf5678ac138a8c4b8cdf12581a7f24d0d212ba34a2f1b06bf72e0ddc439ceb415883af3ef373fe70d8645e56392cb9591d1ca41b23fbe5adea838443e8e2fdf70d782e43d313caf6bdecf50b0503b569ad821b00dbab712170cee492e4d7144f37f816d5bbb4a70f1b3e73cddc856031bb4277620feb9cfa8a721d9b26a4a981e30c52508376c9b127c3544b3ebd2c7934b1d2ad448deaf441225b3f96612c60558caa99f0fcd70d83d0f63271c00d8225168a480e81613199758c292560ed2c8119ffea15860dd21e60614efe2cd582c78399df0793a42cbf2fc9e2c1387df2f2b582a47d099b641d7aec8aedd23b18be66e5f9a38b2fe1cbfa6264e7aeed4916766d878b2aaf7cc2a6dc1aefaea2ced498e7ab5550a5ae6abdd049633caa74ac5933910510fa893c8d4c4bc36e273ca081563e07e27f1cb5c701cf49ee51e5f861678662c15cb6688474afe18cc3a013841a7e617f86dd4fa1816e00ba881c5187333ef766e729708d15893341b1dcf337b0c23780fce9907720c0da99fd1ed1d29ccf1db56f9144b54deefbb536b977f00241da5c28fe13e5aec6a9cf58eb000625251c52f769e4d0394c26be20db9716de294af2586f0752229a41c24dafa7e9c6ab479f3421220ab66b788967474669f0d97fb45b2069a74757c1d1b2cf71ff8e04f8376e553e3fadee0dc836db84d35ea5f95fa75ac2af8f96dd6df8ccc3c0218b4d3669135d9203c53e242050a898c954139467262cd53016b196d06e1541d88a14a6622be6e0fcd7fc509d0dfe2eec4fc440e6bbdf4326f9030044b8ddadb5e9a38f6b8662b485c4546f04d506e8edcb3ba1f673e32fd4f7f02b4f25c988c5d73d4f23f444c507050e6ea8d5e8daf6eaeca430f94ca8bee23a4fe50fa39e05f3545bceaf88f466599e1d69475307229defa8d5bcafad69d3a3a31bc9d392f2aa96adb44eff95ea640618162c480882f812691b9dca364d1e4a6c60b04c7761140c2077c246aa4446ab5b45b1145cd4018191ef712030ef7789c0bc7b787b4736b6d0e660d042e12e650f75bdb61e39377f18d16dc6ee96c4afa101d0e5931570a1b2e2f09e5a88eab692dcf2e4080d918e2f097cb03becd8dd53a186a119ea7eeea31f8fff0c44a9fac12ff0c34009f4580670723b48ff8b11df2aa7e4c4598dd4497f0ccbf62cb8d84a89c80de08527be159d8c45d48dd1f2705edef960acfddb707f2255601f1291925e4dfc2d8f81c042d2460b3581eaf5727a3e601a9abaf7f421de5b8c8a9f7dc20d3f45c107f27718a72e76e777498f76e3f5897b991f252f3b22652de176a2eea4a8f6bca45305ec479f6120ea3660d2105cfe5db0d0561d3b3d885f1a22561ff4b989cc98161261e3816349d3abdd1695c187d6d61fb3dd502596a4a28e51836479effa92e0b4fb0bd9b8c582c07adef8c01fe9054ca7a539b217411e65322d64df613a31eb052b5f5a3ef6097f853dcbfc48bb09498a409e38db4523c2b8c132b435c4bc3c85c9176a22ab5e43c5781272ac8c963de4580130abeb2bc320dbb13b9004dfdce4f21a7a9feccedc88b8643ee1bc710b6179f93e444981b4e9e4e0790963b2d34f05a8f708432a476705fe8fa30a205d113bf526eb5141143c75c8422e8cc930aec8b3b02017802e210101c213c8b4d8ef7626cd49adaf4e37ffe0bf8b022cc615a52b64a83e412024d3435941c90b7fe588ec9044e3ec6974f61c3fee8e073366e8ea5f3e59e6813a4d466a39ee856b29c63303997c43c803a8b7ee22c846b0a5fdae307ba9649dd65c6b552e2aa2065d235e515dece6e00df01e050e338fa2b87069da894993c06a12bd1070d1e2f43b3acbac2bea82bdd86c2604671</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -805,6 +671,23 @@
   
 
 
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   

@@ -21,27 +21,18 @@
   <meta name="author" content="Yokumi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原码乘法运算  部分积 每次提$2^{-1}$，即右移1位：  原码除法运算 加减交替法  浮点数的表示方法 一个任意进制数$N$可以表示为： $$ N &#x3D; M \times R^E $$ 其中：  $M$表示尾数，是一个小数； $E$表示阶码&#x2F;指数，是一个整数； $R$表示基数，一般为2，8，16；  尾数的有效数字位数决定了浮点数的表示精度；阶码的有效数字位数决定了浮点数的表示范围；  浮点数">
+    <meta name="description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计组学习笔记(2)：运算方法与运算器II">
 <meta property="og:url" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/">
 <meta property="og:site_name" content="YokumiのBlog">
-<meta property="og:description" content="原码乘法运算  部分积 每次提$2^{-1}$，即右移1位：  原码除法运算 加减交替法  浮点数的表示方法 一个任意进制数$N$可以表示为： $$ N &#x3D; M \times R^E $$ 其中：  $M$表示尾数，是一个小数； $E$表示阶码&#x2F;指数，是一个整数； $R$表示基数，一般为2，8，16；  尾数的有效数字位数决定了浮点数的表示精度；阶码的有效数字位数决定了浮点数的表示范围；  浮点数">
+<meta property="og:description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/5.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/6.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/7.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/8.png">
 <meta property="article:published_time" content="2025-03-22T12:40:00.000Z">
 <meta property="article:modified_time" content="2025-05-11T15:52:11.252Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/03/22/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(3)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/1.png">
   
   
   
@@ -336,80 +327,26 @@
             <h1 id="seo-header">计组学习笔记(2)：运算方法与运算器II</h1>
             
             
-              <div class="markdown-body">
-                
-                <h1>原码乘法运算</h1>
-<p><img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/1.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="部分积">部分积</h2>
-<p>每次提$2^{-1}$，即右移1位：<br>
-<img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h1>原码除法运算</h1>
-<h2 id="加减交替法">加减交替法</h2>
-<p><img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h1>浮点数的表示方法</h1>
-<p>一个任意进制数$N$可以表示为：<br>
-$$<br>
-N = M \times R^E<br>
-$$</p>
-<p>其中：</p>
-<ul>
-<li>$M$表示尾数，是一个小数；</li>
-<li>$E$表示阶码/指数，是一个整数；</li>
-<li>$R$表示基数，一般为2，8，16；</li>
-</ul>
-<p>尾数的有效数字位数决定了浮点数的表示精度；阶码的有效数字位数决定了浮点数的表示范围；<br>
-<img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="浮点数的规格化表示">浮点数的规格化表示</h2>
-<p>对于基数为$R$的规格化浮点数，要求其尾数的绝对值范围：<br>
-$$<br>
-\frac{1}{R} \le |M| &lt; 1<br>
-$$</p>
-<p>对于原码表示的浮点数，即要求最高数值位为1；<br>
-<img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h2 id="IEEE-754浮点数标准">IEEE 754浮点数标准</h2>
-<p><img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/6.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<ul>
-<li>e，阶：用移码表示，即$E = Exp - (2^{n - 1} - 1)$</li>
-<li>Frac，小数字段：
-<ul>
-<li>规格化数表示：$M = 1 + Frac$；</li>
-<li>非规格化数表示：$M = Frac$；</li>
-</ul>
-</li>
-</ul>
-<h3 id="特殊的浮点数表示">特殊的浮点数表示</h3>
-<p><img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/7.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h3 id="浮点数可表示的数值范围">浮点数可表示的数值范围</h3>
-<p><img src="%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)%EF%BC%9A%E8%BF%90%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97%E5%99%A8II/8.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h1>浮点数的加减法</h1>
-<h2 id="步骤">步骤</h2>
-<p>$$<br>
-x\pm y = (M_x 2^{E_x - E_y} \pm M_y)2^{E_y},E_x \le E_y<br>
-$$</p>
-<ol>
-<li>检查操作数是否为0；</li>
-<li>对阶：小阶向大阶对齐；</li>
-<li>用双符号位的尾数进行加减运算；</li>
-<li>规格化：
-<ol>
-<li>如果双符号位出现01、10的非法值，则向右规格化直至合法；</li>
-<li>检查是否符合规格化小数的要求，向左规格化直至合法；</li>
-</ol>
-</li>
-<li>舍入（可能再次规格化）：向偶数舍入；</li>
-</ol>
-<script>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 密码不太对哦." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="60367dc75f6295807d00f30255ecee2eecda199c69ce2321327ff62a9241723f">78a8a0a48df9527c0292892c699695eafbb4387c5ad8e32a3249848762c664ecda7b1f3d0738167d43ef3e67c7ea7e0bdbe4b277b08dde352187ef06c963f28f0876338aedb9828b346860fda1fc62f3077e69cf4b7a4e5ec0b06e8555f399f685428ce91721cd6702abb35151a9c6a6163d8d7c41d63cc950ce208ce116851e14f35abc020b3f5d7f54c63ffdf49f44f92b02b79b60b38fc7d1603921508dbbf44d731787d6a4785bb5ec232f671f56ca432e62cd799dc4e91991dbd71e0e3cd67823986be86422045635be32f471864b632c3cc3e351c3f95582a1d782aba97beb38c2cb91463ea41f7874b18290f7e03b48e79f39e87c90593b2d65f41b05a21102a76eed710d575c806767c37e439212a0618c34555975521a0d373fe757cc195032f21af4fac59da53aa2d4afb756aa3a644f7e28da5e5d7cff974a022cbe304462a7a38b9320d2bd5710b80ace648ac48a867e67290008afb3425ac3ee5a98ff9aee0e0538bffcee9be7bf81dec04c4f06c8a73aaef2a7f91a081513ae01b6b6090ce692beb81a56b2653baaf731054af7bc465f64ea25eec884909d253dc631649d64714cdd0d3dc56ad75c4a4a7b31113e76bb428f6b3434b9f81ac50e9c90f8fbebb2440180b538b296edd7fe2a83f0c588b2ca221472c6c31a0a1775a162b0d02bb0a6319c109efa795356d6c72d0981419b6113a6a37d1790cd20934ad5145b58f76d4323fa2413808d37a8c5c3a1e0df435b97b99352ad4d7da630e87d907d5d7777e988c7dcbf11cf9b9e6dc99daee72ab02e00e4d34130e4619844a98e3af2148fabf013c9e05b9547d0dac09c4e48f84e33492b05487497bbb4af5a1785bd95fc113d2c7edde3c9b50d1eb42c2ee9e7a047bbfd85835bdada0b24513d4c404c0a270723044ade2787f3139ad38f9adc45a1e67814daf28b16b023bf259ce5f435a8e077900bab431ca5ef2d3dbdafd96ca704fbced4677927dc18d800aa2818abab902d74a9fd0b6293556a9c49d6b60bffb4a6008e58dd776c5ee249424e968e8667be000761a90b4f1bae3b8a1952dc880a301ebe79c4ba3a109b6b19b08ae4fa9127c5b1442f8e26d3c12b3333a8f6f0ce7b99e3f25450cb90ab726129f81c63487fe66162b2ca7adf048f54c46e82c4f8f4c857c7ee18bf8e6bbacfb7561f5a77bf4bb810017266566e5bebad5f118670f2d4f0bcec104edcdf28163d00894166fe14bf2365fcec3ec121d98bd8f2c3e771ea80fecee0ccd18d6ec48198fb334fce4d2b0d67c4f20e5769da0c957debc1f36af05be6a303638f6ee27e190e0c2aab5775af189bf5755a4364cfdcb660b4dcedda09a52b3bc0b21b2cb81392d2fee1b01c7bdbd8866342743b918d703e1667a1cc3b41b2b05a5731292eeaf72a1203250d0ce1662324a29796b3fae32c7ffff9a6de591be8b599737f750bca3e6e5cb1071b9820d05bb4d9b52f79069e541ed54fdd15b6a1603a1334252ecc5573dadd554aad6967490cc95530468ebf34b454ce959bb1287dbeef6c68976648b43c5dcde2fc619f754b0a3c44171fe87ac4811b7512ed79f277a887d211598108a297f7144405eba324e5cc2794e31e0f9a9bc3b5720cf01c75201b0fac32798fcb81d56dd2a3f5f1289be02892a857521ffcf6d797aa8784cdbe0c6fe9d5ab2f4197c5531492e2cc1b10744b0b7c4096db429bb6f5abda5f91ef07d3f20e7c10ac369e7f1dac352e639b115a5ad645dbd182df32f5b88cf60a130a271390fc2bee787c1f2bdaf43d9148461d02f645176ab63b54ec7c925766ec8225ad8407c39effe575e07aeb82cbe5af4dff7966b733fea3b163244e9cfaa87f4335274122ad666e6b439fd50eb6771d53a93cbec02b561eb6f1c03a283e827f7019046896ff4f2a41d9600b1f947f56bf49b23000e14ab77931d02853e9dd8e403f91684520b73378db4a4ba8163ab87ed41cfdb096fb5baf8b1d55749cffeb7a4ff203094f48f78df789759822c4c08e491db3ccceb85eea4fd22c03389cef5f31440b0c419ba483cd00366268a7adf1fc5598ecbc3ddb125dc9a6ca1c6dd2b65cedbd31b878094cab9df9b6b5e986e75c6885002994ef6bfc3120dacb333d61fe44f41f1cefb0723036d35ce37b4e92c726275452fc41aa27b0fd6e770aa1f79a1e9d72f8f07d17c8d160bdaa8e0e2cbc19e923c59484f2dc055126b01cbc31c41f01267b4ebefaee8883c49590d8346f4fc5f6a192dafa61255926045a738ab8b70790919e28779d4250796c32f34e74cf59fb88f21cb6dc9af597d7eea6b24d155c852451bbab20a6d1a3a44028675266e78df0ba441d62bb3db6f3c6e38101cb2a53e82a7788777d975832a93d69586a935f33b1a8da59d4f0a78a3a5b1b624a95f8609a81fd6d2f4a0b14353d8e60f42c4d7cd46b4f040c04f62f03bc1e4f4b7db418b5532e6ee59b186115aaca80ed3906fc22cff8dcb583edf49f824eb067e3a896bf5405a44e31590509bf91717702484489cc96b9a5237f5ada35186e9a0cb66f21a981665a2239f018fc23f60c09a89e3bd251765bc81a7cf15ae135f20ab25f26a4cc3dc889a92275310b8c9459fdd6d6b9edb7d156fd8991f56e17a8bbb0b67452d25bc224b28e49b69ce78a5c9b3e07f397507906a75dd18aa7ace577222aadc3abd29d5e9ad1cbf053e9102f321b2d40783250f867d6a6d837f1613ef552de694fb315632fd1761813f7559f2a747990a3447c7ad290f1e58f42cada82d71e0a2f39c7915373fa8a68a535726d3b5bc20a8755bc892440c264a8cd0f45dfa5fc4aaf5a48c735c506845daae4c26472dc0eb98d3e18a97aaac65e962a668d426bb4c0cfe4e7980ef31d9363aed2def7e2d17318d47d1a52998e5ddb536651570589d798044ea7f6118ab858564838c59ab208f39a1eb9a185abf0b4c27ad78132a26cc8436d01e0803edd03f17c39ebfd0699163db4c68b3ee6987e319f603b5cda010f044e1b076b00971c8f04dcbcba67331b0cde8d020da0df2683615508ad54821063cb77ee4ec1526d4273532c15f76f98f3d9a9a96ed10c94fb8436685d94de3b4b83459abe12be5bcd1ff81f402fcb1f5e49829eaf71206333108e40bc7dc73cd3417d28f089cdfd4b7166877959e6560d5b700fa987548dd8f6cba7792ed30c85cbed9c7e9137f91a931a5010030b09f53f643b229384fafd576d2e24f510f7c52ee64890bd7174473d1f44f8e35baace961c29aa3824308d0d384645aafea3579ab5be1d47b07e29a0e2e9c1448e7c8a2fe4b3f07052f3d5fc2764b03b1436d9f1c9926b43695c657405543a4ad073c3a33c2a68496a047ebb35e5cdeeff882615256849d767ac999999b5ca723d16640496b417f9b536eff812e47cbf92edb67e4c79cce3c0e4b12973764300c2ef8fc594b43698cb32bcf2bad501dab218fbd62afecf0d357e30739d3310fbd584d9dec7bb82e41c01a9af0236c8b58ec4bb4af9b9c1089b82f3044ae7c08096e45e3607644b3f5e87f107991e7a54a5a85eced19f5d2edbb168741c9c479afd5e8b85c2ee6eb06d43b20faf41894efbad6a1c7c29b51b78947ce61958a0373a0e52b7e858741a2ae76f39e2b1081a64dfe86b150b0546ee1921ae3a0ef26a77bd9c100c831c4048b4d2c3938492dfbc87f104457c7694c03c6fcfd37dda06c66a9af363e53d237951689beca712acdce7180bbaf9c6f26d3ba055f53be10afac385843176cc6a39ae1bad72090c5b786225199fa9dd01cd25ec4a5df8703ff1b948c20c3c67b893e6f132fa40bafabd12f5f665c9e15f63576a3636fbd96e9fc36df973bcc91564df08a2fcc138f05832e62e4b45c0c59651ccf99d2547b479ace749cbd1b54f6983dcd8b14e00f3c8245386ec48e22f294adf5220bc479d03de6dd255127d172234affc2975c83a55c1992e517e3ba4ecee3eba1581bb5d7079aa8c67b7c5d4d9b297643c8af59fd6294f779a108cb68505378b8c7493aff801d8b7f0b38b5fe95bfc8537b04ec360d51fe3da3a6c82e687dab0d32f9ab9a9ad2002079af0fabdf85624ec41b174d47f6120bf857113af28aba5afd260a0903b59697c9515dfcec9809a4fdd926e47a61de7c6fc33f85fec2367c50673d81ec611d3a01130b2fb62ff6f9b64bb363aa5751950d5cb5f4c335536736ffc9a7031ce49d522c721bea60318466a9de09aae97ea07df891d8843ae8b537aea00b51f2d7af61232850350675576a68e1ffc94fe0a858e63e37f7c228137bbb1d14acf79745f639e8b9326ad7cb4a489d2f63f4cf36b46a093d33a1d405845d6e595d2b5a014b85471ba7dee21a565dcdfea47fe7aa30f993b253eb14d1b15f059204f0ccda647e03fd5694313f41c54b64324a92cff6ab38c5cfe2b3dd9c6dba55bddc7029f15b230744b2fd71db80e4d8d9e4371492b3ada5b221e798b53bcb47f2bcd86ec470c4f9c4d5751a61f9eda76c7a657ee812855ad203270f788333184e07950aedfcf59a0026bdd8c44432209af479750c505d921f3d6d8ccf2a82266ae90c12dd70e3c02ae1513334efda15121c6a94c184c75794e4b462b6142ef79e3b2e78f1263c73f35cfaa92e5872e54360cc8dfba8ae35b019665ad0751176d2143eac103e0039d8dd6ad6a625cf70d8930511ca5b2848c74a3e5d66d3d6a237d7d6200d47fc1f8e191154856de75974ebd0757439716de0096a2b926a493ac9341bdd67d1d68113e725d021f0ed7de65831728fab8acd4344bcdf901ed7d76f5</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-window.addEventListener('hexo-blog-decrypt', function() {
-
-console.log('文章已成功解密！');
-
-});
-
-</script>
-
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -734,6 +671,23 @@ console.log('文章已成功解密！');
   
 
 
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   

@@ -21,24 +21,18 @@
   <meta name="author" content="Yokumi">
   <meta name="keywords" content="">
   
-    <meta name="description" content="指令分类  微指令：微程序级的命令，属于硬件； 机器指令：介于微指令与宏指令之间，单独一题哦啊即可完成一个独立的算术&#x2F;逻辑运算； 宏指令：有若干条机器指令组成的软件指令，属于软件；   注：指令系统ISA(Instruction Set Architecture)，也称指令集架构；  包含了所有机器指令的集合； 定义机器级程序的格式和行为，以及处理器状态； 指令系统有如下要求： 完备性； 有效性；">
+    <meta name="description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计组学习笔记(5)：指令系统">
 <meta property="og:url" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/">
 <meta property="og:site_name" content="YokumiのBlog">
-<meta property="og:description" content="指令分类  微指令：微程序级的命令，属于硬件； 机器指令：介于微指令与宏指令之间，单独一题哦啊即可完成一个独立的算术&#x2F;逻辑运算； 宏指令：有若干条机器指令组成的软件指令，属于软件；   注：指令系统ISA(Instruction Set Architecture)，也称指令集架构；  包含了所有机器指令的集合； 定义机器级程序的格式和行为，以及处理器状态； 指令系统有如下要求： 完备性； 有效性；">
+<meta property="og:description" content="非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问，敬请期待.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/1.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/2.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/3.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/4.png">
-<meta property="og:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/5.png">
 <meta property="article:published_time" content="2025-04-04T02:12:00.000Z">
 <meta property="article:modified_time" content="2025-05-11T15:52:11.252Z">
 <meta property="article:author" content="Yokumi">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.yokumi.cn/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/1.png">
   
   
   
@@ -333,164 +327,26 @@
             <h1 id="seo-header">计组学习笔记(5)：指令系统</h1>
             
             
-              <div class="markdown-body">
-                
-                <h1>指令分类</h1>
-<ul>
-<li><strong>微指令</strong>：微程序级的命令，属于硬件；</li>
-<li><strong>机器指令</strong>：介于微指令与宏指令之间，单独一题哦啊即可完成一个独立的算术/逻辑运算；</li>
-<li><strong>宏指令</strong>：有若干条机器指令组成的软件指令，属于软件；</li>
-</ul>
-<blockquote>
-<p><strong>注</strong>：<strong>指令系统ISA(Instruction Set Architecture)</strong>，也称指令集架构；</p>
-<blockquote>
-<p>包含了所有机器指令的集合；<br>
-定义机器级程序的格式和行为，以及处理器状态；<br>
-指令系统有如下要求：<br>
-完备性；<br>
-有效性；<br>
-规整型：</p>
-<blockquote>
-<p>对称性：寄存器和存储器单元同等对待，都可以使用各种寻址方式；<br>
-匀齐性：一种操作性质的指令可以支持各种数据类型；<br>
-一致性：指令长度与数据长度有一定关系；<br>
-兼容性：<strong>向后兼容</strong>，即旧处理上运行的软件仍可以在新处理器上运行；</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h1>指令格式</h1>
-<ul>
-<li>指令字，即指令，指表示一条指令的机器字；</li>
-<li>指令格式是指令字用二进制表示的结构形式；</li>
-<li>指令的构成：
-<ul>
-<li>操作码OP字段：长度取决于指令集的规模；</li>
-<li>地址码字段：指定参与操作的操作数的地址，1条指令地址码部分有$x$个操作地址，则称该指令为$x$操作数指令或$x$地址指令；</li>
-</ul>
-</li>
-<li>按照操作数的物理位置不同，指令分为：
-<ul>
-<li>存储器-存储器（SS）型指令：即操作数都存在内存中；</li>
-<li>寄存器-寄存器（RR）型指令：即操作数都存在寄存器中，不需要访问内存；</li>
-<li>寄存器-存储器（RS）型指令；</li>
-</ul>
-</li>
-<li>按指令字长度分类：
-<ul>
-<li>单字长指令；</li>
-<li>半字长指令；</li>
-<li>双字长指令；</li>
-<li>注：多字长指令能提供更大的地址空间，但必须多次访问内存取出一整条指令；</li>
-<li>等长指令字结构 vs. 变长指令字结构；</li>
-</ul>
-</li>
-<li>扩展操作码指令格式：其中，前缀1111作为特征位，用于区分这是几地址指令；<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/1.png" srcset="/img/loading.gif" lazyload alt=""></li>
-<li>指令助记符：
-<ul>
-<li>助记符 $\rightarrow$ 二进制操作码：汇编（汇编器实现）；</li>
-<li>二进制操作码 $\rightarrow$ 助记符：反汇编；</li>
-</ul>
-</li>
-</ul>
-<h1>指令和数据的寻址方式</h1>
-<p>在存储器中，读/写操作数/指令字的方式有：</p>
-<ul>
-<li>地址指定方式；</li>
-<li>相联存储方式（按内容寻址）；</li>
-<li>堆栈存取方式；</li>
-</ul>
-<h2 id="地址指定方式">地址指定方式</h2>
-<h3 id="指令寻址方式">指令寻址方式</h3>
-<h4 id="顺序寻址方式">顺序寻址方式</h4>
-<p>通过<strong>程序计数器PC</strong>来计数指令的顺序号，该顺序号就是指令在内容中的地址；</p>
-<h4 id="跳跃寻址方式">跳跃寻址方式</h4>
-<p>用于实现条件转移、无条件转移和子程序调用等；</p>
-<h3 id="操作数寻址">操作数寻址</h3>
-<p>形成操作数有效地址的方法，称为操作数寻址方法；<br>
-一种单地址指令的结构如下：<br>
-<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/2.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<ul>
-<li>操作数地址由变址X、间址I、形式地址A(也称偏移量offset)组成；</li>
-</ul>
-<h4 id="隐含寻址">隐含寻址</h4>
-<p>隐含默认地给出操作数的地址；</p>
-<h4 id="立即寻址">立即寻址</h4>
-<p>地址码字段是操作数本身而不是操作数的地址(<strong>立即数</strong>)；</p>
-<h4 id="直接寻址">直接寻址</h4>
-<p>在地址码字段直接给出操作数在内存中的地址A；即形式地址A就是操作数的有效地址EA：<br>
-$$<br>
-EA = A<br>
-$$</p>
-<h4 id="间接寻址">间接寻址</h4>
-<p>在地址码字段给出的是操作数地址的地址，需要两次访存，即：<br>
-$$<br>
-EA = (A)<br>
-$$</p>
-<blockquote>
-<p><strong>注</strong>：一般用寻址特征位 $I$ 区分两种方式，$I = 0$表示直接寻址，$I = 1$表示间接寻址；</p>
-</blockquote>
-<h4 id="寄存器寻址">寄存器寻址</h4>
-<p>操作数地址并不是内存的地址，而是寄存器的编号；地址码字段直接取指定寄存器的内容，就是操作数；</p>
-<h4 id="寄存器的间接寻址">寄存器的间接寻址</h4>
-<p>地址码字段指定的寄存器的内容是操作数的地址；</p>
-<h4 id="偏移寻址">偏移寻址</h4>
-<h5 id="相对寻址">相对寻址</h5>
-<p>程序计数器PC的内容加上偏移量A(有符号数)形成操作数的有效地址；<br>
-<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/3.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h5 id="基址寻址">基址寻址</h5>
-<p>基址寄存器的内容加上偏移量A(有符号数)形成操作数的有效地址；<br>
-<img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/4.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<h5 id="变址寻址">变址寻址</h5>
-<p>变址寄存器的内容加上偏移量A(有符号数)形成操作数的有效地址；其中变址寄存器的内容会自动递增或递减；</p>
-<h3 id="段寻址方式">段寻址方式</h3>
-<p><img src="/2025/04/04/%E8%AE%A1%E7%BB%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(5)%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/5.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<ul>
-<li>段寄存器左移4位形成20位物理地址；</li>
-</ul>
-<h3 id="堆栈寻址">堆栈寻址</h3>
-<h4 id="寄存器堆栈">寄存器堆栈</h4>
-<ul>
-<li><strong>栈顶不动，数据移动</strong>；</li>
-<li>数据的读出具有破坏性；</li>
-<li>堆栈大小受限；</li>
-</ul>
-<h4 id="存储器堆栈">存储器堆栈</h4>
-<p>在主存中划分出一片堆栈区域，CPU用一个专门的寄存器 SP（Stack Pointer，栈顶指示器）存储栈顶的位置；</p>
-<ul>
-<li><strong>栈顶移动，数据不动</strong>；</li>
-<li>堆栈空间可以自行分配；</li>
-<li>栈顶指示有2种方式：
-<ul>
-<li>SP 指向空单元；</li>
-<li>SP 指向满单元；</li>
-</ul>
-</li>
-</ul>
-<h1>CISC(Complex Instruction Set Computing, 复杂指令集)计算机</h1>
-<ul>
-<li>指令系统庞大；</li>
-<li>指令长度不固定；</li>
-<li>指令格式复杂；</li>
-<li>寻址方式多；</li>
-<li>通用寄存器数量少；</li>
-<li>各种指令的指令时间相差很大；</li>
-<li>各种指令的使用频度相差较大；</li>
-<li>使用微程序控制器；</li>
-</ul>
-<h1>RISC(Reduced Instruction Set Computing, 精简指令集)计算机</h1>
-<ul>
-<li>选取使用频率最高的一些简单指令，指令数量少；</li>
-<li>指令长度固定；</li>
-<li>指令格式种类少；</li>
-<li>寻址方式简单；</li>
-<li>只有 Load / Store 指令访问存储器，其他均在寄存器之间进行；</li>
-<li>通用寄存器数量较多，减少访存次数；</li>
-<li>大部分指令在一个机器周期内完成；</li>
-<li>使用硬布线控制器；</li>
-</ul>
+              
+              <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 密码不太对哦." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="75b78a690c7d4f2d7480356666f351e5707e7c3948acad33d841f8dc75d97446">78a8a0a48df9527c0292892c699695ea159f47b0e8521021e4037b4dd59f02f7055a01973e383c658237d5eb7443f3d4531846cf20723c4e1ef4c5353ceb7955a7a60b823a3b36ca04072dc0bcf178966f477338bed0c538a1d24083b0b286639004fb3affe83829f84c77f1cfc0e563b2450a8352adabd759da237f098a5ff34270ccf273c1557fe98ed7f728f76c1a1b95fd36523735f3008bd1fef2ad064e18a618c7f9a1752933d83b1b2787468b85042087122cc728f0962b33a7e841850bfc3b7eb0f39a53b0bd3a22365c2ccd0260e050870c7eb20a571ffca66b3663cb711c336d50dffde56424e522dfa3eb7d725f5b51a4f60cef982682046905781604af575eef937d77ae10fd1dced7084aa53e1bb0a20d499fa6ed6db1309a3d7c26f2e4ed6edf1c1fad69c470917738296b4ea445fe719f8d1c603cc6c68eed6ddd4af37c3aecd16ef189631dfcc334282501ce4ae8ed285aad9481f796c752533a3dfc9b6760f6ac026526d909f21acc8f72467a16a00154a2784d208cdc388c589e67b21016597ed8c5e2ba95c6b05b20d8de4eef8634c341613d9fc9cc43828f71f0918f0d24210f68fd27c9ca2014936124812a43f82a7cedf87a06352a4c3d927c181594309a5a4c30f9eedcb441a97a386ab4ab234fe56ae1e30e05def5271c2280795efb43544edcf8970a88166cc3bb8b1af9ec12401bedccb3624f0cbc7e2c48f5a5fadf56966d3b9ce324f3f5697df353a7624ef52a32885ec3d2983c99eef942522c220f8697eed60a76446dbafc7e5b9e245711e8e28e96e1fe78f11af02fd2303f586dae1d5d371f550d465f9476999d5abd34644db569625744ccbe632d4d8cc0191d21fc60eaf1c4ababe28cd608641a1f23d1f25a38652bd80f5323a7b9154c93756c0459a7b6fcfe1078519b4eca94293cb0c4d6f3cb4b83bccb1e9c19abefa401360fef9289bb2398188656dc00fd64819a1782e1d801a7067f242614db6180baea4b9f0a093de1d4de4218f03da4cfb72b6d2ac0e547ce5cff099f2ba4434f961c482def3261a5383874824ac200eb49c3611cf5b98a59081ccc8ad53bb0f37ee12ba5c8d1dbbf73e1c09a4a14fc44c1cd9be3ec9a35f0de032d8eb6c2a43a2a0a552536d2af27e2e70e6b91102d3ac5b6194a5d987ed54112a9af2715a14c7b6bf6f546fe98094c7ca5bbbd2b8ccf36ec8a4347a72676b8bc0e6481eba91a75a3cdfd84b1ebe122f11722263e04a1256e8f9315d222f2fa824aee32ba02bc6a650ac1e70e00a3dfdc45cd29ce2dbf3cecccc3559c4ac5ca41a6cba8b13adb61e92670577a14cc1a502bb82c94810fd102efb091827710aaadc2c347f43b3a7ebb4acfb4a2a670efede886d2ec50ae59a1e50a5af45cbff9069c60ba090382a081bb75f52a3d2c68b55bf71375c66330af52f79722ca3acba1fc83030af7f1860e7291e6500e9c69bae015bd4134021eea2c15c07ea4b24f7b8fbf69f5fa780dd689815ccb679092b94748061edf05463ea76251648361c61ed9d6a87eb2a3601b6c19c776dca3d2ded066965822437ffff947d8b103c844d6e4bfacce113f06c088c15e3b725783f94dd5411725e2a274ce52fa2abbf72d570d7fec959850c16e3aa37b84ab436857468f9705ed9caf505201e2bbfad894f4b0276451731d36e7156524a2cfc3c1be6a16ad2b15d5d8d28a5f9f4760af116a013a3e8160944e1ae4ef65a56efa0f824b994320826a55cfa258f60be461800429e1609639727e3b7e8e5ce38fa3bc23927705583727bbabb801160f169c5113dabf74cbe8bc6cd3dd343a31e05acfd10964ca70837c03fdfc7158e98c292d9ebe9d229b88e881ded4ad7966c9088fe6d92c93a1b90ddc0d9da0512b0c5428a88a9d905aa59e00ebb07f5409f3360713fa382ee09574473e24d55506eb5c8426694674ca3616d7a727eee6c624fff320854e37708b249be6b5b375558988d64f7bb2ee40a4ecf6ce41326f628d2a144ede50a63d5b1863e4dbce49d387e5a223390a06d34175fb9f7aa3018b24cbcd3c89b2af35db8cc240e65776f1a86586f2f5d2d4677479f7db4370534d6998ed72ee2b60a3ecd28aebd10ef684ad8b84a38289ac1af5064f2c08fa550bd45a87c6935e37d0b1f054b8adf4b7c523ee21d6167aaaa78617cf6cae146c6b633164fa05998e429d58a7371350c89fac2d9e8cfbee1e05d5cc21b2e4659302ab711bfb8958c401f59b99e8554a2c1a197e22210528e8d2d5900483adf675daee417d2daa86b97c6ab4046299783c4ae19e745045c2228becccb7ce986d7ed0287aedfb1c6a029e31628d872c329c2f56925e5be9367ed81e6f0e0158b3bdee5150896a85a2408b8bab0fbb0b1d93e67e554813a87871447b598454bc6ee070b540e17dcd9cef988da77f9c2a8dc613c4ca0158ec84f3b481198cdd1e72652ce14c214ff2ac43836130909be163b48138ba7bd8aa959785984a0cd8af01370df7bf9f278dbe499eb5c8388d8b7e3195ce1fd3bc2acf26d496cb763beb90a0f4aa2a422b9c7e52602fdcf2d70dfe29526230a24da2a93296f64d921ad6454341171f07d0a4597ea548223a3980e82617c1abaa61b2ff5cfcdf8c5de7768eaf97345f311c6f5c4ee15c8ce50c5a044fd4b9776548656cb445e33e40cb52736e2b6ec0ebfd443410be5020481c62abe7c9cd60a0eff692a23ff0be1ca07cf3f437d35275d7f152ec9ba1aef74c44775e5e3894bd8797039c282c0c8588c66bfcb0f1e14bfa41226424c4512325da52eab3d009f846cab3250c741e4ffaaf5dc67f884d1f726a58a7296e6511fefdb08299b21f30f9b9d66cbc69e8ef3b8eb0550dcf7b6a988f50ed19085f9ec306ab27c5b4f6cf76d0212b4c617729ee66ea31c95fe1efca935790f6cf70432368112c14b2db4666bef989ba8791ddf8d5a29fd9e9361a85a043f10e2b4ab5ae353c82acc246241c4055422b349fc17bae70300334e249aa27c33dd2bb39ef4fa40cc6410396e1974d314da2b2d0969c1e9ec9a48207bc9e52fe751224c1b92ca03672244c2d91f0c0ded3ed7100eaa41e463bfdfb9fda4298899685bd1cfe786cc27d37e738cae67d709ba371679fca26c0f485b4229f76bb49d24b08c014e607a3729c2d087524e1a2bedf9d78b12fba9f0919f4776c5d070417c7b2d03d4467fcc49fdb95e9f469bcf5038cb995ff36ede349a893d89030d31dc7a0b0d2608a77547b81ba395d3ea63afe620678651a9032d9c9f4fa0f3f8bb421000ac4ac404d938fd34d69fbc24a69742e4738252a1997dc9025192248774d7f30674706db4087a25977cd7e87b639f8d8d8b0eadd70aab49f960a43a12b30bc632d6b8e6e07973f93ecd2f9186f9921fd9318b57885e710b3be64ed5ef11ba21e8865df197eef0a98ea39b7f833e23eb1d75930c68c2c620ea3dc6bd55f45ed278931c965b116e4fd44fbea779bbc509bcc36d6a09ec6c5860bd1f2ee11c8cf5cfa8970c0381a2a227344cfba8001e071d3bdc3df7b4dc8022e043f91d7cf92beb57a915cb1f3ec689b7ab1addcd6388b3946aa3eff4ad01b1d9b767d36829ca012421dfc349558851333f5c2f192a0c850c77576ba58fe2d05eba49b127fd5ebdab4f9c395bf04f2f734a1e90b1b8fda2433c0933659e5b5023cf362c0d5dcc2f50d54252b183f4e0762f9d0ab398a495d906bc1042fe66056e0f35888332734493fe2ae83ee8b4d21bec0cb05ccab3539f674765e094cc9898bab9fe218480d6950fac10b198a47b218fb91b31b985c8920bc2de4719e72ce85a3d58a9566b9622b5a757185d9fa90d9afacac0f754ce3614add34716d28259e95d94da34f69c638a5b2fb819dc8a082e947ec7b56dcae5c239e76811e7c48eacba4c673e01e1fe5d0426a725a652452175e24f6a5944c974bdf29fbd5db1f46531885378bbc1c031a30e28ca2c09f2c8e9b1263af32fe4864365eb53242d02ef600b88546f884385ec7bca1b7a533097db17465214686d362ee4802f8902e61064f125f934e1cfebd1caa100adf07002a5c09a62b91350296fdab925182dc822e44fa26bb3c541b940d628e5810438cc9797583c58bf81a4f1838b3bbed37ec97937c59c2b2d5ddfe933d1d2fcf712bd25edaa4755bd33c48ac241b55f4efd2e718e5909c45471b96783ebe8bcec74ba74a77e75780343611dd30cca8a2dc9d53604e779164a2c408f91190b13c6452fb54138c349be05217d47bbbbe23415f07d07f44486555bc4632dc91f755b1efc2b2aa7481c5a5b3d2f768ff06c783579d2c8cee230c8709395ce75964d10b3e0a2067850bc7e2e3698e40b8493d59fc38306bc903cfdbe1c60d3c92828904a302f111531ea83b34b753b6f98fc01f31fc5382e8f85786293c041e57e4d33e19906c2204a2bb2185134686811eba1ea394208dbf5d06ae671d6e528ffa4914e907a936d1f3df98df112a3c7ed106f64c4d5da015acf049cdd2980d0773f4557dab21cb5df02479454806f42cc8c3a29c52349ce04f197b29f7664e5c5c26bf3a02bff00dd6e5d06798b3a5102e2e52b9a35f66a01ecae4bcc85db416015e96a63dff2c4b6ef5f7ca32272a682baac71a8e0c39ff82f7028e5d702a80acf23fbf1294969d81970d5562d00eb7fcd36c9e43f863a8370213b23c0477945c8d3294c03fa159a51430b9354e0dde58aafcf053b6ee713928665c6397a416c43c1f99b36816dba5dd8ab11d8442e83dbe9a9bbab90ee5c4e9c52ebcb45ef673f1d39020254b36ef365bdf3ecdfdb26cc9e7f3f60ee5e010d511ca7ea11bb01c902258ba9f11e45286e13e2a084ae28bad10ad5997f51402c5de0f6eae81134ccd4d84901a3bfa9e36b1ad73ac01336e946fbb171a5ac6013b313c0149cc2c02f5441a2f43c96154523ebd50a0013dae4656d19598f9e52e5bff4a7b0a6f269d8672f15d45ec520dfb5aabeb9bac3213373b8cb89e595c618f9ebd10c2a95a3e396a0ca31b81fe4ba0c3367f8306644bf0adb54031092d69b9f1525944a04b72a6bf9bcf0ebf0f218da9c23f678ac8509b57b6764e5ece375904290ebfbc56d45fb268c5f439de0cb9ac460425ccf28e57808d1a06fbfb0d05ffd3d03044e9724e3bf27bd52248df0efb40be32bee658dc69e6afd6d34c05ec43d6f0ab6b9183faab888d16df5c781073be0512f894b9bf26d2a05edefa5519577df3793d008c867bd53b3e72a443441b16f9c2ca8bd85923b01c16539c7fcd584bd0c6e45557714f23ae1e1fefb8cb45ef571eb346252a8fda2a4abecb7add1426b877125d6189b8d69134621946a958f895fa827609703a5922c6e681ab9215399053d4eeb8dbda1d48e6a5ab92743215a9f8a061d08035768b33c1888ae65f0eced5e12acd16141e27a09401ce8733ecdc3e3163d84164285b94d27979a7b37ea93410cf55bb1fcca37c385a37dda689ede758b573ea2b50a65d090e56a200c2784536ec9ab068f16d2f7fb1d87ad82b1302fa95bb075030ea445a39293b4a15a2d0cca8dab4e53faf4acf15161bbf2b8a092601573221ff39aca6d6c556be22863228c1216503eee4b93118b5bba743c1a1dcd5856b911288a2ce0e91345d09d467414d5740c98031071c870a5485471c260e6f093e5eb67f4073e9a9dccd279f8a5c01389b578b7973ae6a4d904cc9409c0d2460678c29281438b132788af5aca0fdc8acc0cb96735f8916da649060d446794b11b2b701768974e5749b28a676ca3d79a7540525f8a8839e389c4e3c8f06d1c2443ce9175ec2a7b35b32359b0e60b53fdb7a5e77556b66bc5ef38863cc81ae49f66f37275031bb997529e2d933a6540e3b416b3e14c07eb8d2a14b98ea129b755bc25078629c6d141c256ef243430b5d23aad2e94d9303825f20dd156843a43c0e280beb50803e781b3b056f4fc30be881bb40d2d33e7efaffbb32c5aea8945694eb1cf6761a0e0340e0bf54601a4efdbae4f613c47266525246de948394e7a4cfcb5df531f62e1bebc7c90ef6450ccc78c8c348f9b2a4303c2bd58df539e037cbc327f7cc5b99775b5044a7845fd790dd22648020fe0779b9f8b5ad5a98a00c0a5f94c5330a4e5969fc64f16d43e9db655f15198b763de9a1669b0fe9b1e8e7abb41c2562be5a6a2ab431bc21c5d684ba1c38c578e7be36255b8f098b7395fa481fff3cd67885426e7bd7860231cba98d7c0a7b5058392c374786c34fda89d0c8afc576b399e19a74654e16103a36a57ee67cb88b31874fc01b3be3746b1c9b03e1899ba0aee47c4b776796f2c2ab4a3455bbf0d63f2c9cf4dd495586905c0fcb6d1814c44ce14666e1dc48dfc3811c2241dcb509c8dba215134dd9df1036cc75c7e7b38ec9f81d03fd9d6537b59700c77550b002c29c0746c697aa6892b4c07a5f9cdf26b582ac17c3616914461f0666575ceb6ff91d327b353b096e5b403869a833c7b6c3f869ea611d9f3c8f427b79f377f727bedd386a295e1146e472026ce1888870e4d7ab9b2377f52450f11b1347bcf1d10fec5ef2ddde03826ac57d5e5934d9f25f3ee862461551b31b3351f96028ff99a04c247e65ab23ff64c3b3add150b92b888a4e201474c4733debabdcae79e51b4cefebdf5d49a816dd3d42d9b6966b864e197b70b60e2a61bbf2090ef816635f4d9da0b9e438aea897311293013acc1a7b3bb725b3919d9fe01dbd13a77803461b8f768f1f4d72061ccf64d5cb4eec3488d1b5451f3ba021289ef9c507258e92957ace81628ed2544984b64a76f33c1ccd4ddaabd059b502c75db09be9ca358a83b328a817bfc032fd0bfbd851b7162c687901a003b3013776847944fd95d136366115f0911d22c3130dea65a4b0aeaaca1f5c5eb2e79b24b7153cb2907e2d0fd5cab5e722b742bfe9ea1d86b3314e1ac6b238ce40cb7f69d826c2b1587e59ba467b807c5c3010980fcaa6c32f2ffee519fc999f9a018b4d6fdfbdfd65d4f65c91b25d69e2f5f80c9a4ebf98a4692516daaee6e5297e70e7effb842d0e69fc5f20eb005b68ce7714dbbb4721411e34d73963990bc100c29310bfc28453777b80c3ada438d17bd0cda990b807c6546bd532eef0a1d25c0aab9780237d9a60de9a2d0e1cc0d3f7bb831a5ff9a7b52580fb902d86694dffc9460b2a8bf9b26291a6f2e7150b3f94718ecf6fd060a165f2f455481b013b382cfec0afe2f90eba00de0f627adab8cab333b6fc8e3b99e3956e737c7845676ba86c46d9dbfbe53b7273da6b87648abbbe388002c55f13d68b96651ecaf33665c837fe2c333a07988d9c39bfd603888a3f3d50b362525be8aaf25fe253b4e03c1404d6e03b10a3cb257d95fb9dba2b3d36544bb799d29f492a9f612707ad2e3369d383ef79297bb7acdb17814eb8e405380a5600e86bdc6d289da944ba35299ab1e3e9aa583deae22384b4a302c1c70b47be6c8ac63324060578ac99e8d0d738db11c08a7d60cb60b1c5f618521095e88809251c66da966bd1baadc46c70f675bd001248aebfc65cb6da432741253f56e592b2c40d1217ae7a0270824f81efe6a86fc219b6101ef2435ecd44747ebfadc174ae4b2d4abccd7949efc578996f07172340c946ddf487ea7f5b5b2bc1be03c5fb4c7cb51788c028643430acc3b15affc3d2ed599ded3de516c618c3b0a9c9e22ee9b235318dc65ee72ae832597f448cc282049205f8a565b22546b072340d6f2bbf592f267b0a17351aeccf23c97316a3522d9c8015030bf310278076471c6193df01742b683eef609bcaae22380436541f9d54d1e524cd6df1477997af6432106f5dba27032ff1f711c299292387c5e38c29d59ef000640bdf9b5faca0ffce51f0ed5363240fa7f3cd331434ce1f7b2607291e0280b3d8a4d84828d50ce6692a67811e02249b4d904416b509775c39b90320e418c1657fcd671f63cf7d6f52f76f6d3b1e9fa478d3e1ea1b1d3086d660fa55c0a7bb594d8b48bda52ae1b921a98672d538a4d3c14577a3faa01bc48bc0238958c3d784968f5ce96edb6932c096536ec731cad09d3e1db38116d5e8e5c8a442250e0d1e9b76db59d52fdd5cdbd55f37f753a7da8682e77c845595afb4c89465d7c142f552420303bf9613200163a18b9edec167c63f90b70b5ab7a3783f24a6d2bb3a561042ce2751f9d492a83fd683af5ce4ab85011d772de07c7c53c4819af952aed4d9e8484f9adf7e7aadc9d31e3d14f29ddca5512e815686fe798c789298029a5d18d4703ae3dcbe6394d3aa343dce4d822b7cdac9ca54028229d4498823062c77a18840eeab8cc301c79be34d3ebc123170acb6516c6c49d748977b65e2af23fb34b0a7089797d37a1a18028bdd57127e658dd0be4411bae46de08e4d9797c08275db749002201b67f4257f159973eafec8cda092e7907bb0ac3cd324e4056e43af8489e56b0e190aed8f90df5a409091b9dc990f74c00bbcb23b2f8571766898926adb71659d4f5d862b96db932894097a321890300ddeb1c26ba7ead8808a59a00dc9013d07c87af0d796eeb8d74eb9cb1b288cf1302d0138d8d621a9a9728a2db51e5c581be5647faf4d5c1bbc9df2a0adfe8e55ca4592fca82b9eb3b589d5e122bf596a02b24710972254e3cb66a557f3f8607cd444775c756b68d4785d69b67369f81115b581c1de6e5600f7a2d4832205b57ffe375c0dceaca070a337b9004547b60961486f145c68835a9f893a88d532845e326cc2d31cb925faeecd51af43af8a9ee8e0e0699113b2ea1c16d9272c47ebd11508e92b9b10d33a632e37e28e7a0a087392fb4e27b9f4605dce7e44a8a9e1ecff25b3e0ec6a04ee0ab3da5609c7453e4abd2e1ad8b83bbdcdf34119e7780b643db106bf9d96106b0a4faf3b4ca6193d8d742d622b7f94974bd8b9fc6b003cb88952ecd5673f1e295b09fe74a1741101e57d2e08487513a841ccb1951170b729cf1d38d6af669d9023068a35514e5b04095a32fc28d0b2a12d682a1ddc97e88b2ebfc3fd16a8404a2f3cff9673d99f840ce8986f863316a74c36b04306d868d9c2b22ca062d9e11f349da289f07254ea6cd282caade11f42c61acf0e76da2e11d35786a54649c081104f0ce3a60f38482276bd28ce900c2979614b01c8c79892d379e6cfad6da1046dc89ddc2484f8043e88e0b70c727f1ceae8f716673aaee854f4115c1f2e8cbe5963b7a010604e0a3c179b8387ee7a75bbe626bebea1780b50578d8f2bc1460233be447289de482572a6fb31a77b5976113e8a0cb14d4fc8190bf2b40400d0c5e5f538d97f18ace8c5e2ec270fee7c17a99ff4940f059b56803ec7f13604be43829dadcc2b80649fdc8546a77573812a8e7ba94eb9009b62f431677b09e36bf65d2538f67f21d8f786914d0659e09ad7cb861acc5163b6d268ed44c0a9778a40238d79e4b8926fc858f5768e87e773817f2c1ed5aa6a23a2d9d6f20e5ab0421e8bce105e8b5a7264cb479cbc083dfc7b4d3beba4c290b69e823d311129e5c304fc70f51a91f34f1f95e61842bfe6036d90cf6ef5e3fc32cc348970bf94f32ce5322ac796f197a317bf1808b0e7a92e0c80f781df714e05e35748fd64e2e5d041ae6d3567c3d6ddaf775739d6bccf664c93be8ff6ed02d589a2a72b449107e38194764c670911b2dac707023283180c77dc0ea547d07ef99092e873b9bc04df8b4e973edc5d26bb6c77a0e899882ce6b3090d84fd57c07ea9e8cfc02c746c69710dff868c50c22f74ff898f90ede52a8a01c8c72f206dc94f32daf315094e835e7be19c0f8ccc2e6bcf4e8b3f0fa45e129950707c69583226370ecda83e213d75e3b3a05a9a546c1f3b15a5dcb4d2ffbf7eea2dd2fc642f503f14c343ec9eb0386955ec488b882a83ae9f8b4a1ff32f1955c74bad88c977d99c5d3f2fec37bbcad308cd64addacf1d3580538c73ded6bef7f68bea0ef5fd7dc7c9ac86db39cd758d672fe651fca40f770e5406235b4c40f050ff8c8a01c4952faa8c459ca4339363b8b2cbe9024e0195439316ddab2ad2e6cda5bee77a1b1ecff632fea03b34cb8d8c16d701e8a62864196432ac04f4cbdff700bcde9b581790dc0c6b4658b6f1fd32dca1a134047cfc5beaf3d3d45d7363bc960ed419b3299047de93c0068ef2072928660dc5112ac2253db9e97cf33a4bb058fc0b8e25cb16c0cb63d7184ef7e55b190677d08afba6d9c81d731bedf49d481ef1d82ba5d0808a5b3eb3db7865e23891f40e92e2d6d279ea67c0ff4d38eeb506fbc9d84b7007b90393626cc914c5bc6a1b4cbdb576472ff4a27de2b8de492ce426692f2e2140b8874eeb5fa87c4b46e5e1b6eadb0e98656461d4b26bc77dcf7561d437082a28c3f627397a18134a09136b356e5af89b238e4bc105b7b3945b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-xray">
+      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">非常抱歉，该系列的文章处于持续施工中，暂不支持直接访问.</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+              
 
-                
-              </div>
+              
             
             <hr/>
             <div>
@@ -815,6 +671,23 @@ $$</p>
   
 
 
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass') || document.querySelector('hbe-prefix')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
 
 
   
